@@ -13,6 +13,9 @@ import InsertPollingStationInfo from "../dashboard/InsertPollingStationInfo";
 import LoadDistrictInfo from "../dashboard/LoadDistrictInfo";
 import LoadUpazilaInfo from "../dashboard/LoadUpazilaInfo";
 import LoadPollingStationInfo from "../dashboard/LoadPollingStationInfo";
+import InsertUnion from "../dashboard/InsertUnion";
+import LoadUnionInfo from "../dashboard/LoadUnionInfo";
+
 
 const router = createBrowserRouter([
     {
@@ -60,13 +63,17 @@ const router = createBrowserRouter([
             element: <InsertUpazila />,
           },
           {
+            path: "/dashboard/unions",
+            element: <InsertUnion></InsertUnion>
+          },
+          {
             path: "/dashboard/pollingStations",
             element: <InsertPollingStationInfo />,
           },
           {
             path: "/dashboard/loadDistricts",
             element: <LoadDistrictInfo></LoadDistrictInfo>,
-          //  loader: () => fetch("https://my-portfolio-server-blond.vercel.app/projects"),
+            loader: () => fetch("http://localhost:5000/districts"),
           },
           { /*
             path: "/dashboard/district/:id",
@@ -75,14 +82,19 @@ const router = createBrowserRouter([
                 */
           },
           {
-            path: "/dashboard/loadUpazila",
+            path: "/dashboard/loadUpazilas",
             element: <LoadUpazilaInfo></LoadUpazilaInfo>,
-          //  loader: () => fetch("https://my-portfolio-server-blond.vercel.app/technologies"),
+            loader: () => fetch("http://localhost:5000/upazilas"),
           },
           {
-            path: "/dashboard/loadPollingStation",
+            path: "/dashboard/loadUnions",
+            element: <LoadUnionInfo></LoadUnionInfo>,
+            loader: () => fetch("http://localhost:5000/unions"),
+          },
+          {
+            path: "/dashboard/loadPollingStations",
             element: <LoadPollingStationInfo></LoadPollingStationInfo>,
-        //    loader: () => fetch("https://my-portfolio-server-blond.vercel.app/services"),
+            loader: () => fetch("http://localhost:5000/pollingStations"),
           },
         ],
 

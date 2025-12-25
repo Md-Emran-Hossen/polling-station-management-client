@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"; 
-
+import navPic from "../../public/images/pic1.jpg"
 
 const Navbar = () => {
 
@@ -35,6 +35,10 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1">
                     {navLink}
                 </ul>
+            </div>
+             <div className="navbar-end">
+                <img src={navPic} className="w-16 rounded-full p-1"></img>
+                {/* <a className="btn">Button</a> */}
             </div>
          
         </div>

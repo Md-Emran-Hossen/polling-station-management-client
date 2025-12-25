@@ -1,49 +1,49 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 
 
-const InsertUpazila = () => {
+const InsertUnion = () => {
 
-    const [districts, setDistricts] = useState([]);
-    const [districtObject, setDistrictObject] = useState({});
+    const [upazilas, setUpazilas] = useState([]);
+    const [upazilaObject, setUpazilaObject] = useState({});
     const [formData, setFormData] = useState({
-        districtID: '',
-        districtName: '',
-        upazilaName: ''
+        upazilaID: '',
+        upazilaName: '',
+        unionName: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchDistricts = async () => {
+        const fetchUpazilas = async () => {
             try {
-                const res = await fetch('http://localhost:5000/districts');
+                const res = await fetch('http://localhost:5000/upazilas');
 
                 const data = await res.json();
-            //    console.log("District Information:= ", data);
-                setDistricts(data);
+            //    console.log("Upazila Information:= ", data);
+                setUpazilas(data);
 
-                const tempDistrictObject = {};
-                data.forEach(district => {
-                    tempDistrictObject[district.districtName] = district._id;
+                const tempUpazilaObject = {};
+                data.forEach(upazila => {
+                    tempUpazilaObject[upazila.upazilaName] = upazila._id;
                 });
-                console.log("INNER VALUE:=",tempDistrictObject);
-                setDistrictObject(tempDistrictObject);
+               // console.log("INNER VALUE:=",tempDistrictObject);
+                setUpazilaObject(tempUpazilaObject);
             } catch (error) {
-                console.error('Error fetching district:', error);
+                console.error('Error fetching upazila:', error);
             }
         };
 
-        fetchDistricts();
+        fetchUpazilas();
     }, []);
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formData.upazilaName) {
-            newErrors.upazilaName = "Upazila name is Required";
+        if (!formData.unionName) {
+            newErrors.unionName = "Union name is Required";
         }
      
         setErrors(newErrors);
@@ -63,13 +63,13 @@ const InsertUpazila = () => {
         }
 
  const upazila = {
-            districtID: districtObject[formData.districtName],
-            districtName: formData.districtName,
-            upazilaName: formData.upazilaName 
+            upazilaID: upazilaObject[formData.upazilaName],
+            upazilaName: formData.upazilaName,
+            unionName: formData.unionName 
         };
-        console.log("District, Upazila, District ID:", upazila.districtName,upazila.upazilaName,upazila.districtID);
+      //  console.log("Upazila, Union, Upazila ID:", union.upazilaName, union.unionName, union.upazilaID);
         // Save Services information to the database
-        const result = await fetch('http://localhost:5000/upazilas', {
+        const result = await fetch('http://localhost:5000/unions', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -81,56 +81,56 @@ const InsertUpazila = () => {
        
         if (data.insertedId) {
             // console.log("Data object found:", data.insertedId);
-            toast.success(`${formData.upazilaName} is added successfully`);
-            navigate('/dashboard/loadUpazilas');
+            toast.success(`${formData.unionName} is added successfully`);
+            navigate('/dashboard/unions');
         } else {
-            toast.error('Failed to add Upazila information.');
+            toast.error('Failed to add Union information.');
         }
     };
 
     return (
          <div className="mx-5 px-5 ">
              <Helmet>
-                <title> Polling Station | Add Upazila </title>
+                <title> Polling Station | Add Union </title>
             </Helmet>
  
-                <h2 className="text-3xl md:text-left font-bold pl-10">উপজেলা যুক্ত করুন</h2>
+                <h2 className="text-3xl md:text-left font-bold pl-10">ইউনিয়ন যুক্ত করুন</h2>
                 <form onSubmit={handleSubmit} className="border shadow-lg py-2 px-6 mt-3 flex flex-col md:flex-row">
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
                               
                         <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
                             <div className='flex justify-center items-center max-w-xs'>
-                                <label className="label"> <span className="label-text">জেলা নির্বাচন করুন:</span></label>
+                                <label className="label"> <span className="label-text">ইউনিয়ন নির্বাচন করুন:</span></label>
                                 <select
                                  //   id = {formData._id}
-                                    name="districtName"
-                                    value={formData.districtName}
+                                    name="upazilaName"
+                                    value={formData.upazilaName}
                                     onChange={handleInputChange}
                                     className="input input-bordered w-full max-w-xs rounded-none text-sm bg-white"
                                 >
-                                    <option value="">জেলা বাছাই করুন</option>
-                                    {Object.keys(districtObject).map((district, index) => (
-                                        <option key={index} value={district}>
-                                            {district}
+                                    <option value="">উপজেলা বাছাই করুন</option>
+                                    {Object.keys(upazilaObject).map((upazila, index) => (
+                                        <option key={index} value={upazila}>
+                                            {upazila}
                                         </option>
                                     ))}
                                 </select>
                             </div>
-                            {errors.districtName && <p className='text-red-500 text-xs'>{errors.districtName}</p>}
+                            {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
                         </div>
 
                          <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">উপজেলা:</span></label>
+                                <label className="label"> <span className="label-text">ইউনিয়ন:</span></label>
                                 <input
                                     type="text"
-                                    name="upazilaName"
-                                    value={formData.upazilaName}
+                                    name="unionName"
+                                    value={formData.unionName}
                                     onChange={handleInputChange}
                                     className="input input-bordered w-full rounded-none bg-white"
                                 />
                             </div>
-                            {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
+                            {errors.unionName && <p className='text-red-500 text-xs'>{errors.unionName}</p>}
                         </div>
 
                         <div className="mx-5 px-5">
@@ -148,4 +148,4 @@ const InsertUpazila = () => {
     );
 };
 
-export default InsertUpazila;
+export default InsertUnion;

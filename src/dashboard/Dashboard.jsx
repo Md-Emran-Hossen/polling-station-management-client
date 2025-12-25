@@ -15,6 +15,11 @@ const Dashboard = () => {
                         উপজেলা
                     </NavLink>
                 </li>
+                   <li className="text-3xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dashboard/unions">
+                        ইউনিয়ন
+                    </NavLink>
+                </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/pollingStations">
                         ভোটকেন্দ্র
@@ -27,12 +32,17 @@ const Dashboard = () => {
                     </NavLink>
                 </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadUpazila">
+                    <NavLink to="/dashboard/loadUpazilas">
                         উপজেলাসমূহ
                     </NavLink>
                 </li>
+                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dashboard/loadUnions">
+                        ইউনিয়নসমূহ
+                    </NavLink>
+                </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadPollingStation">
+                    <NavLink to="/dashboard/loadPollingStations">
                         ভোটকেন্দ্রসমূহ
                     </NavLink>
                 </li>
