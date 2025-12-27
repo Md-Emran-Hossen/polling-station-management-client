@@ -15,6 +15,7 @@ import LoadUpazilaInfo from "../dashboard/LoadUpazilaInfo";
 import LoadPollingStationInfo from "../dashboard/LoadPollingStationInfo";
 import InsertUnion from "../dashboard/InsertUnion";
 import LoadUnionInfo from "../dashboard/LoadUnionInfo";
+import PollingStationDetails from "../pages/PollingStationDetails";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
+            },
+            {
+                path: "/pollingStation/:id",
+                element: <PollingStationDetails></PollingStationDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/pollingStation/${params.id}`),
             },
             {
                 path: "/publicNotice",

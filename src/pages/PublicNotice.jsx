@@ -3,7 +3,13 @@ import React from 'react';
 const PublicNotice = () => {
     return (
         <div>
-            
+            <div className="card bg-primary text-primary-content mx-5 my-5">
+                <div className="card-body">
+                     <div className="card-actions justify-center">
+                    <a href='https://maps.app.goo.gl/k1zKNgYQyLL1tMQr5' target="_blank" className="link link-primary"> ম্যাপ দেখতে ক্লিক করুন!</a>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

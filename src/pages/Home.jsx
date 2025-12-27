@@ -1,9 +1,12 @@
+import Navbar from "../shared/Navbar";
+import PollingStations from "./PollingStations";
 
 
 const Home = () => {
    return(
      <div>
-      <h1>THIS IS A HOME PAGE</h1>
+          {/* <Navbar></Navbar> */}
+          <PollingStations></PollingStations>
     </div>
    );
 };
