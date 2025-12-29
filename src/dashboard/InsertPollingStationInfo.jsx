@@ -32,8 +32,6 @@ const InsertPollingStationInfo = () => {
         thirdGender: '',
         totalVoter: '',
         parliamentarySeat: ''
-
-
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();

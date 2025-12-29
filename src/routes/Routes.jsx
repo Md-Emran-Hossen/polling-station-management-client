@@ -33,6 +33,11 @@ const router = createBrowserRouter([
                 loader: ({params}) => fetch(`http://localhost:5000/pollingStation/${params.id}`),
             },
             {
+                path: "/pollingStations/pollingStation/:id",
+                element: <PollingStationDetails></PollingStationDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/pollingStations/pollingStation/${params.id}`),
+            },
+            {
                 path: "/publicNotice",
                 element: <PublicNotice></PublicNotice>,
             },
