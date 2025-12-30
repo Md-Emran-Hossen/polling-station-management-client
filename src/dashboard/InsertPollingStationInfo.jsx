@@ -49,13 +49,12 @@ const InsertPollingStationInfo = () => {
                 data.forEach(district => {
                     tempDistrictObject[district.districtName] = district._id;
                 });
-                console.log("INNER VALUE:=",tempDistrictObject);
+             //   console.log("INNER VALUE:=",tempDistrictObject);
                 setDistrictObject(tempDistrictObject);
             } catch (error) {
                 console.error('Error fetching district:', error);
             }
         };
-
         fetchDistricts();
     }, []);
 
@@ -78,7 +77,6 @@ const InsertPollingStationInfo = () => {
                     console.error('Error fetching upazila:', error);
                 }
             };
-    
             fetchUpazilas();
         }, []);
 
@@ -101,7 +99,6 @@ const InsertPollingStationInfo = () => {
                     console.error('Error fetching union:', error);
                 }
             };
-    
             fetchUnions();
         }, []);
 

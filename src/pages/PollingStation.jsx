@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BsArrowRightSquareFill } from 'react-icons/bs';
 
-const PollingStation2 = () => {
+const PollingStation = () => {
 
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -16,71 +16,68 @@ const PollingStation2 = () => {
 
   const [pollingStations, setPollingStations] = useState([]);
 
-
-  // Load District data
+  // Load District
   useEffect(() => {
     fetch("http://localhost:5000/districts")
       .then(res => res.json())
       .then(data => setDistricts(data));
   }, []);
 
-  // Load Upazila data
-  useEffect(() => {
-      //  console.log("SELECTED DISTRICT:", selectedDistrict);
-    fetch(`http://localhost:5000/upazilaData/${selectedDistrict}`)
+  // Load Upazila
+  useEffect(() => { 
+    fetch(`http://localhost:5000/loadUpazila/${selectedDistrict}`)
       .then(res => res.json())
       .then(data => setUpazilas(data));
   }, [selectedDistrict]);
 
-  // Load Union data
+  // Load Union
   useEffect(() => {
-    fetch("http://localhost:5000/unions")
+    fetch(`http://localhost:5000/loadUnion/${selectedUpazila}`)
       .then(res => res.json())
       .then(data => setUnions(data));
-  }, []);
+  }, [selectedUpazila]);
 
-   // Load District items (all or filtered)
+   // Load by selected District items (all or filtered)
   useEffect(() => {
     let url = "http://localhost:5000/pollingStations";
 
     if (selectedDistrict) {
       url += `/pollingStation/${selectedDistrict}`;
     }
-    // console.log("API VALUE:", url);
     fetch(url)
       .then(res => res.json())
       .then(data => setPollingStations(data));
   }, [selectedDistrict]);
 
 
-  // Load Upazila items (all or filtered)
+  // Load by selected Upazila items (all or filtered)
   useEffect(() => {
+
     let url = "http://localhost:5000/pollingStations";
 
     if (selectedUpazila) {
-      url += `/pollingStation/${selectedUpazila}`;
+      url += `/pollingStation/upazila/${selectedUpazila}`;
     }
-    // console.log("API VALUE:", url);
     fetch(url)
       .then(res => res.json())
       .then(data => setPollingStations(data));
   }, [selectedUpazila]);
 
+  // Load by selected Union items (filtered)
+  useEffect(() => {
+
+    let url = "http://localhost:5000/pollingStations";
+
+    if (selectedUnion) {
+      url += `/pollingStation/union/${selectedUnion}`;
+    }
+    fetch(url)
+      .then(res => res.json())
+      .then(data => setPollingStations(data));
+  }, [selectedUnion]);
+
   return (
     <div>
-     
-      {/* <select
-        value={selectedUpazila}
-        onChange={(e) => setSelectedUpazila(e.target.value)}
-      >
-        <option value=""> উপজেলা নির্বাচন করুন </option>
-        {upazilas.map(cat => (
-          <option key={cat._id} value={cat._id}>
-            {cat.upazilaName}
-          </option>
-        ))}
-      </select> */}
-
        <div className="m-5 flex justify-between">
                   <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
                             <div className='flex justify-center items-center max-w-xs'>
@@ -179,4 +176,4 @@ const PollingStation2 = () => {
   );
 };
 
-export default PollingStation2;
+export default PollingStation;

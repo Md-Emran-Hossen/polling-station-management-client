@@ -11,7 +11,7 @@ const LoadPollingStationInfo = () => {
     const [pollingStations, setPollingStations] = useState(loadedPollingStations);
 
     const handleDelete = (_id) => {
-        console.log(_id);
+       // console.log(_id);
         fetch(`hhttp://localhost:5000/pollingStation/${_id}`, {
             method: "DELETE",
         })

@@ -1,14 +1,12 @@
 import Navbar from "../shared/Navbar";
-import PollingStation2 from "./PollingStation2";
-import PollingStations from "./PollingStations";
+import PollingStation from "./PollingStation";
+
 
 
 const Home = () => {
    return(
      <div>
-          {/* <Navbar></Navbar> */}
-          <PollingStation2></PollingStation2>
-          {/* <PollingStations></PollingStations> */}
+          <PollingStation></PollingStation>
     </div>
    );
 };
