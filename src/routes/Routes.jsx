@@ -61,8 +61,7 @@ const router = createBrowserRouter([
         ],
     },
     {
-       
-        path: "https://polling-station.netlify.app/dashboard",
+        path: "https://polling-station/dashboard",
         element: <DashboardLayout></DashboardLayout>,
         children: [
           {
