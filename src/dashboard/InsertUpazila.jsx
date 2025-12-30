@@ -20,7 +20,7 @@ const InsertUpazila = () => {
     useEffect(() => {
         const fetchDistricts = async () => {
             try {
-                const res = await fetch('http://localhost:5000/districts');
+                const res = await fetch('https://polling-station-management-server.vercel.app/districts');
 
                 const data = await res.json();
             //    console.log("District Information:= ", data);
@@ -30,7 +30,7 @@ const InsertUpazila = () => {
                 data.forEach(district => {
                     tempDistrictObject[district.districtName] = district._id;
                 });
-                console.log("INNER VALUE:=",tempDistrictObject);
+                // console.log("INNER VALUE:=",tempDistrictObject);
                 setDistrictObject(tempDistrictObject);
             } catch (error) {
                 console.error('Error fetching district:', error);
@@ -67,9 +67,9 @@ const InsertUpazila = () => {
             districtName: formData.districtName,
             upazilaName: formData.upazilaName 
         };
-        console.log("District, Upazila, District ID:", upazila.districtName,upazila.upazilaName,upazila.districtID);
+        // console.log("District, Upazila, District ID:", upazila.districtName,upazila.upazilaName,upazila.districtID);
         // Save Services information to the database
-        const result = await fetch('http://localhost:5000/upazilas', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/upazilas', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

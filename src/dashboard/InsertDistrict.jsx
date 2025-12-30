@@ -39,7 +39,7 @@ const InsertDistrict = () => {
         };
 
         // Save Services information to the database
-        const result = await fetch('http://localhost:5000/districts', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/districts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -52,7 +52,7 @@ const InsertDistrict = () => {
         if (data.insertedId) {
             // console.log("Data object found:", data.insertedId);
             toast.success(`${formData.districtName} is added successfully`);
-            navigate('/dashboard/districts');
+            navigate('/dashboard/loadDistricts');
         } else {
             toast.error('Failed to add education information.');
         }
@@ -107,7 +107,7 @@ return (
                         <input
                             className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white 
                        font-bold py-2 px-4 mb-10 rounded"
-                            value="যুক্তকরুন"
+                            value="সংরক্ষণ করুন"
                             type="submit"
                         />
                     </div>

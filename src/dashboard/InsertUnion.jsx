@@ -20,7 +20,7 @@ const InsertUnion = () => {
     useEffect(() => {
         const fetchUpazilas = async () => {
             try {
-                const res = await fetch('http://localhost:5000/upazilas');
+                const res = await fetch('https://polling-station-management-server.vercel.app/upazilas');
 
                 const data = await res.json();
             //    console.log("Upazila Information:= ", data);
@@ -69,7 +69,7 @@ const InsertUnion = () => {
         };
       //  console.log("Upazila, Union, Upazila ID:", union.upazilaName, union.unionName, union.upazilaID);
         // Save Services information to the database
-        const result = await fetch('http://localhost:5000/unions', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/unions', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

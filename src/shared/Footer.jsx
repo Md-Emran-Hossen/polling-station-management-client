@@ -26,7 +26,7 @@ const Footer = () => {
                         DoICT, Ramu, Coxsbazar
                     </p>
                 </aside>
-                <nav className="md:place-self-center md:justify-self-end">
+                {/* <nav className="md:place-self-center md:justify-self-end">
                     <div className="grid grid-flow-col gap-4">
                         <a>
                             <svg
@@ -68,7 +68,7 @@ const Footer = () => {
                             </svg>
                         </a>
                     </div>
-                </nav>
+                </nav> */}
             </footer>
         </>
     );

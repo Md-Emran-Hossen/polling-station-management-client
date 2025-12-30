@@ -18,28 +18,28 @@ const PollingStation = () => {
 
   // Load District
   useEffect(() => {
-    fetch("http://localhost:5000/districts")
+    fetch("https://polling-station-management-server.vercel.app/districts")
       .then(res => res.json())
       .then(data => setDistricts(data));
   }, []);
 
   // Load Upazila
   useEffect(() => { 
-    fetch(`http://localhost:5000/loadUpazila/${selectedDistrict}`)
+    fetch(`https://polling-station-management-server.vercel.app/loadUpazila/${selectedDistrict}`)
       .then(res => res.json())
       .then(data => setUpazilas(data));
   }, [selectedDistrict]);
 
   // Load Union
   useEffect(() => {
-    fetch(`http://localhost:5000/loadUnion/${selectedUpazila}`)
+    fetch(`https://polling-station-management-server.vercel.app/loadUnion/${selectedUpazila}`)
       .then(res => res.json())
       .then(data => setUnions(data));
   }, [selectedUpazila]);
 
    // Load by selected District items (all or filtered)
   useEffect(() => {
-    let url = "http://localhost:5000/pollingStations";
+    let url = "https://polling-station-management-server.vercel.app/pollingStations";
 
     if (selectedDistrict) {
       url += `/pollingStation/${selectedDistrict}`;
@@ -53,7 +53,7 @@ const PollingStation = () => {
   // Load by selected Upazila items (all or filtered)
   useEffect(() => {
 
-    let url = "http://localhost:5000/pollingStations";
+    let url = "https://polling-station-management-server.vercel.app/pollingStations";
 
     if (selectedUpazila) {
       url += `/pollingStation/upazila/${selectedUpazila}`;
@@ -66,7 +66,7 @@ const PollingStation = () => {
   // Load by selected Union items (filtered)
   useEffect(() => {
 
-    let url = "http://localhost:5000/pollingStations";
+    let url = "https://polling-station-management-server.vercel.app/pollingStations";
 
     if (selectedUnion) {
       url += `/pollingStation/union/${selectedUnion}`;

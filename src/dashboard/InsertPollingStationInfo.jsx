@@ -39,7 +39,7 @@ const InsertPollingStationInfo = () => {
     useEffect(() => {
         const fetchDistricts = async () => {
             try {
-                const res = await fetch('http://localhost:5000/districts');
+                const res = await fetch('https://polling-station-management-server.vercel.app/districts');
 
                 const data = await res.json();
             //    console.log("District Information:= ", data);
@@ -61,7 +61,7 @@ const InsertPollingStationInfo = () => {
     useEffect(() => {
             const fetchUpazilas = async () => {
                 try {
-                    const res = await fetch('http://localhost:5000/upazilas');
+                    const res = await fetch('https://polling-station-management-server.vercel.app/upazilas');
     
                     const data = await res.json();
                 //    console.log("Upazila Information:= ", data);
@@ -83,7 +83,7 @@ const InsertPollingStationInfo = () => {
     useEffect(() => {
             const fetchUnions = async () => {
                 try {
-                    const res = await fetch('http://localhost:5000/unions');
+                    const res = await fetch('hhttps://polling-station-management-server.vercel.app/unions');
     
                     const data = await res.json();
                 //    console.log("Upazila Information:= ", data);
@@ -174,7 +174,7 @@ const InsertPollingStationInfo = () => {
         };
        
         // Save Services information to the database
-        const result = await fetch('http://localhost:5000/pollingStations', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/pollingStations', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -187,7 +187,7 @@ const InsertPollingStationInfo = () => {
         if (data.insertedId) {
             // console.log("Data object found:", data.insertedId);
             toast.success(`${formData.pollingStationName} is added successfully`);
-            navigate('/dashboard/pollingStations');
+            navigate('/dashboard/loadPollingStations');
         } else {
             toast.error('Failed to add Upazila information.');
         }

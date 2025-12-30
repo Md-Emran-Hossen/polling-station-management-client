@@ -14,7 +14,7 @@ const LoadUnionInfo = () => {
 
     const handleDelete = (_id) => {
         console.log(_id);
-        fetch(`hhttp://localhost:5000/union/${_id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/union/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

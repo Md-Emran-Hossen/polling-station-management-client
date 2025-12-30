@@ -14,7 +14,7 @@ const LoadDistrictInfo = () => {
 
     const handleDelete = (_id) => {
         console.log(_id);
-        fetch(`hhttp://localhost:5000/district/${_id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/district/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

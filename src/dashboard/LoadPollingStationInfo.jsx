@@ -12,7 +12,7 @@ const LoadPollingStationInfo = () => {
 
     const handleDelete = (_id) => {
        // console.log(_id);
-        fetch(`hhttp://localhost:5000/pollingStation/${_id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/pollingStation/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
