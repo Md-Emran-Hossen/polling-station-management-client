@@ -52,8 +52,11 @@ const LoadPollingStationInfo = () => {
                                 <th>জেলা</th>
                                 <th>উপজেলা</th>
                                 <th>ইউনিয়ন</th>
-                                <th>ভোটকেন্দ্র</th>
-                                <th>ভোটকেন্দ্রের নাম</th>
+                                <th>ভোটকেন্দ্র নং</th>
+                                <th>ভোটকেন্দ্রের নাম ও অবস্থান</th> 
+                                <th>ভোটকক্ষের সংখ্যা</th>   
+                                <th>গ্রামের নাম এবং ওয়ার্ড নং</th>
+                                {/* <th>ভোটকেন্দ্রের নাম</th> */}
                                 <th>ভোটকেন্দ্রের ধরন</th>
                                 <th>স্থায়ী বুথ</th>
                                 <th>অস্থায়ী বুথ</th>
@@ -74,18 +77,19 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.districtName}</td>
                                     <td>{pollingStation.upazilaName}</td>
                                     <td>{pollingStation.unionName}</td>
+                                    <td>{pollingStation.pollingStationNo}</td>
                                     <td>{pollingStation.pollingStationName}</td>
-                                    <td>{pollingStation.pollingStationLocation}</td>
+                                    <td>{pollingStation.numberOfBooth}</td>
+                                    <td>{pollingStation.wordNoAndVillage}</td>
+                                    {/* <td>{pollingStation.pollingStationLocation}</td> */}
                                     <td>{pollingStation.pollingStationType}</td>
-                                     <td>{pollingStation.permanentBooth}</td>
+                                    <td>{pollingStation.permanentBooth}</td>
                                     <td>{pollingStation.temporaryBooth}</td>
                                     <td>{pollingStation.male}</td>
                                     <td>{pollingStation.female}</td>
                                     <td>{pollingStation.thirdGender}</td>
                                     <td>{pollingStation.totalVoter}</td>
                                     <td>{pollingStation.parliamentarySeat}</td>
-
-
                                     <td>
                                         <Link to={`/dashboard/project/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">

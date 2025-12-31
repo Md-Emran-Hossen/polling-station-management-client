@@ -78,7 +78,7 @@ const PollingStation = () => {
 
   return (
     <div>
-       <div className="m-5 flex justify-between">
+       <div className="w-full px-2 my-5 grid grid-cols-1 md:grid-cols-3 gap-5">
                   <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
                             <div className='flex justify-center items-center max-w-xs'>
                                 <select
@@ -134,7 +134,6 @@ const PollingStation = () => {
         {pollingStations.map(pollingStation => (
           <li key={pollingStation._id}>
                         <div className="card transition duration-300 ease-in-out hover:scale-110">
-
                                 <div className="bg-base-300 items-center rounded">
                                       <div>
                                         <p className="card-body text-left font-xl font-bold"> 
@@ -158,10 +157,8 @@ const PollingStation = () => {
                                            ভোটকেন্দ্রঃ {pollingStation.pollingStationName}
                                         </p>
                                     </div>
-                                    <diV> 
-                                        
-                                        <Link to={`/pollingStation/${pollingStation._id}`}
-
+                                    <diV>    
+                                      <Link to={`/pollingStation/${pollingStation._id}`}
                                             className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
                                                        border border-transparent text-base font-medium 
                                                        rounded-md text-white bg-blue-500
@@ -169,7 +166,7 @@ const PollingStation = () => {
                                         >
                                             বিস্তারিত..
                                             <BsArrowRightSquareFill className="inline ml-3" />  
-                                        </Link>
+                                      </Link>
                                     </diV>
                                 </div>    
                         </div>

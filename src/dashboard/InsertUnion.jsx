@@ -80,9 +80,8 @@ const InsertUnion = () => {
         const data = await result.json();
        
         if (data.insertedId) {
-            // console.log("Data object found:", data.insertedId);
             toast.success(`${formData.unionName} is added successfully`);
-            navigate('/dashboard/unions');
+            navigate('/dashboard/loadUnions');
         } else {
             toast.error('Failed to add Union information.');
         }
@@ -134,7 +133,7 @@ const InsertUnion = () => {
                         </div>
 
                         <div className="mx-5 px-5">
-                             <input className='btn btn-info md:w-80 w-64 rounded-none mt-1' value="যুক্তকরুন" type="submit" />
+                             <input className='btn btn-info md:w-80 w-64 rounded-none mt-1' value="সংরক্ষণ করুন" type="submit" />
                         </div>
                     </div>
                 </form>

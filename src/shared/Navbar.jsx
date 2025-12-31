@@ -26,9 +26,9 @@ const Navbar = () => {
             {/* <li>
                 <NavLink to="/printDownload">প্রিন্ট/ডাউনলোড</NavLink>
             </li> */}
-            <li>
+            {/* <li>
                 <NavLink to="/contact">যোগাযোগ</NavLink>
-            </li>
+            </li> */}
         </>
     );
 
@@ -59,7 +59,7 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl text-blue-500 font-extrabold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
+                <a className="btn btn-ghost text-blue-500 font-extrabold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 font-extrabold">

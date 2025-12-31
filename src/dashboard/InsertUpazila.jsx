@@ -134,7 +134,7 @@ const InsertUpazila = () => {
                         </div>
 
                         <div className="mx-5 px-5">
-                             <input className='btn btn-info md:w-80 w-64 rounded-none mt-1' value="যুক্তকরুন" type="submit" />
+                             <input className='btn btn-info md:w-80 w-64 rounded-none mt-1' value="সংরক্ষণ করুন" type="submit" />
                         </div>
                     </div>
                 </form>

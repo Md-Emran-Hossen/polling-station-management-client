@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Dashboard = () => {
     return (
-         <div className="w-3/4 mx-auto bg-base-200 p-10">
+         <div className="mx-auto bg-base-200 p-10">
             <ul>
             <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/districts" >
@@ -25,6 +25,11 @@ const Dashboard = () => {
                         ভোটকেন্দ্র
                     </NavLink>
                 </li>
+                <li className="text-3xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dashboard/summaryInformations">
+                        সারসংক্ষেপ সংরক্ষণ
+                    </NavLink>
+                </li>
 
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadDistricts">
@@ -44,6 +49,11 @@ const Dashboard = () => {
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadPollingStations">
                         ভোটকেন্দ্রসমূহ
+                    </NavLink>
+                </li>
+                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dashboard/loadInsertSummaryInfo">
+                        সারসংক্ষেপ প্রদর্শন
                     </NavLink>
                 </li>
             </ul>

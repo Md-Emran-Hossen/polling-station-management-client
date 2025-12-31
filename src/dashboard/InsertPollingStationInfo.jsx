@@ -21,9 +21,10 @@ const InsertPollingStationInfo = () => {
         upazilaName: '',
         unionID: '',
         unionName: '',
-
+        pollingStationNo: '',
         pollingStationName: '',
-        pollingStationLocation: '',
+        numberOfBooth: '',
+        wordNoAndVillage: '',
         pollingStationType: '',
         permanentBooth: '',
         temporaryBooth: '',
@@ -31,7 +32,8 @@ const InsertPollingStationInfo = () => {
         female: '',
         thirdGender: '',
         totalVoter: '',
-        parliamentarySeat: ''
+        parliamentarySeat: '',
+        mapInfo: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
@@ -64,14 +66,11 @@ const InsertPollingStationInfo = () => {
                     const res = await fetch('https://polling-station-management-server.vercel.app/upazilas');
     
                     const data = await res.json();
-                //    console.log("Upazila Information:= ", data);
                     setUpazilas(data);
-    
                     const tempUpazilaObject = {};
                     data.forEach(upazila => {
                         tempUpazilaObject[upazila.upazilaName] = upazila._id;
                     });
-                   // console.log("INNER VALUE:=",tempDistrictObject);
                     setUpazilaObject(tempUpazilaObject);
                 } catch (error) {
                     console.error('Error fetching upazila:', error);
@@ -83,17 +82,14 @@ const InsertPollingStationInfo = () => {
     useEffect(() => {
             const fetchUnions = async () => {
                 try {
-                    const res = await fetch('hhttps://polling-station-management-server.vercel.app/unions');
+                    const res = await fetch('https://polling-station-management-server.vercel.app/unions');
     
                     const data = await res.json();
-                //    console.log("Upazila Information:= ", data);
                     setUnions(data);
-    
                     const tempUnionObject = {};
                     data.forEach(union => {
                         tempUnionObject[union.unionName] = union._id;
                     });
-                   // console.log("INNER VALUE:=",tempDistrictObject);
                     setUnionObject(tempUnionObject);
                 } catch (error) {
                     console.error('Error fetching union:', error);
@@ -104,12 +100,18 @@ const InsertPollingStationInfo = () => {
 
     const validateForm = () => {
         const newErrors = {};
-
+        
+        if (!formData.pollingStationNo) {
+            newErrors.pollingStationNo = "Polling Station No. is Required";
+        }
         if (!formData.pollingStationName) {
             newErrors.pollingStationName = "Polling Station Name is Required";
         }
-        if (!formData.pollingStationLocation) {
-            newErrors.pollingStationLocation = "Polling Station Location is Required";
+        if (!formData.numberOfBooth) {
+            newErrors.numberOfBooth = "Number of Booth is Required";
+        }
+        if (!formData.wordNoAndVillage) {
+            newErrors.wordNoAndVillage = "Village and word no. is Required";
         }
         if (!formData.pollingStationType) {
             newErrors.pollingStationType = "Polling Station Type is Required";
@@ -135,13 +137,11 @@ const InsertPollingStationInfo = () => {
         if (!formData.parliamentarySeat) {
             newErrors.parliamentarySeat = "parliamentary Seat is Required";
         }
-     
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
     const handleInputChange = (e) => {
-
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -159,9 +159,10 @@ const InsertPollingStationInfo = () => {
             upazilaName: formData.upazilaName,
             unionID: unionObject[formData.unionName],
             unionName: formData.unionName, 
-
+            pollingStationNo: formData.pollingStationNo,
             pollingStationName: formData.pollingStationName,
-            pollingStationLocation: formData.pollingStationLocation,
+            numberOfBooth: formData.numberOfBooth,
+            wordNoAndVillage: formData.wordNoAndVillage,
             pollingStationType: formData.pollingStationType,
             permanentBooth: formData.permanentBooth,
             temporaryBooth: formData.temporaryBooth,
@@ -169,27 +170,24 @@ const InsertPollingStationInfo = () => {
             female: formData.female,
             thirdGender: formData.thirdGender,
             totalVoter: formData.totalVoter,
-            parliamentarySeat: formData.parliamentarySeat 
-
+            parliamentarySeat: formData.parliamentarySeat,
+            mapInfo: formData.mapInfo 
         };
-       
+       console.log("Value of Object", pollingStation);
         // Save Services information to the database
-        const result = await fetch('https://polling-station-management-server.vercel.app/pollingStations', {
+        const result = await fetch('http://localhost:5000/pollingStations', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
             body: JSON.stringify(pollingStation)
         })
-
         const data = await result.json();
-       
         if (data.insertedId) {
-            // console.log("Data object found:", data.insertedId);
             toast.success(`${formData.pollingStationName} is added successfully`);
             navigate('/dashboard/loadPollingStations');
         } else {
-            toast.error('Failed to add Upazila information.');
+            toast.error('Failed to add Polling Station information.');
         }
     };
     return (
@@ -198,7 +196,7 @@ const InsertPollingStationInfo = () => {
                 <title> Polling Station | Polling Station Information </title>
             </Helmet>
  
-                <h2 className="text-3xl md:text-left font-bold pl-10">উপজেলা যুক্ত করুন</h2>
+                {/* <h2 className="text-3xl md:text-left font-bold pl-10">উপজেলা যুক্ত করুন</h2> */}
                 <form onSubmit={handleSubmit} className="border shadow-lg py-2 px-6 mt-3 flex flex-col md:flex-row">
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
                               
@@ -223,7 +221,7 @@ const InsertPollingStationInfo = () => {
 
                            <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
                             <div className='flex justify-center items-center max-w-xs'>
-                                <label className="label"> <span className="label-text">ইউনিয়ন নির্বাচন করুন:</span></label>
+                                <label className="label"> <span className="label-text">উপজেলা নির্বাচন করুন:</span></label>
                                 <select
                                     name="upazilaName"
                                     value={formData.upazilaName}
@@ -239,9 +237,7 @@ const InsertPollingStationInfo = () => {
                             </div>
                             {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
                         </div>
-
-
-                           <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
+                        <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
                             <div className='flex justify-center items-center max-w-xs'>
                                 <label className="label"> <span className="label-text">ইউনিয়ন নির্বাচন করুন:</span></label>
                                 <select
@@ -260,10 +256,23 @@ const InsertPollingStationInfo = () => {
                             {errors.unionName && <p className='text-red-500 text-xs'>{errors.unionName}</p>}
                         </div>
 
-
+                        <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">ভোটকেন্দ্র নং:</span></label>
+                                <input
+                                    type="text"
+                                    name="pollingStationNo"
+                                    value={formData.pollingStationNo}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.pollingStationNo && <p className='text-red-500 text-xs'>{errors.pollingStationNo}</p>}
+                        </div>
+                
                          <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">ভোটকেন্দ্রের নাম:</span></label>
+                                <label className="label"> <span className="label-text">ভোটকেন্দ্রের নাম ও অবস্থান:</span></label>
                                 <input
                                     type="text"
                                     name="pollingStationName"
@@ -274,8 +283,34 @@ const InsertPollingStationInfo = () => {
                             </div>
                             {errors.pollingStationName && <p className='text-red-500 text-xs'>{errors.pollingStationName}</p>}
                         </div>
-
                          <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">ভোটকক্ষের সংখ্যা:</span></label>
+                                <input
+                                    type="text"
+                                    name="numberOfBooth"
+                                    value={formData.numberOfBooth}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.numberOfBooth && <p className='text-red-500 text-xs'>{errors.numberOfBooth}</p>}
+                        </div>
+                         <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">গ্রামের নাম এবং ওয়ার্ড নং:</span></label>
+                                <input
+                                    type="text"
+                                    name="wordNoAndVillage"
+                                    value={formData.wordNoAndVillage}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.wordNoAndVillage && <p className='text-red-500 text-xs'>{errors.wordNoAndVillage}</p>}
+                        </div>
+
+                         {/* <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
                                 <label className="label"> <span className="label-text">ভোটকেন্দ্রের ঠিকানা:</span></label>
                                 <input
@@ -287,7 +322,7 @@ const InsertPollingStationInfo = () => {
                                 />
                             </div>
                             {errors.pollingStationLocation && <p className='text-red-500 text-xs'>{errors.pollingStationLocation}</p>}
-                        </div>
+                        </div> */}
 
                          <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
@@ -389,7 +424,7 @@ const InsertPollingStationInfo = () => {
 
                          <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">সংসদীয় আসন:</span></label>
+                                <label className="label"> <span className="label-text">নির্বাচনী এলাকার নম্বর ও নাম:</span></label>
                                 <input
                                     type="text"
                                     name="parliamentarySeat"
@@ -399,6 +434,19 @@ const InsertPollingStationInfo = () => {
                                 />
                             </div>
                             {errors.parliamentarySeat && <p className='text-red-500 text-xs'>{errors.parliamentarySeat}</p>}
+                        </div>
+                         <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">গুগল ম্যাপে অবস্থান:</span></label>
+                                <input
+                                    type="text"
+                                    name="mapInfo"
+                                    value={formData.mapInfo}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.mapInfo && <p className='text-red-500 text-xs'>{errors.mapInfo}</p>}
                         </div>
 
                         <div className="mx-5 px-5">
