@@ -115,7 +115,7 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/loadSummaryInformations",
             element: <LoadInsertSummaryInfo></LoadInsertSummaryInfo>,
-            loader: () => fetch("http://localhost:5000/summaryInformations"),
+            loader: () => fetch("https://polling-station-management-server.vercel.app/summaryInformations"),
           },
         ],
 

@@ -7,7 +7,7 @@ const Summary = () => {
       const [summaryInformations, setSummaryInformations] = useState([]);
 
       useEffect(() => {
-        fetch('http://localhost:5000/summaryInformations')
+        fetch('https://polling-station-management-server.vercel.app/summaryInformations')
           .then(res => res.json())
           .then(data => setSummaryInformations(data));
       }, []);

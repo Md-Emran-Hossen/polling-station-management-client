@@ -174,8 +174,8 @@ const InsertPollingStationInfo = () => {
             mapInfo: formData.mapInfo 
         };
        console.log("Value of Object", pollingStation);
-        // Save Services information to the database
-        const result = await fetch('http://localhost:5000/pollingStations', {
+        // Save Polling Station information to the database
+        const result = await fetch('https://polling-station-management-server.vercel.app/pollingStations', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

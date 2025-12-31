@@ -124,7 +124,7 @@ const InsertSummaryInfo = () => {
         };
 
         // Save Services information to the database
-        const result = await fetch('http://localhost:5000/summaryInformations', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/summaryInformations', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
