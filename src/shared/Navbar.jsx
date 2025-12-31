@@ -35,7 +35,7 @@ const Navbar = () => {
     return (
 
 
-          <div className="navbar bg-green-200">
+          <div className="navbar bg-base-300">
             <div className="navbar-start">
 
                 <div className="dropdown">
@@ -55,14 +55,14 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-36 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-36 p-2 shadow">
                         {navLink}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-2xl text-blue-500 font-extrabold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
+                <a className="btn btn-ghost text-xl text-blue-500 font-extrabold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 font-extrabold">
                     {navLink}
                 </ul>
             </div>

@@ -135,20 +135,28 @@ const PollingStation = () => {
           <li key={pollingStation._id}>
                         <div className="card transition duration-300 ease-in-out hover:scale-110">
 
-                                <div className="bg-green-200 items-center rounded">
-                                      <div className="card-body text-left text-black font-2xl font-bold">
-                                        <p> জেলাঃ {pollingStation.districtName}</p>
+                                <div className="bg-base-300 items-center rounded">
+                                      <div>
+                                        <p className="card-body text-left font-xl font-bold"> 
+                                        জেলাঃ {pollingStation.districtName}
+                                        </p>
                                     </div>
-                                      <div className="card-body text-left text-black font-2xl font-bold">
-                                        <p> উপজেলাঃ {pollingStation.upazilaName}</p>
+                                      <div>
+                                        <p className="card-body text-left font-xl font-bold"> 
+                                          উপজেলাঃ {pollingStation.upazilaName}
+                                        </p>
                                     </div>
                                  
-                                    <div className="card-body text-left text-black font-2xl font-bold">
-                                        <p> ইউনিয়নঃ {pollingStation.unionName}</p>
+                                    <div className="card-body text-left text-black font-xl font-bold">
+                                        <p> 
+                                          ইউনিয়নঃ {pollingStation.unionName}
+                                        </p>
                                     </div>
-                                    <div className="card-body text-left text-black font-2xl font-bold">
+                                    <div className="card-body text-left text-black font-xl font-bold">
                                         {/* <p>  {service.description.slice(0, 100)} tittle={service.description}</p> */}
-                                        <p> ভোটকেন্দ্রঃ {pollingStation.pollingStationName}</p>
+                                        <p> 
+                                           ভোটকেন্দ্রঃ {pollingStation.pollingStationName}
+                                        </p>
                                     </div>
                                     <diV> 
                                         

@@ -61,27 +61,27 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "https://polling-station/dashboard",
+        path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
         children: [
           {
-            path: "https://polling-station.netlify.app/dashboard/districts",
+            path: "/dashboard/districts",
             element: <InsertDistrict />,
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/upazilas",
+            path: "/dashboard/upazilas",
             element: <InsertUpazila />,
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/unions",
+            path: "/dashboard/unions",
             element: <InsertUnion></InsertUnion>
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/pollingStations",
+            path: "/dashboard/pollingStations",
             element: <InsertPollingStationInfo />,
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/loadDistricts",
+            path: "/dashboard/loadDistricts",
             element: <LoadDistrictInfo></LoadDistrictInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/districts"),
           },
@@ -92,17 +92,17 @@ const router = createBrowserRouter([
                 */
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/loadUpazilas",
+            path: "/dashboard/loadUpazilas",
             element: <LoadUpazilaInfo></LoadUpazilaInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/upazilas"),
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/loadUnions",
+            path: "/dashboard/loadUnions",
             element: <LoadUnionInfo></LoadUnionInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/unions"),
           },
           {
-            path: "https://polling-station.netlify.app/dashboard/loadPollingStations",
+            path: "/dashboard/loadPollingStations",
             element: <LoadPollingStationInfo></LoadPollingStationInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/pollingStations"),
           },
