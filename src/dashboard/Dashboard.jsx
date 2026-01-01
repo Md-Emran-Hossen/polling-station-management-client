@@ -7,22 +7,22 @@ const Dashboard = () => {
             <ul>
             <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/districts" >
-                        জেলা
+                        জেলা সংরক্ষণ
                     </NavLink>
                 </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/upazilas">
-                        উপজেলা
+                        উপজেলা সংরক্ষণ
                     </NavLink>
                 </li>
                    <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/unions">
-                        ইউনিয়ন
+                        ইউনিয়ন সংরক্ষণ
                     </NavLink>
                 </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/pollingStations">
-                        ভোটকেন্দ্র
+                        ভোটকেন্দ্র সংরক্ষণ
                     </NavLink>
                 </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
@@ -33,26 +33,26 @@ const Dashboard = () => {
 
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadDistricts">
-                        জেলাসমূহ
+                        জেলাসমূহ প্রদর্শন
                     </NavLink>
                 </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadUpazilas">
-                        উপজেলাসমূহ
+                        উপজেলাসমূহ প্রদর্শন
                     </NavLink>
                 </li>
                  <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadUnions">
-                        ইউনিয়নসমূহ
+                        ইউনিয়নসমূহ প্রদর্শন
                     </NavLink>
                 </li>
                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadPollingStations">
-                        ভোটকেন্দ্রসমূহ
+                        ভোটকেন্দ্রসমূহের তথ্য প্রদর্শন
                     </NavLink>
                 </li>
                  <li className="text-3xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadInsertSummaryInfo">
+                    <NavLink to="/dashboard/loadSummaryInformations">
                         সারসংক্ষেপ প্রদর্শন
                     </NavLink>
                 </li>
