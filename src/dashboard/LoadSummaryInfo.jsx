@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
 
-const LoadInsertSummaryInfo = () => {
+const LoadSummaryInfo = () => {
     const loadedSummaryInformations = useLoaderData();
     const [summaryInformations, setSummaryInformations] = useState(loadedSummaryInformations);
 
@@ -47,7 +47,7 @@ const LoadInsertSummaryInfo = () => {
                 <div className="overflow-x-auto">
                     <table className="table table-xs">
                         <thead>
-                            <tr className="bg-green-50 font-bold text-xl">
+                            <tr className="bg-green-50 font-bold text-black md:text-xl">
                                 <th>উপজেলা</th>
                                 <th>ইউনিয়ন</th>
                                 <th>পৌরসভা</th>
@@ -62,15 +62,16 @@ const LoadInsertSummaryInfo = () => {
                                 <th>হিজড়া</th>
                                 <th>মোট ভোটার</th>
                                 <th>মন্তব্য</th>
+                                <th>কার্যক্রম</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {summaryInformations.map((summaryInfo) => (
                                 <tr key={summaryInfo._id}
-                                    className="hover:bg-gray-100"
+                                    className="hover:bg-gray-100 text-center"
                                 >
-                                    <td>{summaryInfo.districtName}</td>
+                                    <td>{summaryInfo.upazilaName}</td>
                                     <td>{summaryInfo.numberOfUnion}</td>
                                     <td>{summaryInfo.numberOfPourosova}</td>
                                     <td>{summaryInfo.permanentPollingStation}</td>
@@ -85,7 +86,7 @@ const LoadInsertSummaryInfo = () => {
                                     <td>{summaryInfo.totalVoter}</td>
                                     <td>{summaryInfo.comments}</td>
                                     <td>
-                                        <Link to={`/dashboard/project/${summaryInfo._id}`}>
+                                        <Link to={`/dashboard/summaryInformation/${summaryInfo._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>
@@ -105,4 +106,4 @@ const LoadInsertSummaryInfo = () => {
     );
 };
 
-export default LoadInsertSummaryInfo;
+export default LoadSummaryInfo;

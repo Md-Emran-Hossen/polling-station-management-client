@@ -5,12 +5,31 @@ import { Link } from 'react-router-dom';
 const Summary = () => {
 
       const [summaryInformations, setSummaryInformations] = useState([]);
+      const [upazilas, setUpazilas] = useState([]);
+      const [selectedUpazila, setSelectedUpazila] = useState("");
 
-      useEffect(() => {
-        fetch('https://polling-station-management-server.vercel.app/summaryInformations')
-          .then(res => res.json())
-          .then(data => setSummaryInformations(data));
-      }, []);
+      // Load Upazila
+        useEffect(() => { 
+          fetch("https://polling-station-management-server.vercel.app/upazilas")
+            .then(res => res.json())
+            .then(data => setUpazilas(data));
+        }, []);
+
+       // Load by selected Upazila items (all or filtered)
+        useEffect(() => {
+      
+          let url = "https://polling-station-management-server.vercel.app/summaryInformations";
+      
+          if (selectedUpazila) {
+            console.log("TRUE");
+            url += `/summaryInformation/${selectedUpazila}`;
+          }
+           console.log("API VALUE: ", url);
+          fetch(url)
+            .then(res => res.json())
+            .then(data => setSummaryInformations(data));
+        }, [selectedUpazila]);
+
     return (
         <div className="w-full mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
@@ -26,10 +45,23 @@ const Summary = () => {
                 </div>
 
                 <div>
-                      <h4 className="text-3xl md:text-left font-bold mt-5 p-2 underline">সারসংক্ষেপ (২৯৬-কক্সবাজার-৩ নির্বাচনী এলাকার তথ্য)</h4>
-                </div>
-                
-
+                      <h4 className="text-xl md:text-left font-bold mt-5 p-2 underline">সারসংক্ষেপ (২৯৬-কক্সবাজার-৩ নির্বাচনী এলাকার তথ্য)</h4>
+                </div>   
+                 <div className="form-control w-full max-w-xs my-5 border p-2 border-indigo-400">
+                            <div className='flex justify-center items-center max-w-xs'>
+                                <select
+                                    value={selectedUpazila}
+                                        onChange={(e) => setSelectedUpazila(e.target.value)}
+                                      >
+                                        <option value=""> উপজেলা নির্বাচন করুন </option>
+                                        {upazilas.map(upa => (
+                                          <option key={upa._id} value={upa._id}>
+                                            {upa.upazilaName}
+                                          </option>
+                                        ))}
+                                </select>
+                            </div>
+                </div>       
                 <div className="overflow-x-auto">
                     <table className="table table-xs border border-gray-500 border-solid">
                         <thead>

@@ -56,7 +56,6 @@ const LoadPollingStationInfo = () => {
                                 <th>ভোটকেন্দ্রের নাম ও অবস্থান</th> 
                                 <th>ভোটকক্ষের সংখ্যা</th>   
                                 <th>গ্রামের নাম এবং ওয়ার্ড নং</th>
-                                {/* <th>ভোটকেন্দ্রের নাম</th> */}
                                 <th>ভোটকেন্দ্রের ধরন</th>
                                 <th>স্থায়ী বুথ</th>
                                 <th>অস্থায়ী বুথ</th>
@@ -81,7 +80,6 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.pollingStationName}</td>
                                     <td>{pollingStation.numberOfBooth}</td>
                                     <td>{pollingStation.wordNoAndVillage}</td>
-                                    {/* <td>{pollingStation.pollingStationLocation}</td> */}
                                     <td>{pollingStation.pollingStationType}</td>
                                     <td>{pollingStation.permanentBooth}</td>
                                     <td>{pollingStation.temporaryBooth}</td>
@@ -91,7 +89,7 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.totalVoter}</td>
                                     <td>{pollingStation.parliamentarySeat}</td>
                                     <td>
-                                        <Link to={`/dashboard/project/${pollingStation._id}`}>
+                                        <Link to={`/dashboard/pollingStation/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>

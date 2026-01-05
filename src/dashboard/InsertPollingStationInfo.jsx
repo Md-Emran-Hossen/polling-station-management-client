@@ -100,7 +100,16 @@ const InsertPollingStationInfo = () => {
 
     const validateForm = () => {
         const newErrors = {};
-        
+
+        if (!formData.districtName) {
+            newErrors.districtName = "District Name is Required";
+        }
+        if (!formData.upazilaName) {
+            newErrors.upazilaName = "Upazila Name is Required";
+        }
+        if (!formData.unionName) {
+            newErrors.unionName = "Union Name is Required";
+        }
         if (!formData.pollingStationNo) {
             newErrors.pollingStationNo = "Polling Station No. is Required";
         }
@@ -173,7 +182,7 @@ const InsertPollingStationInfo = () => {
             parliamentarySeat: formData.parliamentarySeat,
             mapInfo: formData.mapInfo 
         };
-       console.log("Value of Object", pollingStation);
+    //    console.log("Value of Object", pollingStation);
         // Save Polling Station information to the database
         const result = await fetch('https://polling-station-management-server.vercel.app/pollingStations', {
             method: 'POST',

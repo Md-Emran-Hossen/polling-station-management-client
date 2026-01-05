@@ -10,8 +10,8 @@ const InsertSummaryInfo = () => {
     const [upazilaObject, setUpazilaObject] = useState({});
 
     const [formData, setFormData] = useState({
-            districtID: '',
-            districtName: '',
+            upazilaID: '',
+            upazilaName: '',
             numberOfUnion: '',
             numberOfPourosova: '',
             permanentPollingStation: '',
@@ -106,7 +106,7 @@ const InsertSummaryInfo = () => {
         }
 
         const summaryInfo = {
-            dupazilaID: upazilaObject[formData.upazilaName],
+            upazilaID: upazilaObject[formData.upazilaName],
             upazilaName: formData.upazilaName,
             numberOfUnion: formData.numberOfUnion,
             numberOfPourosova: formData.numberOfPourosova,

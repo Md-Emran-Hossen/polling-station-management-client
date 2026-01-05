@@ -17,7 +17,9 @@ import InsertUnion from "../dashboard/InsertUnion";
 import LoadUnionInfo from "../dashboard/LoadUnionInfo";
 import PollingStationDetails from "../pages/PollingStationDetails";
 import InsertSummaryInfo from "../dashboard/InsertSummaryInfo";
-import LoadInsertSummaryInfo from "../dashboard/LoadInsertSummaryInfo";
+import LoadSummaryInfo from "../dashboard/LoadSummaryInfo";
+import EditPollingStationInfo from "../dashboard/EditPollingStationInfo";
+import EditSummaryInfo from "../dashboard/EditSummaryInfo";
 
 
 const router = createBrowserRouter([
@@ -55,11 +57,10 @@ const router = createBrowserRouter([
                 path: "/printDownload",
                 element: <PrintDownload></PrintDownload>,
             },
-              {
+            {
                 path: "/contact",
                 element: <Contact></Contact>,
             },
-           
         ],
     },
     {
@@ -114,8 +115,18 @@ const router = createBrowserRouter([
           },
           {
             path: "/dashboard/loadSummaryInformations",
-            element: <LoadInsertSummaryInfo></LoadInsertSummaryInfo>,
+            element: <LoadSummaryInfo></LoadSummaryInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/summaryInformations"),
+          },
+          {
+            path: "/dashboard/pollingStation/:id",
+            element: <EditPollingStationInfo></EditPollingStationInfo>,
+            loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/pollingStation/${params.id}`),
+          },
+          {
+            path: "/dashboard/summaryInformation/:id",
+            element: <EditSummaryInfo></EditSummaryInfo>,
+            loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/summaryInformation/${params.id}`),
           },
         ],
 
