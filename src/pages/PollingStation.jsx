@@ -2,6 +2,31 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BsArrowRightSquareFill } from 'react-icons/bs';
+import "./Modal.css";
+
+const Modal = ({ show, onClose, title, children }) => {
+  if (!show) {
+    return null;
+  }
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h4 className="modal-title">{title}</h4>
+          <button onClick={onClose} className="modal-close-button">&times;</button>
+        </div>
+        <div className="modal-body">
+          {children}
+        </div>
+        <div className="modal-footer">
+          <button onClick={onClose} className="modal-close-footer-button">Close</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 const PollingStation = () => {
 
@@ -15,6 +40,9 @@ const PollingStation = () => {
   const [selectedUnion, setSelectedUnion] = useState("");
 
   const [pollingStations, setPollingStations] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   // Load District
   useEffect(() => {
@@ -75,6 +103,17 @@ const PollingStation = () => {
       .then(res => res.json())
       .then(data => setPollingStations(data));
   }, [selectedUnion]);
+
+  // Modal section 
+  const openModalWithData = (item) => {
+    setModalData(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null); // Optional: clear data when closing
+  };
 
   return (
     <div>
@@ -158,7 +197,17 @@ const PollingStation = () => {
                                         </p>
                                     </div>
                                     <diV>    
-                                      <Link to={`/pollingStation/${pollingStation._id}`}
+                                          <button 
+                                              className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
+                                                       border border-transparent text-base font-medium 
+                                                       rounded-md text-white bg-blue-500
+                                                       hover:bg-blue-200 md:py-4 md:text-lg md:px-10" 
+
+                                              onClick={() => openModalWithData(pollingStation)}>
+                                                বিস্তারিত..
+                                          </button>
+
+                                      {/* <Link to={`/pollingStation/${pollingStation._id}`}
                                             className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
                                                        border border-transparent text-base font-medium 
                                                        rounded-md text-white bg-blue-500
@@ -166,16 +215,126 @@ const PollingStation = () => {
                                         >
                                             বিস্তারিত..
                                             <BsArrowRightSquareFill className="inline ml-3" />  
-                                      </Link>
+                                      </Link> */}
                                     </diV>
                                 </div>    
                         </div>
-                 
+                  <Modal
+                      show={isModalOpen}
+                      onClose={closeModal}
+                      title={modalData ? `কেন্দ্রের নামঃ ${modalData.parliamentarySeat}` : 'Details'}
+                    >
+                      {/* Content passed as children to the modal */}
+                      {modalData ? (
+                        <div className="overflow-x-auto">
+                          <table className="table table-xs">
+                            {/* head */}
+                            <thead>
+                                 <tr className="bg-green-50">                           
+                            </tr>
+                              <tr className="text-black">
+                                <th>ক্রম</th>
+                                <th>তথ্য</th>
+                                <th>:</th>
+                                <th>বর্ণনা</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th>০১</th>
+                                <td>ভোটকেন্দ্র নং</td>
+                                <td>:</td>
+                                <td>{modalData.pollingStationNo}</td>
+                              </tr>
+                              <tr>
+                                <th>০২</th>
+                                <td>ভোটকেন্দ্রের নাম ও অবস্থান</td>
+                                <td>:</td>
+                                <td>{modalData.pollingStationName}</td>
+                              </tr>
+                              <tr>
+                                <th>০৩</th>
+                                <td>ভোটকক্ষের সংখ্যা</td>
+                                <td>:</td>
+                                <td>{modalData.numberOfBooth}</td>
+                              </tr>
+                              <tr>
+                                <th>০৪</th>
+                                <td>গ্রামের নাম এবং ওয়ার্ড নং</td>
+                                <td>:</td>
+                                <td>{modalData.wordNoAndVillage}</td>
+                              </tr>
+                              <tr>
+                                <th>০৫</th>
+                                <td>ভোটকেন্দ্রের ধরন</td>
+                                <td>:</td>
+                                <td>{modalData.pollingStationType}</td>
+                              </tr>
+                              <tr>
+                                <th>০৬</th>
+                                <td>স্থায়ী বুথ</td>
+                                <td>:</td>
+                                <td>{modalData.permanentBooth}</td>
+                              </tr>
+                              <tr>
+                                <th>০৭</th>
+                                <td>অস্থায়ী বুথ</td>
+                                <td>:</td>
+                                <td>{modalData.temporaryBooth}</td>
+                              </tr>
+                              <tr>
+                                <th>০৮</th>
+                                <td>পুরুষ ভোটার</td>
+                                <td>:</td>
+                                <td>{modalData.male}</td>
+                              </tr>
+                              <tr>
+                                <th>০৯</th>
+                                <td>মহিলা ভোটার</td>
+                                <td>:</td>
+                                <td>{modalData.female}</td>
+                              </tr>
+                              <tr>
+                                <th>১০</th>
+                                <td>তৃতীয় লিঙ্গ</td>
+                                <td>:</td>
+                                <td>{modalData.thirdGender}</td>
+                              </tr>
+                              <tr>
+                                <th>১১</th>
+                                <td>মোট ভোটার</td>
+                                <td>:</td>
+                                <td>{modalData.totalVoter}</td>
+                              </tr>
+                              <tr>
+                                <th>১২</th>
+                                <td>নির্বাচনী এলাকার নম্বর ও নাম</td>
+                                <td>:</td>
+                                <td>{modalData.parliamentarySeat}</td>
+                              </tr>
+                              <tr>
+                                <th>১৩</th>
+                                <td>ম্যাপে দেখুন</td>
+                                <td>:</td>
+                                <td>
+                                    <a href= {modalData.mapInfo} target="_blank" className="link link-primary"> ক্লিক করুন!</a>
+                                      {/* <a href='https://maps.app.goo.gl/k1zKNgYQyLL1tMQr5' target="_blank" className="link link-primary"> ক্লিক করুন!</a> */}
+                                 </td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : (
+                        <p>দুঃখিত! কোন ডেটা পাওয়া যায়নি.</p>
+                      )}
+                    </Modal>
 
             {/* {pollingStation.pollingStationName} */}
           </li>
         ))}
       </div>
+
       {/* </ul> */}
     </div>
   );

@@ -33,20 +33,7 @@ const PollingStationDetails = () => {
                           <table className="table table-xs">
                             {/* head */}
                             <thead>
-                                 <tr className="bg-green-50 font-bold text-xl">
-                                {/* <th>ভোটকেন্দ্র নং</th>
-                                <th>ভোটকেন্দ্রের নাম ও অবস্থান</th>
-                                <th>ভোটকক্ষের সংখ্যা</th>
-                                <th>গ্রামের নাম এবং ওয়ার্ড নং</th> 
-                                <th>ভোটকেন্দ্রের ধরন</th>   
-                                <th>স্থায়ী বুথ</th>
-                                <th>অস্থায়ী বুথ</th>
-                                <th>পুরুষ ভোটার</th>
-                                <th>মহিলা ভোটার</th>
-                                <th>তৃতীয় লিঙ্গ</th>
-                                <th>মোট ভোটার</th>
-                                <th>সংসদীয় আসন</th>
-                                <th>ম্যাপে দেখুন</th> */}
+                                 <tr className="bg-green-50 font-bold text-xl">                           
                             </tr>
                               <tr className="text-black font-bold md:text-xl">
                                 <th>ক্রম</th>
@@ -56,20 +43,6 @@ const PollingStationDetails = () => {
                               </tr>
                             </thead>
                             <tbody>
-                              
-                                    {/* <td>{pollingStationNo}</td>
-                                    <td>{pollingStationName}</td>
-                                    <td>{numberOfBooth}</td>
-                                    <td>{wordNoAndVillage}</td>
-                                    <td>{pollingStationType}</td>
-                                    <td>{permanentBooth}</td>
-                                    <td>{temporaryBooth}</td>
-                                    <td>{male}</td>
-                                    <td>{female}</td>
-                                    <td>{thirdGender}</td>
-                                    <td>{totalVoter}</td>
-                                    <td>{parliamentarySeat}</td>
-                                     <td>{mapInfo}</td> */}
                               <tr className="font-bold md:text-xl">
                                 <th>০১</th>
                                 <td>ভোটকেন্দ্র নং</td>
