@@ -54,7 +54,7 @@ const LoadPollingStationInfo = () => {
                                 <th>ইউনিয়ন</th>
                                 <th>ভোটকেন্দ্র নং</th>
                                 <th>ভোটকেন্দ্রের নাম ও অবস্থান</th> 
-                                <th>ভোটকক্ষের সংখ্যা</th>   
+                                {/* <th>ভোটকক্ষের সংখ্যা</th>   
                                 <th>গ্রামের নাম এবং ওয়ার্ড নং</th>
                                 <th>ভোটকেন্দ্রের ধরন</th>
                                 <th>স্থায়ী বুথ</th>
@@ -63,7 +63,7 @@ const LoadPollingStationInfo = () => {
                                 <th>মহিলা ভোটার</th>
                                 <th>তৃতীয় লিঙ্গ</th>
                                 <th>মোট ভোটার</th>
-                                <th>সংসদীয় আসন</th>
+                                <th>সংসদীয় আসন</th> */}
                                 <th>কার্যক্রম</th>
                             </tr>
                         </thead>
@@ -71,15 +71,15 @@ const LoadPollingStationInfo = () => {
 
                             {pollingStations.map((pollingStation) => (
                                 <tr key={pollingStation._id}
-                                    className="hover:bg-gray-100"
+                                    className="hover:bg-gray-100 text-center"
                                 >
                                     <td>{pollingStation.districtName}</td>
                                     <td>{pollingStation.upazilaName}</td>
                                     <td>{pollingStation.unionName}</td>
                                     <td>{pollingStation.pollingStationNo}</td>
                                     <td>{pollingStation.pollingStationName}</td>
-                                    <td>{pollingStation.numberOfBooth}</td>
-                                    <td>{pollingStation.wordNoAndVillage}</td>
+                                 {/*   <td>{pollingStation.numberOfBooth}</td>
+                                     <td>{pollingStation.wordNoAndVillage}</td>
                                     <td>{pollingStation.pollingStationType}</td>
                                     <td>{pollingStation.permanentBooth}</td>
                                     <td>{pollingStation.temporaryBooth}</td>
@@ -87,7 +87,7 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.female}</td>
                                     <td>{pollingStation.thirdGender}</td>
                                     <td>{pollingStation.totalVoter}</td>
-                                    <td>{pollingStation.parliamentarySeat}</td>
+                                    <td>{pollingStation.parliamentarySeat}</td> */}
                                     <td>
                                         <Link to={`/dashboard/pollingStation/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
