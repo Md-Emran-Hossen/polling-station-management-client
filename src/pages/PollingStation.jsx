@@ -173,7 +173,7 @@ const PollingStation = () => {
         {pollingStations.map(pollingStation => (
           <li key={pollingStation._id}>
                         <div className="card transition duration-300 ease-in-out hover:scale-110">
-                                <div className="bg-base-300 items-center rounded">
+                                <div className="bg-cyan-200 items-center rounded">
                                       <div>
                                         <p className="card-body text-left font-xl font-bold"> 
                                         জেলাঃ {pollingStation.districtName}
@@ -222,7 +222,7 @@ const PollingStation = () => {
                   <Modal
                       show={isModalOpen}
                       onClose={closeModal}
-                      title={modalData ? `কেন্দ্রের নামঃ ${modalData.parliamentarySeat}` : 'Details'}
+                      title={modalData ? `সংসদীয় আসনঃ ${modalData.parliamentarySeat}` : 'Details'}
                     >
                       {/* Content passed as children to the modal */}
                       {modalData ? (
