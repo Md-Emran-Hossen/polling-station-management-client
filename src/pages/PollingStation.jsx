@@ -27,8 +27,7 @@ const Modal = ({ show, onClose, title, children }) => {
   );
 };
 
-
-const PollingStation = () => {
+const PollingStation = ({onMenuChange}) => {
 
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -77,7 +76,6 @@ const PollingStation = () => {
       .then(data => setPollingStations(data));
   }, [selectedDistrict]);
 
-
   // Load by selected Upazila items (all or filtered)
   useEffect(() => {
 
@@ -103,6 +101,17 @@ const PollingStation = () => {
       .then(res => res.json())
       .then(data => setPollingStations(data));
   }, [selectedUnion]);
+
+  // refreshed home menu
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setSelectedUnion(value);
+    
+    // Crucially, pass the NEW value to the parent or a global handler
+    if (onMenuChange) {
+      onMenuChange(value);
+    }
+  }
 
   // Modal section 
   const openModalWithData = (item) => {
@@ -154,7 +163,8 @@ const PollingStation = () => {
                             <div className='flex justify-center items-center max-w-xs'>
                                 <select
                                    value={selectedUnion}
-                                        onChange={(e) => setSelectedUnion(e.target.value)}
+                                        // onChange={(e) => setSelectedUnion(e.target.value)}
+                                        onChange={handleChange}
                                       >
                                         <option value=""> ইউনিয়ন নির্বাচন করুন </option>
                                         {unions.map(union => (

@@ -92,12 +92,6 @@ const router = createBrowserRouter([
             element: <LoadDistrictInfo></LoadDistrictInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/districts"),
           },
-          { /*
-            path: "/dashboard/district/:id",
-            element: <EditProjects></EditProjects>,
-            loader: ({params}) => fetch(`https://my-portfolio-server-blond.vercel.app/project/${params.id}`),
-                */
-          },
           {
             path: "/dashboard/loadUpazilas",
             element: <LoadUpazilaInfo></LoadUpazilaInfo>,
@@ -111,6 +105,7 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/loadPollingStations",
             element: <LoadPollingStationInfo></LoadPollingStationInfo>,
+            // loader: () => fetch("http://localhost:5000/pollingStations"),
             loader: () => fetch("https://polling-station-management-server.vercel.app/pollingStations"),
           },
           {

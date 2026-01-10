@@ -6,10 +6,7 @@ const Navbar = () => {
     const navLink = (
         <>
             <li>
-                <NavLink to="/">ভোটকেন্দ্র সমূহ</NavLink>
-                 <div>
-                    <a href='https://maps.app.goo.gl/k1zKNgYQyLL1tMQr5' target="_blank"></a>
-                </div>
+                <NavLink to="/" reloadDocument>ভোটকেন্দ্র সমূহ</NavLink>
             </li>
             {/* <li>
                 <NavLink to="/dashboard">Dashboard</NavLink>
@@ -59,7 +56,7 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-blue-500 font-extrabold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
+                <a className="btn btn-ghost text-blue-500 font-bold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 font-extrabold">
