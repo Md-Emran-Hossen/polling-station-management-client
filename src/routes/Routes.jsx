@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import CommonLayout from "../layout/CommonLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 import Home from "../pages/Home";
-import PublicNotice from "../pages/PublicNotice";
 import Summary from "../pages/Summary";
 import EmergencyMobileNumber from "../pages/EmergencyMobileNumber";
 import PrintDownload from "../pages/PrintDownload";
@@ -20,6 +19,7 @@ import InsertSummaryInfo from "../dashboard/InsertSummaryInfo";
 import LoadSummaryInfo from "../dashboard/LoadSummaryInfo";
 import EditPollingStationInfo from "../dashboard/EditPollingStationInfo";
 import EditSummaryInfo from "../dashboard/EditSummaryInfo";
+import Map from "../pages/Map";
 
 
 const router = createBrowserRouter([
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
                 loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/pollingStations/pollingStation/${params.id}`),
             },
             {
-                path: "/publicNotice",
-                element: <PublicNotice></PublicNotice>,
+                path: "/map",
+                element: <Map></Map>,
             },
             {
                 path: "/summary",
