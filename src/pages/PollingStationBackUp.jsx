@@ -44,31 +44,50 @@ const PollingStation = ({onMenuChange}) => {
   const [modalData, setModalData] = useState(null);
 
   // Load District
-    useEffect(() => {
-      fetch("https://polling-station-management-server.vercel.app/districts")
-        .then(res => res.json())
-        .then(data => setDistricts(data));
-    }, []);
-  
-    // Load Upazila
-    useEffect(() => { 
-      fetch("https://polling-station-management-server.vercel.app/upazilas")
-        .then(res => res.json())
-        .then(data => {
-          // console.log("DROPDOWN DATA",data);
-               setUpazilas(data);
-             if (data.length > 0) {
-              setSelectedUpazila(data[0]._id);
-            }
-        });
-    }, []);
+  useEffect(() => {
+    fetch("https://polling-station-management-server.vercel.app/districts")
+      .then(res => res.json())
+      .then(data => setDistricts(data));
+  }, []);
+
+  // Load Upazila
+  useEffect(() => { 
+    fetch(`https://polling-station-management-server.vercel.app/loadUpazila/${selectedDistrict}`)
+      .then(res => res.json())
+      .then(data => setUpazilas(data));
+  }, [selectedDistrict]);
 
   // Load Union
   useEffect(() => {
-    fetch("https://polling-station-management-server.vercel.app/unions")
+    fetch(`https://polling-station-management-server.vercel.app/loadUnion/${selectedUpazila}`)
       .then(res => res.json())
       .then(data => setUnions(data));
-  }, []);
+  }, [selectedUpazila]);
+
+   // Load by selected District items (all or filtered)
+  useEffect(() => {
+    let url = "https://polling-station-management-server.vercel.app/pollingStations";
+
+    if (selectedDistrict) {
+      url += `/pollingStation/${selectedDistrict}`;
+    }
+    fetch(url)
+      .then(res => res.json())
+      .then(data => setPollingStations(data));
+  }, [selectedDistrict]);
+
+  // Load by selected Upazila items (all or filtered)
+  useEffect(() => {
+
+    let url = "https://polling-station-management-server.vercel.app/pollingStations";
+
+    if (selectedUpazila) {
+      url += `/pollingStation/upazila/${selectedUpazila}`;
+    }
+    fetch(url)
+      .then(res => res.json())
+      .then(data => setPollingStations(data));
+  }, [selectedUpazila]);
 
   // Load by selected Union items (filtered)
   useEffect(() => {
@@ -108,14 +127,13 @@ const PollingStation = ({onMenuChange}) => {
   return (
     <div>
        <div className="w-full px-2 my-5 grid grid-cols-1 md:grid-cols-3 gap-5">
-                         <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
+                  <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
                             <div className='flex justify-center items-center max-w-xs'>
                                 <select
                                     value={selectedDistrict}
-                                    disabled={true}
                                         onChange={(e) => setSelectedDistrict(e.target.value)}
                                       >
-                                        {/* <option value=""> জেলা নির্বাচন করুন </option> */}
+                                        <option value=""> জেলা নির্বাচন করুন </option>
                                         {districts.map(dist => (
                                           <option key={dist._id} value={dist._id}>
                                             {dist.districtName}
@@ -129,10 +147,9 @@ const PollingStation = ({onMenuChange}) => {
                             <div className='flex justify-center items-center max-w-xs'>
                                 <select
                                     value={selectedUpazila}
-                                    disabled={true}
                                         onChange={(e) => setSelectedUpazila(e.target.value)}
                                       >
-                                        {/* <option value=""> উপজেলা নির্বাচন করুন </option> */}
+                                        <option value=""> উপজেলা নির্বাচন করুন </option>
                                         {upazilas.map(upa => (
                                           <option key={upa._id} value={upa._id}>
                                             {upa.upazilaName}
@@ -140,9 +157,8 @@ const PollingStation = ({onMenuChange}) => {
                                         ))}
                                 </select>
                             </div>
-                        </div>  
-                         
-                         
+                        </div>
+
                           <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
                             <div className='flex justify-center items-center max-w-xs'>
                                 <select
@@ -167,7 +183,7 @@ const PollingStation = ({onMenuChange}) => {
         {pollingStations.map(pollingStation => (
           <li key={pollingStation._id}>
                         <div className="card transition duration-300 ease-in-out hover:scale-110">
-                                <div className="bg-bottle-green items-center text-white rounded">
+                                <div className="bg-cyan-200 items-center rounded">
                                       <div>
                                         <p className="card-body text-left font-xl font-bold"> 
                                         জেলাঃ {pollingStation.districtName}
@@ -179,12 +195,12 @@ const PollingStation = ({onMenuChange}) => {
                                         </p>
                                     </div>
                                  
-                                    <div className="card-body text-left font-xl font-bold">
+                                    <div className="card-body text-left text-black font-xl font-bold">
                                         <p> 
                                           ইউনিয়নঃ {pollingStation.unionName}
                                         </p>
                                     </div>
-                                    <div className="card-body text-left font-xl font-bold">
+                                    <div className="card-body text-left text-black font-xl font-bold">
                                         {/* <p>  {service.description.slice(0, 100)} tittle={service.description}</p> */}
                                         <p> 
                                            ভোটকেন্দ্রঃ {pollingStation.pollingStationName}

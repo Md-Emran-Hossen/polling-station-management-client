@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom"; 
 import navPic from "../../public/images/pic1.jpg"
+import '../App.css';
+
 
 const Navbar = () => {
 
@@ -31,8 +33,7 @@ const Navbar = () => {
 
     return (
 
-
-          <div className="navbar bg-cyan-200">
+          <div className="navbar bg-bottle-green">
             <div className="navbar-start">
 
                 <div className="dropdown">
@@ -56,10 +57,10 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-blue-500 font-bold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
+                <a className="btn btn-ghost text-white font-bold">ভোটকেন্দ্র ব্যবস্থাপনা</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 font-extrabold">
+                <ul className="menu menu-horizontal px-1 text-white font-extrabold">
                     {navLink}
                 </ul>
             </div>

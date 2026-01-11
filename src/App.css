@@ -1,2 +1,5 @@
-@import "tailwindcss";
-@plugin "daisyui";
+/* App.css */
+.bg-bottle-green {
+  background-color: #003754; /* Example: a specific hex code */
+}
+
