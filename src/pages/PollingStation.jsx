@@ -13,8 +13,8 @@ const Modal = ({ show, onClose, title, children }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">{title}</h4>
-          <button onClick={onClose} className="modal-close-button">&times;</button>
+          <h4 className="modal-title font-bold p-2">{title}</h4>
+          <button onClick={onClose} className="modal-close-button p-2">&times;</button>
         </div>
         <div className="modal-body">
           {children}
@@ -159,7 +159,7 @@ const PollingStation = ({onMenuChange}) => {
                                 </select>
                             </div>
                         </div>
-            </div>
+        </div>
 
       {/* Data Display */}
       {/* <ul> */}
@@ -167,7 +167,7 @@ const PollingStation = ({onMenuChange}) => {
         {pollingStations.map(pollingStation => (
           <li key={pollingStation._id}>
                         <div className="card transition duration-300 ease-in-out hover:scale-110">
-                                <div className="bg-bottle-green items-center text-white rounded">
+                                <div className="bg-card-body items-center text-white rounded">
                                       <div>
                                         <p className="card-body text-left font-xl font-bold"> 
                                         জেলাঃ {pollingStation.districtName}
@@ -220,13 +220,13 @@ const PollingStation = ({onMenuChange}) => {
                     >
                       {/* Content passed as children to the modal */}
                       {modalData ? (
-                        <div className="overflow-x-auto">
+                        <div className="overflow-x-auto bg-body">
                           <table className="table table-xs">
                             {/* head */}
                             <thead>
                                  <tr className="bg-green-50">                           
                             </tr>
-                              <tr className="text-black">
+                              <tr className="text-black bg-modal-header">
                                 <th>ক্রম</th>
                                 <th>তথ্য</th>
                                 <th>:</th>
@@ -234,80 +234,86 @@ const PollingStation = ({onMenuChange}) => {
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
+                               <tr className='text-color-prisiding-officer font-bold'>
                                 <th>০১</th>
+                                <td>প্রিজাইডিং অইফসার</td>
+                                <td>:</td>
+                                <td>{modalData.prisidingOffcer} - {modalData.mobile} </td>
+                              </tr>
+                              <tr>
+                                <th>০২</th>
                                 <td>ভোটকেন্দ্র নং</td>
                                 <td>:</td>
                                 <td>{modalData.pollingStationNo}</td>
                               </tr>
                               <tr>
-                                <th>০২</th>
+                                <th>০৩</th>
                                 <td>ভোটকেন্দ্রের নাম ও অবস্থান</td>
                                 <td>:</td>
                                 <td>{modalData.pollingStationName}</td>
                               </tr>
                               <tr>
-                                <th>০৩</th>
+                                <th>০৪</th>
                                 <td>ভোটকক্ষের সংখ্যা</td>
                                 <td>:</td>
                                 <td>{modalData.numberOfBooth}</td>
                               </tr>
                               <tr>
-                                <th>০৪</th>
+                                <th>০৫</th>
                                 <td>গ্রামের নাম এবং ওয়ার্ড নং</td>
                                 <td>:</td>
                                 <td>{modalData.wordNoAndVillage}</td>
                               </tr>
                               <tr>
-                                <th>০৫</th>
+                                <th>০৬</th>
                                 <td>ভোটকেন্দ্রের ধরন</td>
                                 <td>:</td>
                                 <td>{modalData.pollingStationType}</td>
                               </tr>
                               <tr>
-                                <th>০৬</th>
+                                <th>০৭</th>
                                 <td>স্থায়ী বুথ</td>
                                 <td>:</td>
                                 <td>{modalData.permanentBooth}</td>
                               </tr>
                               <tr>
-                                <th>০৭</th>
+                                <th>০৮</th>
                                 <td>অস্থায়ী বুথ</td>
                                 <td>:</td>
                                 <td>{modalData.temporaryBooth}</td>
                               </tr>
                               <tr>
-                                <th>০৮</th>
+                                <th>০৯</th>
                                 <td>পুরুষ ভোটার</td>
                                 <td>:</td>
                                 <td>{modalData.male}</td>
                               </tr>
                               <tr>
-                                <th>০৯</th>
+                                <th>১০</th>
                                 <td>মহিলা ভোটার</td>
                                 <td>:</td>
                                 <td>{modalData.female}</td>
                               </tr>
                               <tr>
-                                <th>১০</th>
+                                <th>১১</th>
                                 <td>তৃতীয় লিঙ্গ</td>
                                 <td>:</td>
                                 <td>{modalData.thirdGender}</td>
                               </tr>
                               <tr>
-                                <th>১১</th>
+                                <th>১২</th>
                                 <td>মোট ভোটার</td>
                                 <td>:</td>
                                 <td>{modalData.totalVoter}</td>
                               </tr>
                               <tr>
-                                <th>১২</th>
+                                <th>১৩</th>
                                 <td>নির্বাচনী এলাকার নম্বর ও নাম</td>
                                 <td>:</td>
                                 <td>{modalData.parliamentarySeat}</td>
                               </tr>
                               <tr>
-                                <th>১৩</th>
+                                <th>১৪</th>
                                 <td>ম্যাপে দেখুন</td>
                                 <td>:</td>
                                 <td>

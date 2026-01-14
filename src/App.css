@@ -1,5 +1,17 @@
 /* App.css */
 .bg-bottle-green {
-  background-color: #003754; /* Example: a specific hex code */
+   background-color: #003754; /* Example: a specific hex code */
+}
+.bg-modal-header {
+      background-color: #00AADD !important; /*  Example: a specific hex code */
+}
+.bg-body {
+  background-color: #CDD7E1;
+}
+.bg-card-body {
+  background-color: #011B2A;
+}
+.text-color-prisiding-officer {
+  color: #034B03;
 }
 

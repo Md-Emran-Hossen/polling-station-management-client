@@ -29,7 +29,6 @@ const LoadUpazilaInfo = () => {
             });
     };
 
-
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
@@ -66,7 +65,7 @@ const LoadUpazilaInfo = () => {
                                     <td>{upazila.districtName}</td>
                                     <td>{upazila.upazilaName}</td>
                                     <td>
-                                        <Link to={`/dashboard/project/${upazila._id}`}>
+                                        <Link to={`/dashboard/upazila/${upazila._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>

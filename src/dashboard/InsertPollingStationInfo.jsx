@@ -7,10 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const InsertPollingStationInfo = () => {
     const [districts, setDistricts] = useState([]);
     const [districtObject, setDistrictObject] = useState({});
-
     const [upazilas, setUpazilas] = useState([]);
     const [upazilaObject, setUpazilaObject] = useState({});
-
     const [unions, setUnions] = useState([]);
     const [unionObject, setUnionObject] = useState({});
 
@@ -33,7 +31,9 @@ const InsertPollingStationInfo = () => {
         thirdGender: '',
         totalVoter: '',
         parliamentarySeat: '',
-        mapInfo: ''
+        mapInfo: '',
+        prisidingOffcer: '',
+        mobile: '' 
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
@@ -42,16 +42,12 @@ const InsertPollingStationInfo = () => {
         const fetchDistricts = async () => {
             try {
                 const res = await fetch('https://polling-station-management-server.vercel.app/districts');
-
                 const data = await res.json();
-            //    console.log("District Information:= ", data);
                 setDistricts(data);
-
                 const tempDistrictObject = {};
                 data.forEach(district => {
                     tempDistrictObject[district.districtName] = district._id;
                 });
-             //   console.log("INNER VALUE:=",tempDistrictObject);
                 setDistrictObject(tempDistrictObject);
             } catch (error) {
                 console.error('Error fetching district:', error);
@@ -146,6 +142,13 @@ const InsertPollingStationInfo = () => {
         if (!formData.parliamentarySeat) {
             newErrors.parliamentarySeat = "parliamentary Seat is Required";
         }
+
+        if (!formData.prisidingOffcer) {
+            newErrors.prisidingOffcer = "Prisiding Offcer is Required";
+        }
+        if (!formData.mobile) {
+            newErrors.mobile = "Mobile Number is Required";
+        }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -180,9 +183,11 @@ const InsertPollingStationInfo = () => {
             thirdGender: formData.thirdGender,
             totalVoter: formData.totalVoter,
             parliamentarySeat: formData.parliamentarySeat,
-            mapInfo: formData.mapInfo 
+            mapInfo: formData.mapInfo,
+            prisidingOffcer: formData.prisidingOffcer,
+            mobile: formData.mobile 
         };
-    //    console.log("Value of Object", pollingStation);
+
         // Save Polling Station information to the database
         const result = await fetch('https://polling-station-management-server.vercel.app/pollingStations', {
             method: 'POST',
@@ -419,6 +424,20 @@ const InsertPollingStationInfo = () => {
 
                          <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">গুগল ম্যাপে অবস্থান:</span></label>
+                                <input
+                                    type="text"
+                                    name="mapInfo"
+                                    value={formData.mapInfo}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.mapInfo && <p className='text-red-500 text-xs'>{errors.mapInfo}</p>}
+                        </div>
+
+                         <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
                                 <label className="label"> <span className="label-text">মোট ভোটার:</span></label>
                                 <input
                                     type="text"
@@ -446,16 +465,29 @@ const InsertPollingStationInfo = () => {
                         </div>
                          <div className="border p-2 border-indigo-400 mb-3">
                             <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">গুগল ম্যাপে অবস্থান:</span></label>
+                                <label className="label"> <span className="label-text">প্রিজাইডিং অফিসার:</span></label>
                                 <input
                                     type="text"
-                                    name="mapInfo"
-                                    value={formData.mapInfo}
+                                    name="prisidingOffcer"
+                                    value={formData.prisidingOffcer}
                                     onChange={handleInputChange}
                                     className="input input-bordered w-full rounded-none bg-white"
                                 />
                             </div>
-                            {errors.mapInfo && <p className='text-red-500 text-xs'>{errors.mapInfo}</p>}
+                            {errors.prisidingOffcer && <p className='text-red-500 text-xs'>{errors.prisidingOffcer}</p>}
+                        </div>
+                            <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">মোবাইল:</span></label>
+                                <input
+                                    type="text"
+                                    name="mobile"
+                                    value={formData.mobile}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
                         </div>
 
                         <div className="mx-5 px-5">

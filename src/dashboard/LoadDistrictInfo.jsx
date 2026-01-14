@@ -66,7 +66,7 @@ const LoadDistrictInfo = () => {
                                     <td>{district.districtName}</td>
                                     <td>{district.description}</td>
                                     <td>
-                                        <Link to={`/dashboard/project/${district._id}`}>
+                                        <Link to={`/dashboard/district/${district._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>

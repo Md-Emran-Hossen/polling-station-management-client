@@ -25,6 +25,11 @@ const Dashboard = () => {
                         ভোটকেন্দ্র সংরক্ষণ
                     </NavLink>
                 </li>
+                 <li className="text-3xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dashboard/prisidingOfficers">
+                        ভোটগ্রহণকারী কর্মকর্তা সংরক্ষণ
+                    </NavLink>
+                </li>
                   {/* <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/EditPollingStations">
                         ভোটকেন্দ্র সংশোধন
@@ -59,6 +64,11 @@ const Dashboard = () => {
                  <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadSummaryInformations">
                         সারসংক্ষেপ প্রদর্শন
+                    </NavLink>
+                </li>
+                <li className="text-3xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dashboard/loadPrisidingOfficers">
+                        ভোটগ্রহণকারী কর্মকর্তার তথ্য প্রদর্শন
                     </NavLink>
                 </li>
             </ul>

@@ -20,6 +20,8 @@ import LoadSummaryInfo from "../dashboard/LoadSummaryInfo";
 import EditPollingStationInfo from "../dashboard/EditPollingStationInfo";
 import EditSummaryInfo from "../dashboard/EditSummaryInfo";
 import Map from "../pages/Map";
+import InsertPrisidingOfficer from "../dashboard/InsertPrisidingOfficer";
+import LoadPrisidingOfficer from "../dashboard/LoadPrisidingOfficer";
 
 
 const router = createBrowserRouter([
@@ -87,6 +89,10 @@ const router = createBrowserRouter([
             path: "/dashboard/summaryInformations",
             element: <InsertSummaryInfo></InsertSummaryInfo>,
           },
+           {
+            path: "/dashboard/prisidingOfficers",
+            element: <InsertPrisidingOfficer></InsertPrisidingOfficer>,
+          },
           {
             path: "/dashboard/loadDistricts",
             element: <LoadDistrictInfo></LoadDistrictInfo>,
@@ -112,6 +118,11 @@ const router = createBrowserRouter([
             path: "/dashboard/loadSummaryInformations",
             element: <LoadSummaryInfo></LoadSummaryInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/summaryInformations"),
+          },
+          {
+            path: "/dashboard/loadPrisidingOfficers",
+            element: <LoadPrisidingOfficer></LoadPrisidingOfficer>,
+            loader: () => fetch("http://localhost:5000/prisidingOfficers"),
           },
           {
             path: "/dashboard/pollingStation/:id",
