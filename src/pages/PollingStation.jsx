@@ -236,7 +236,7 @@ const PollingStation = ({onMenuChange}) => {
                             <tbody>
                                <tr className='text-color-prisiding-officer font-bold'>
                                 <th>০১</th>
-                                <td>প্রিজাইডিং অইফসার</td>
+                                <td>প্রিজাইডিং অফিসার</td>
                                 <td>:</td>
                                 <td>{modalData.prisidingOffcer} - {modalData.mobile} </td>
                               </tr>
