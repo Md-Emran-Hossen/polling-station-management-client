@@ -122,7 +122,7 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/loadPrisidingOfficers",
             element: <LoadPrisidingOfficer></LoadPrisidingOfficer>,
-            loader: () => fetch("http://localhost:5000/prisidingOfficers"),
+            loader: () => fetch("https://polling-station-management-server.vercel.app/prisidingOfficers"),
           },
           {
             path: "/dashboard/pollingStation/:id",

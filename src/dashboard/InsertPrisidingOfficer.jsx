@@ -20,7 +20,7 @@ const InsertPrisidingOfficer = () => {
     useEffect(() => {
         const fetchPollingStations = async () => {
             try {
-                const res = await fetch('http://localhost:5000/pollingStations');
+                const res = await fetch('https://polling-station-management-server.vercel.app/pollingStations');
 
                 const data = await res.json();
                 setPollingStations(data);
@@ -69,7 +69,7 @@ const InsertPrisidingOfficer = () => {
             prisidingOffcer: formData.prisidingOffcer,
             mobile: formData.mobile 
         };
-        const result = await fetch('http://localhost:5000/prisidingOfficers', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/prisidingOfficers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

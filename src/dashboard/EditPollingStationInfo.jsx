@@ -51,7 +51,7 @@ const EditPollingStationInfo = () => {
 
         console.log("UPDATE DATA FOUND", updateInfo);
 
-        fetch(`http://localhost:5000/pollingStation/${loadedData._id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/pollingStation/${loadedData._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
