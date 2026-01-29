@@ -27,6 +27,8 @@ const EditPollingStationInfo = () => {
         const mapInfo = form.get("mapInfo");
         const prisidingOffcer = form.get("prisidingOffcer");
         const mobile = form.get("mobile");
+        const subInspector = form.get("subInspector");
+        const siMobile = form.get("siMobile");
 
         const updateInfo = { 
                                 districtName,
@@ -46,12 +48,12 @@ const EditPollingStationInfo = () => {
                                 parliamentarySeat,
                                 mapInfo,
                                 prisidingOffcer,
-                                mobile
+                                mobile,
+                                subInspector,
+                                siMobile
                              };
 
-        console.log("UPDATE DATA FOUND", updateInfo);
-
-        fetch(`https://polling-station-management-server.vercel.app/pollingStation/${loadedData._id}`, {
+        fetch(`http://localhost:5000/pollingStation/${loadedData._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -490,6 +492,50 @@ const EditPollingStationInfo = () => {
                                         name="mobile"
                                         rows={4}
                                         defaultValue={loadedData.mobile}
+                                    />
+                            </div>
+                      </div>
+
+                         <div className="md:flex md:items-center mb-6">
+                                <div className="md:w-1/3">
+                                    <label
+                                        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                        htmlFor="subInspector"
+                                    >
+                                        সাব ইন্সপেক্টর:
+                                    </label>
+                                </div>
+                                <div className="md:w-1/3">
+                                    <input
+                                        className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+                                            leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                        id="subInspector"
+                                        type="text"
+                                        name="subInspector"
+                                        rows={4}
+                                        defaultValue={loadedData.subInspector}
+                                    />
+                            </div>
+                        </div>
+                                
+                        <div className="md:flex md:items-center mb-6">
+                                <div className="md:w-1/3">
+                                    <label
+                                        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                        htmlFor="siMobile"
+                                    >
+                                        এস আই মোবাইল:
+                                    </label>
+                                </div>
+                                <div className="md:w-1/3">
+                                    <input
+                                        className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+                                        leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                        id="siMobile"
+                                        type="text"
+                                        name="siMobile"
+                                        rows={4}
+                                        defaultValue={loadedData.siMobile}
                                     />
                             </div>
                       </div>

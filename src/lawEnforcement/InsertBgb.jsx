@@ -1,23 +1,28 @@
+import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const InsertDistrict = () => {
+const InsertBgb = () => {
 
     const [formData, setFormData] = useState({
-        districtName: '',
-        description: ''
+        bgbName: '',
+        designation: '',
+        mobile: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formData.districtName) {
-            newErrors.districtName = "District name is Required";
+        if (!formData.bgbName) {
+            newErrors.bgbName = "BGB name is Required";
         }
-        if (!formData.description) {
-            newErrors.description = "Description is Required";
+        if (!formData.designation) {
+            newErrors.designation = "Designation is Required";
+        }
+        if (!formData.mobile) {
+            newErrors.mobile = "Mobile number is Required";
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -34,73 +39,95 @@ const InsertDistrict = () => {
             return;
         }
 
-        const district = {
-            districtName: formData.districtName,
-            description: formData.description,
+        const bgbInfo = {
+            bgbName: formData.bgbName,
+            designation: formData.designation,
+            mobile: formData.mobile,
         };
 
-        // Save Services information to the database
-        const result = await fetch('https://polling-station-management-server.vercel.app/districts', {
+        // Save Police information to the database
+        const result = await fetch('https://polling-station-management-server.vercel.app/bgbs', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(district)
+            body: JSON.stringify(bgbInfo)
         })
 
         const data = await result.json();
        
         if (data.insertedId) {
             // console.log("Data object found:", data.insertedId);
-            toast.success(`${formData.districtName} is added successfully`);
-            navigate('/dashboard/loadDistricts');
+            toast.success(`${formData.bgbName} is added successfully`);
+            navigate('/lawEnforcement/loadBgb');
         } else {
-            toast.error('Failed to add education information.');
+            toast.error('Failed to add BGB information.');
         }
 };
-return (
-    <div>
-        <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">জেলার নাম যুক্ত করুন</h2>
-        <div className="mx-auto mt-5 p-2">
+
+    return (
+        <div>
+             <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">বর্ডার গার্ড বাংলাদেশ এর তথ্য যুক্ত করুন</h2>
+           <div className="mx-auto mt-5 p-2">
             <form onSubmit={handleSubmit} className="w-full">
 
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            জেলার নাম:
+                            নাম:
                         </label>
                     </div>
                     <div className="md:w-1/3">
                         <input
                             type="text"
-                            name="districtName"
-                            value={formData.districtName}
+                            name="bgbName"
+                            value={formData.bgbName}
                             onChange={handleInputChange}
                             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                         />
                     </div>
-                    {errors.districtName && <p className='text-red-500 text-xs'>{errors.districtName}</p>}
+                    {errors.bgbName && <p className='text-red-500 text-xs'>{errors.bgbName}</p>}
                 </div>
 
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            বর্ণনা:
+                            পদবি:
                         </label>
                     </div>
                     <div className="md:w-1/3">
                         <input
                             type="text"
-                            name="description"
-                            value={formData.description}
+                            name="designation"
+                            value={formData.designation}
                             onChange={handleInputChange}
                             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                         />
                     </div>
-                    {errors.description && <p className='text-red-500 text-xs'>{errors.description}</p>}
+                    {errors.designation && <p className='text-red-500 text-xs'>{errors.designation}</p>}
                 </div>
+
+                  <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/3">
+                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                            মোবাইল:
+                        </label>
+                    </div>
+                    <div className="md:w-1/3">
+                        <input
+                            type="text"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleInputChange}
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        />
+                    </div>
+                    {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
+                </div>
+
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
                     <div className="md:w-2/3">
@@ -114,10 +141,9 @@ return (
                     </div>
                 </div>
             </form>
+           </div> 
         </div>
-    </div>
-   
     );
 };
 
-export default InsertDistrict;
+export default InsertBgb;

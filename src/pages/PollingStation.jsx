@@ -55,7 +55,6 @@ const PollingStation = ({onMenuChange}) => {
       fetch("https://polling-station-management-server.vercel.app/upazilas")
         .then(res => res.json())
         .then(data => {
-          // console.log("DROPDOWN DATA",data);
                setUpazilas(data);
              if (data.length > 0) {
               setSelectedUpazila(data[0]._id);
@@ -108,57 +107,56 @@ const PollingStation = ({onMenuChange}) => {
   return (
     <div>
        <div className="w-full px-2 my-5 grid grid-cols-1 md:grid-cols-3 gap-5">
-                         <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
-                            <div className='flex justify-center items-center max-w-xs'>
-                                <select
-                                    value={selectedDistrict}
-                                    disabled={true}
-                                        onChange={(e) => setSelectedDistrict(e.target.value)}
-                                      >
-                                        {/* <option value=""> জেলা নির্বাচন করুন </option> */}
-                                        {districts.map(dist => (
-                                          <option key={dist._id} value={dist._id}>
-                                            {dist.districtName}
-                                          </option>
-                                        ))}
-                                </select>
-                            </div>
-                        </div>
+            <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
+                <div className='flex justify-center items-center max-w-xs'>
+                    <select
+                      value={selectedDistrict}
+                      disabled={true}
+                      onChange={(e) => setSelectedDistrict(e.target.value)}
+                    >
+                    {/* <option value=""> জেলা নির্বাচন করুন </option> */}
+                    {districts.map(dist => (
+                    <option key={dist._id} value={dist._id}>
+                    {dist.districtName}
+                    </option>
+                    ))}
+                  </select>
+                </div>
+            </div>
 
-                         <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
-                            <div className='flex justify-center items-center max-w-xs'>
-                                <select
-                                    value={selectedUpazila}
-                                    disabled={true}
-                                        onChange={(e) => setSelectedUpazila(e.target.value)}
-                                      >
-                                        {/* <option value=""> উপজেলা নির্বাচন করুন </option> */}
-                                        {upazilas.map(upa => (
-                                          <option key={upa._id} value={upa._id}>
-                                            {upa.upazilaName}
-                                          </option>
-                                        ))}
-                                </select>
-                            </div>
-                        </div>  
-                         
-                         
-                          <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
-                            <div className='flex justify-center items-center max-w-xs'>
-                                <select
-                                   value={selectedUnion}
-                                        // onChange={(e) => setSelectedUnion(e.target.value)}
-                                        onChange={handleChange}
-                                      >
-                                        <option value=""> ইউনিয়ন নির্বাচন করুন </option>
-                                        {unions.map(union => (
-                                          <option key={union._id} value={union._id}>
-                                            {union.unionName}
-                                          </option>
-                                        ))}
-                                </select>
-                            </div>
-                        </div>
+            <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
+                <div className='flex justify-center items-center max-w-xs'>
+                    <select
+                      value={selectedUpazila}
+                      disabled={true}
+                      onChange={(e) => setSelectedUpazila(e.target.value)}
+                    >
+                      {/* <option value=""> উপজেলা নির্বাচন করুন </option> */}
+                      {upazilas.map(upa => (
+                        <option key={upa._id} value={upa._id}>
+                          {upa.upazilaName}
+                        </option>
+                       ))}
+                    </select>
+                 </div>
+            </div>  
+                                   
+            <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
+              <div className='flex justify-center items-center max-w-xs'>
+                  <select
+                    value={selectedUnion}
+                    // onChange={(e) => setSelectedUnion(e.target.value)}
+                    onChange={handleChange}
+                  >
+                    <option value=""> ইউনিয়ন নির্বাচন করুন </option>
+                      {unions.map(union => (
+                    <option key={union._id} value={union._id}>
+                      {union.unionName}
+                    </option>
+                    ))}
+                  </select>
+                </div>
+            </div>
         </div>
 
       {/* Data Display */}
@@ -166,62 +164,60 @@ const PollingStation = ({onMenuChange}) => {
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 mx-3 my-5">
         {pollingStations.map(pollingStation => (
           <li key={pollingStation._id}>
-                        <div className="card transition duration-300 ease-in-out hover:scale-110">
-                                <div className="bg-card-body items-center text-white rounded">
-                                      <div>
-                                        <p className="card-body text-left font-xl font-bold"> 
-                                        জেলাঃ {pollingStation.districtName}
-                                        </p>
-                                    </div>
-                                      <div>
-                                        <p className="card-body text-left font-xl font-bold"> 
-                                          উপজেলাঃ {pollingStation.upazilaName}
-                                        </p>
-                                    </div>
-                                 
-                                    <div className="card-body text-left font-xl font-bold">
-                                        <p> 
-                                          ইউনিয়নঃ {pollingStation.unionName}
-                                        </p>
-                                    </div>
-                                    <div className="card-body text-left font-xl font-bold">
-                                        {/* <p>  {service.description.slice(0, 100)} tittle={service.description}</p> */}
-                                        <p> 
-                                           ভোটকেন্দ্রঃ {pollingStation.pollingStationName}
-                                        </p>
-                                    </div>
-                                    <diV>    
-                                          <button 
-                                              className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
-                                                       border border-transparent text-base font-medium 
-                                                       rounded-md text-white bg-blue-500
-                                                       hover:bg-blue-200 md:py-4 md:text-lg md:px-10" 
+            <div className="card transition duration-300 ease-in-out hover:scale-110">
+              <div className="bg-card-body items-center text-white rounded">
+                <div>
+                  <p className="card-body text-left font-xl font-bold"> 
+                    জেলাঃ {pollingStation.districtName}
+                  </p>
+                </div>
+                <div>
+                  <p className="card-body text-left font-xl font-bold"> 
+                    উপজেলাঃ {pollingStation.upazilaName}
+                  </p>
+                  </div> 
+                <div className="card-body text-left font-xl font-bold">
+                  <p> 
+                    ইউনিয়নঃ {pollingStation.unionName}
+                  </p>
+                </div>
+                <div className="card-body text-left font-xl font-bold">
+                {/* <p>  {service.description.slice(0, 100)} tittle={service.description}</p> */}
+                  <p> 
+                    ভোটকেন্দ্রঃ {pollingStation.pollingStationName}
+                  </p>
+                </div>
+                <diV>    
+                  <button 
+                    className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
+                              border border-transparent text-base font-medium 
+                              rounded-md text-white bg-blue-500
+                            hover:bg-blue-200 md:py-4 md:text-lg md:px-10" 
+                        onClick={() => openModalWithData(pollingStation)}>
+                          বিস্তারিত..
+                  </button>
 
-                                              onClick={() => openModalWithData(pollingStation)}>
-                                                বিস্তারিত..
-                                          </button>
-
-                                      {/* <Link to={`/pollingStation/${pollingStation._id}`}
-                                            className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
-                                                       border border-transparent text-base font-medium 
-                                                       rounded-md text-white bg-blue-500
-                                                       hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
-                                        >
-                                            বিস্তারিত..
-                                            <BsArrowRightSquareFill className="inline ml-3" />  
-                                      </Link> */}
-                                    </diV>
-                                </div>    
-                        </div>
-                  <Modal
-                      show={isModalOpen}
-                      onClose={closeModal}
-                      title={modalData ? `সংসদীয় আসনঃ ${modalData.parliamentarySeat}` : 'Details'}
-                    >
-                      {/* Content passed as children to the modal */}
-                      {modalData ? (
-                        <div className="overflow-x-auto bg-body">
-                          <table className="table table-xs">
+                   {/* <Link to={`/pollingStation/${pollingStation._id}`}
+                        className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
+                        border border-transparent text-base font-medium 
+                        rounded-md text-white bg-blue-500
+                        hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
+                       >
+                        বিস্তারিত..
+                        <BsArrowRightSquareFill className="inline ml-3" />  
+                        </Link> */}
+                </diV>
+              </div>    
+            </div>
+            <Modal
+              show={isModalOpen}
+              onClose={closeModal}
+              title={modalData ? `সংসদীয় আসনঃ ${modalData.parliamentarySeat}` : 'Details'}
+            >
+            {/* Content passed as children to the modal */}
+            {modalData ? (
+                <div className="overflow-x-auto bg-body">
+              <table className="table table-xs">
                             {/* head */}
                             <thead>
                                  <tr className="bg-green-50">                           
@@ -240,80 +236,86 @@ const PollingStation = ({onMenuChange}) => {
                                 <td>:</td>
                                 <td>{modalData.prisidingOffcer} - {modalData.mobile} </td>
                               </tr>
-                              <tr>
+                                <tr className= 'text-color-si font-bold'>
                                 <th>০২</th>
+                                <td>কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই</td>
+                                <td>:</td>
+                                <td>{modalData.subInspector} - {modalData.siMobile} </td>
+                              </tr>
+                              <tr>
+                                <th>০৩</th>
                                 <td>ভোটকেন্দ্র নং</td>
                                 <td>:</td>
                                 <td>{modalData.pollingStationNo}</td>
                               </tr>
                               <tr>
-                                <th>০৩</th>
+                                <th>০৪</th>
                                 <td>ভোটকেন্দ্রের নাম ও অবস্থান</td>
                                 <td>:</td>
                                 <td>{modalData.pollingStationName}</td>
                               </tr>
                               <tr>
-                                <th>০৪</th>
+                                <th>০৫</th>
                                 <td>ভোটকক্ষের সংখ্যা</td>
                                 <td>:</td>
                                 <td>{modalData.numberOfBooth}</td>
                               </tr>
                               <tr>
-                                <th>০৫</th>
+                                <th>০৬</th>
                                 <td>গ্রামের নাম এবং ওয়ার্ড নং</td>
                                 <td>:</td>
                                 <td>{modalData.wordNoAndVillage}</td>
                               </tr>
                               <tr>
-                                <th>০৬</th>
+                                <th>০৭</th>
                                 <td>ভোটকেন্দ্রের ধরন</td>
                                 <td>:</td>
                                 <td>{modalData.pollingStationType}</td>
                               </tr>
                               <tr>
-                                <th>০৭</th>
+                                <th>০৮</th>
                                 <td>স্থায়ী বুথ</td>
                                 <td>:</td>
                                 <td>{modalData.permanentBooth}</td>
                               </tr>
                               <tr>
-                                <th>০৮</th>
+                                <th>০৯</th>
                                 <td>অস্থায়ী বুথ</td>
                                 <td>:</td>
                                 <td>{modalData.temporaryBooth}</td>
                               </tr>
                               <tr>
-                                <th>০৯</th>
+                                <th>১০</th>
                                 <td>পুরুষ ভোটার</td>
                                 <td>:</td>
                                 <td>{modalData.male}</td>
                               </tr>
                               <tr>
-                                <th>১০</th>
+                                <th>১১</th>
                                 <td>মহিলা ভোটার</td>
                                 <td>:</td>
                                 <td>{modalData.female}</td>
                               </tr>
                               <tr>
-                                <th>১১</th>
+                                <th>১২</th>
                                 <td>তৃতীয় লিঙ্গ</td>
                                 <td>:</td>
                                 <td>{modalData.thirdGender}</td>
                               </tr>
                               <tr>
-                                <th>১২</th>
+                                <th>১৩</th>
                                 <td>মোট ভোটার</td>
                                 <td>:</td>
                                 <td>{modalData.totalVoter}</td>
                               </tr>
                               <tr>
-                                <th>১৩</th>
+                                <th>১৪</th>
                                 <td>নির্বাচনী এলাকার নম্বর ও নাম</td>
                                 <td>:</td>
                                 <td>{modalData.parliamentarySeat}</td>
                               </tr>
                               <tr>
-                                <th>১৪</th>
+                                <th>১৫</th>
                                 <td>ম্যাপে দেখুন</td>
                                 <td>:</td>
                                 <td>
@@ -323,18 +325,16 @@ const PollingStation = ({onMenuChange}) => {
                               </tr>
 
                             </tbody>
-                          </table>
-                        </div>
-                      ) : (
-                        <p>দুঃখিত! কোন ডেটা পাওয়া যায়নি.</p>
-                      )}
-                    </Modal>
-
+              </table>
+              </div>
+                 ) : (
+                  <p>দুঃখিত! কোন ডেটা পাওয়া যায়নি.</p>
+               )}
+              </Modal>
             {/* {pollingStation.pollingStationName} */}
           </li>
         ))}
       </div>
-
       {/* </ul> */}
     </div>
   );

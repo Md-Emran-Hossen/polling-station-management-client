@@ -3,9 +3,6 @@ import CommonLayout from "../layout/CommonLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 import Home from "../pages/Home";
 import Summary from "../pages/Summary";
-import EmergencyMobileNumber from "../pages/EmergencyMobileNumber";
-import PrintDownload from "../pages/PrintDownload";
-import Contact from "../pages/Contact";
 import InsertDistrict from "../dashboard/InsertDistrict";
 import InsertUpazila from "../dashboard/InsertUpazila";
 import InsertPollingStationInfo from "../dashboard/InsertPollingStationInfo";
@@ -22,6 +19,27 @@ import EditSummaryInfo from "../dashboard/EditSummaryInfo";
 import Map from "../pages/Map";
 import InsertPrisidingOfficer from "../dashboard/InsertPrisidingOfficer";
 import LoadPrisidingOfficer from "../dashboard/LoadPrisidingOfficer";
+import Bgb from "../pages/Bgb";
+import Police from "../pages/Police";
+import Rab from "../pages/Rab";
+import Army from "../pages/Army";
+import InsertArmy from "../lawEnforcement/InsertArmy";
+import InsertBgb from "../lawEnforcement/InsertBgb";
+import InsertPolice from "../lawEnforcement/InsertPolice";
+import InsertRab from "../lawEnforcement/InsertRab";
+import LawEnforcementLayout from "../layout/LawEnforcementLayout";
+import LoadArmy from "../lawEnforcement/loadArmy";
+import LoadBgb from "../lawEnforcement/LoadBgb";
+import LoadPolice from "../lawEnforcement/LoadPolice";
+import LoadRab from "../lawEnforcement/LoadRab";
+import ExecutiveMagistrate from "../pages/ExecutiveMagistrate";
+import InsertMagistrate from "../lawEnforcement/InsertMagistrate";
+import LoadMagistrate from "../lawEnforcement/LoadMagistrate";
+import EditArmy from "../lawEnforcement/EditArmy";
+import EditBgb from "../lawEnforcement/EditBgb";
+import EditPolice from "../lawEnforcement/EditPolice";
+import EditRab from "../lawEnforcement/EditRab";
+import EditMagistrate from "../lawEnforcement/EditMagistrate";
 
 
 const router = createBrowserRouter([
@@ -52,16 +70,24 @@ const router = createBrowserRouter([
                 element: <Summary></Summary>,
             },
             {
-                path: "/emaergencyMobileNumber",
-                element: <EmergencyMobileNumber></EmergencyMobileNumber>,
+                path: "/executiveMagistrate",
+                element: <ExecutiveMagistrate></ExecutiveMagistrate>,
             },
             {
-                path: "/printDownload",
-                element: <PrintDownload></PrintDownload>,
+                path: "/army",
+                element: <Army></Army>,
             },
             {
-                path: "/contact",
-                element: <Contact></Contact>,
+                path: "/bgb",
+                element: <Bgb></Bgb>,
+            },
+             {
+                path: "/police",
+                element: <Police></Police>,
+            },
+            {
+                path: "/rab",
+                element: <Rab></Rab>,
             },
         ],
     },
@@ -89,7 +115,7 @@ const router = createBrowserRouter([
             path: "/dashboard/summaryInformations",
             element: <InsertSummaryInfo></InsertSummaryInfo>,
           },
-           {
+          {
             path: "/dashboard/prisidingOfficers",
             element: <InsertPrisidingOfficer></InsertPrisidingOfficer>,
           },
@@ -133,6 +159,83 @@ const router = createBrowserRouter([
             path: "/dashboard/summaryInformation/:id",
             element: <EditSummaryInfo></EditSummaryInfo>,
             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/summaryInformation/${params.id}`),
+          },
+        ],
+
+    },
+    {
+        path: "/lawEnforcement",
+        element: <LawEnforcementLayout></LawEnforcementLayout>,
+        children: [
+          {
+            path: "/lawEnforcement/armys",
+            element: <InsertArmy></InsertArmy>,
+          },
+          {
+            path: "/lawEnforcement/bgbs",
+            element: <InsertBgb></InsertBgb>,
+          },
+          {
+            path: "/lawEnforcement/polices",
+            element: <InsertPolice></InsertPolice>,
+          },
+          {
+            path: "/lawEnforcement/rabs",
+            element: <InsertRab></InsertRab>,
+          },
+          {
+            path: "/lawEnforcement/magistrates",
+            element: <InsertMagistrate></InsertMagistrate>,
+          },
+          {
+            path: "/lawEnforcement/loadArmy",
+            element: <LoadArmy></LoadArmy>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/armys"),
+          },
+          {
+            path: "/lawEnforcement/loadBgb",
+            element: <LoadBgb></LoadBgb>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/bgbs"),
+          },
+          {
+            path: "/lawEnforcement/loadPolice",
+            element: <LoadPolice></LoadPolice>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/polices"),
+          },
+          {
+            path: "/lawEnforcement/loadRab",
+            element: <LoadRab></LoadRab>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/rabs"),
+          },
+          {
+            path: "/lawEnforcement/loadMagistrate",
+            element: <LoadMagistrate></LoadMagistrate>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/magistrates"),
+          },
+          {
+             path: "/lawEnforcement/army/:id",
+             element: <EditArmy></EditArmy>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/army/${params.id}`),
+          },
+          {
+             path: "/lawEnforcement/bgb/:id",
+             element: <EditBgb></EditBgb>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/bgb/${params.id}`),
+          },
+          {
+             path: "/lawEnforcement/police/:id",
+             element: <EditPolice></EditPolice>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/police/${params.id}`),
+          },
+          {
+             path: "/lawEnforcement/rab/:id",
+             element: <EditRab></EditRab>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/rab/${params.id}`),
+          },
+          {
+             path: "/lawEnforcement/magistrate/:id",
+             element: <EditMagistrate></EditMagistrate>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/magistrate/${params.id}`),
           },
         ],
 

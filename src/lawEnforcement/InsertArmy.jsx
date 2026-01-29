@@ -1,23 +1,27 @@
+import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const InsertDistrict = () => {
-
+const InsertArmy = () => {
     const [formData, setFormData] = useState({
-        districtName: '',
-        description: ''
+        armyName: '',
+        designation: '',
+        mobile: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formData.districtName) {
-            newErrors.districtName = "District name is Required";
+        if (!formData.armyName) {
+            newErrors.armyName = "Army name is Required";
         }
-        if (!formData.description) {
-            newErrors.description = "Description is Required";
+        if (!formData.designation) {
+            newErrors.designation = "Designation is Required";
+        }
+        if (!formData.mobile) {
+            newErrors.mobile = "Mobile number is Required";
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -34,73 +38,95 @@ const InsertDistrict = () => {
             return;
         }
 
-        const district = {
-            districtName: formData.districtName,
-            description: formData.description,
+        const armyInfo = {
+            armyName: formData.armyName,
+            designation: formData.designation,
+            mobile: formData.mobile,
         };
 
-        // Save Services information to the database
-        const result = await fetch('https://polling-station-management-server.vercel.app/districts', {
+        // Save Army information to the database
+        const result = await fetch('https://polling-station-management-server.vercel.app/armys', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(district)
+            body: JSON.stringify(armyInfo)
         })
 
         const data = await result.json();
        
         if (data.insertedId) {
             // console.log("Data object found:", data.insertedId);
-            toast.success(`${formData.districtName} is added successfully`);
-            navigate('/dashboard/loadDistricts');
+            toast.success(`${formData.armyName} is added successfully`);
+            navigate('/lawEnforcement/loadArmy');
         } else {
-            toast.error('Failed to add education information.');
+            toast.error('Failed to add Army information.');
         }
 };
-return (
-    <div>
-        <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">জেলার নাম যুক্ত করুন</h2>
+
+    return (
+        <div>
+        <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">বাংলাদেশ সেনাবাহিনীর তথ্য যুক্ত করুন</h2>
         <div className="mx-auto mt-5 p-2">
             <form onSubmit={handleSubmit} className="w-full">
 
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            জেলার নাম:
+                            নাম:
                         </label>
                     </div>
                     <div className="md:w-1/3">
                         <input
                             type="text"
-                            name="districtName"
-                            value={formData.districtName}
+                            name="armyName"
+                            value={formData.armyName}
                             onChange={handleInputChange}
                             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                         />
                     </div>
-                    {errors.districtName && <p className='text-red-500 text-xs'>{errors.districtName}</p>}
+                    {errors.armyName && <p className='text-red-500 text-xs'>{errors.armyName}</p>}
                 </div>
 
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            বর্ণনা:
+                            পদবি:
                         </label>
                     </div>
                     <div className="md:w-1/3">
                         <input
                             type="text"
-                            name="description"
-                            value={formData.description}
+                            name="designation"
+                            value={formData.designation}
                             onChange={handleInputChange}
                             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                         />
                     </div>
-                    {errors.description && <p className='text-red-500 text-xs'>{errors.description}</p>}
+                    {errors.designation && <p className='text-red-500 text-xs'>{errors.designation}</p>}
                 </div>
+
+                  <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/3">
+                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                            মোবাইল:
+                        </label>
+                    </div>
+                    <div className="md:w-1/3">
+                        <input
+                            type="text"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleInputChange}
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        />
+                    </div>
+                    {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
+                </div>
+
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
                     <div className="md:w-2/3">
@@ -116,8 +142,7 @@ return (
             </form>
         </div>
     </div>
-   
     );
 };
 
-export default InsertDistrict;
+export default InsertArmy;

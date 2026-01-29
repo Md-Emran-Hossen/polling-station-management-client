@@ -9,7 +9,7 @@ import { MdDelete } from 'react-icons/md';
 const LoadDistrictInfo = () => {
 
     const loadedDistricts = useLoaderData();
-    console.log("District Info", loadedDistricts);
+    // console.log("District Info", loadedDistricts);
     const [districts, setDistricts] = useState(loadedDistricts);
 
     const handleDelete = (_id) => {
