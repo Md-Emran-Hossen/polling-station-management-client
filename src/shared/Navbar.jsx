@@ -66,28 +66,28 @@ const Navbar = () => {
                             <NavLink to="/" reloadDocument>ভোটকেন্দ্র সমূহ</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/map">কেন্দ্রসমূহ ম্যাপে দেখুন</NavLink>
+                            <NavLink to="/map" reloadDocument>কেন্দ্রসমূহ ম্যাপে দেখুন</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/summary">সারসংক্ষেপ দেখুন</NavLink>
+                            <NavLink to="/summary" reloadDocument>সারসংক্ষেপ দেখুন</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                            <NavLink to="/executiveMagistrate" reloadDocument>এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
                         </li>
                         <li>
                         <a>আইনশৃঙ্খলা রক্ষাকারী বাহিনী</a>
                             <ul className="p-2">
                                 <li>
-                                     <NavLink to="/army">আর্মি</NavLink>
+                                     <NavLink to="/army" reloadDocument>আর্মি</NavLink>
                                 </li>
                                 <li>
-                                     <NavLink to="/bgb">বিজিবি</NavLink>
+                                     <NavLink to="/bgb" reloadDocument>বিজিবি</NavLink>
                                 </li>
                                  <li>
-                                      <NavLink to="/police">পুলিশ</NavLink>
+                                      <NavLink to="/police" reloadDocument>পুলিশ</NavLink>
                                 </li>
                                 <li>
-                                     <NavLink to="/rab">র‍্যাব</NavLink>
+                                     <NavLink to="/rab" reloadDocument>র‍্যাব</NavLink>
                                 </li>
                             </ul>
                         </li>
