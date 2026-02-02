@@ -10,7 +10,7 @@ const LoadPrisidingOfficer = () => {
     const [prisidingOfficers, setPrisidingOfficers] = useState(loadedPso);
 
     const handleDelete = (_id) => {
-        fetch(`http://localhost:5000/prisidingOfficer/${_id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/prisidingOfficer/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

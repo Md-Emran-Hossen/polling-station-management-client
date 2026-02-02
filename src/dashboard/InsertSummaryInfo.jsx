@@ -143,11 +143,11 @@ const InsertSummaryInfo = () => {
     return (
         <div>
              {/* <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">জেলার নাম যুক্ত করুন</h2> */}
-        <div className="mx-auto mt-5 p-2">
+        <div className="mx-auto mt-2 p-2">
            <form onSubmit={handleSubmit} className="border shadow-lg py-2 px-6 mt-3 flex flex-col md:flex-row">
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5">
 
-                        <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
+                        <div className="border p-2 border-indigo-400 mb-3">
                             <div className='flex justify-center items-center max-w-xs'>
                                 <label className="label"> <span className="label-text">উপজেলা নির্বাচন করুন:</span></label>
                                 <select

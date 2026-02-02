@@ -53,7 +53,7 @@ const EditPollingStationInfo = () => {
                                 siMobile
                              };
 
-        fetch(`http://localhost:5000/pollingStation/${loadedData._id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/pollingStation/${loadedData._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -80,15 +80,15 @@ const EditPollingStationInfo = () => {
                         ভোটকেন্দ্রের তথ্য সংশোধন করুন :
                     </h1>
                     &nbsp;&nbsp;&nbsp;
-                    <Link to="/">
+                    <Link to="/dashboard/loadPollingStations">
                         <button
                             className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white 
   py-2 px-4 border border-blue-500 hover:border-transparent rounded-tl-md rounded-br-md"
                         >
-                            হোম
+                            ভোটকেন্দ্রসমূহ
                         </button>
                     </Link>
-                    &nbsp;&nbsp;&nbsp;
+                    {/* &nbsp;&nbsp;&nbsp;
                     <Link to="/dashboard/loadPollingStations">
                         <button
                             className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white 
@@ -96,7 +96,7 @@ const EditPollingStationInfo = () => {
                         >
                             ভোটকেন্দ্র
                         </button>
-                    </Link>
+                    </Link> */}
                 </div>
                 <form onSubmit={handleEdit} className="w-full ">
 

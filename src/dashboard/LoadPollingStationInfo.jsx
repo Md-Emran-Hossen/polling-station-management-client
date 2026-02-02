@@ -4,12 +4,60 @@ import { useLoaderData, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
+import { useEffect } from 'react';
 
 const LoadPollingStationInfo = () => {
      const loadedPollingStations = useLoaderData();
    // console.log("Upazila Info", loadedUnions);
     const [pollingStations, setPollingStations] = useState(loadedPollingStations);
+    const [upazilas, setUpazilas] = useState([]);
+    const [selectedUpazila, setSelectedUpazila] = useState("");
+    
+    const [unions, setUnions] = useState([]);
+    const [selectedUnion, setSelectedUnion] = useState("");
 
+
+      // Load Upazila
+        useEffect(() => { 
+          fetch("https://polling-station-management-server.vercel.app/upazilas")
+            .then(res => res.json())
+            .then(data => {
+                   setUpazilas(data);
+                 if (data.length > 0) {
+                  setSelectedUpazila(data);
+                }
+            });
+        }, []);
+    
+      // Load Union
+      useEffect(() => {
+        fetch(`https://polling-station-management-server.vercel.app/loadUnion/${selectedUpazila}`)
+          .then(res => res.json())
+          .then(data => setUnions(data));
+      }, [selectedUpazila]);
+
+      // Load by selected Upazila items (all or filtered)
+            useEffect(() => {
+              let url = "https://polling-station-management-server.vercel.app/pollingStations";
+              if (selectedUpazila) {
+                url += `/pollingStation/upazila/${selectedUpazila}`;
+              }
+              fetch(url)
+                .then(res => res.json())
+                .then(data => setPollingStations(data));
+            }, [selectedUpazila]);
+      
+        // Load by selected Union items (filtered)
+        useEffect(() => {
+          let url = "https://polling-station-management-server.vercel.app/pollingStations";
+          if (selectedUnion) {
+            url += `/pollingStation/union/${selectedUnion}`;
+          }
+          fetch(url)
+            .then(res => res.json())
+            .then(data => setPollingStations(data));
+        }, [selectedUnion]);
+    
     const handleDelete = (_id) => {
        // console.log(_id);
         fetch(`https://polling-station-management-server.vercel.app/pollingStation/${_id}`, {
@@ -28,10 +76,10 @@ const LoadPollingStationInfo = () => {
             });
     };
     return (
-        <div className="w-3/4 mx-auto bg-base-200 p-10">
-            <div className="mt-14 mx-2 my-5 justify-center">
+        <div className="w-full mx-auto bg-base-200 p-3">
+            <div className="mt-5 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
-                    <h1 className="text-3xl font-bold text-center mb-10">
+                    <h1 className="text-xl font-bold text-center mb-10">
                         মোট ভোটকেন্দ্র: {pollingStations.length}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,6 +92,43 @@ const LoadPollingStationInfo = () => {
                         </button>
                     </Link>
                 </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 bg-blue-100 m-2 p-2">
+              <div className="form-control max-w-xs border p-2 border-indigo-400">
+                <div className='flex justify-center items-center max-w-xs'>
+                    <select
+                      value={selectedUpazila}
+                      // disabled={true}
+                      onChange={(e) => setSelectedUpazila(e.target.value)}
+                    >
+                      <option value=""> উপজেলা নির্বাচন করুন </option>
+                      {upazilas.map(upa => (
+                        <option key={upa._id} value={upa._id}>
+                          {upa.upazilaName}
+                        </option>
+                       ))}
+                    </select>
+                 </div>
+            </div>  
+                                   
+            <div className="form-control max-w-xs border p-2 border-indigo-400">
+              <div className='flex justify-center items-center max-w-xs'>
+                  <select
+                    value={selectedUnion}
+                    // onChange={(e) => setSelectedUnion(e.target.value)}
+                    onChange={(e) => setSelectedUnion(e.target.value)}
+                  >
+                    <option value=""> ইউনিয়ন নির্বাচন করুন </option>
+                      {unions.map(union => (
+                    <option key={union._id} value={union._id}>
+                      {union.unionName}
+                    </option>
+                    ))}
+                  </select>
+                </div>
+            </div>
+          </div>
+      
 
                 <div className="overflow-x-auto">
                     <table className="table table-xs">
@@ -89,7 +174,7 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.totalVoter}</td>
                                     <td>{pollingStation.parliamentarySeat}</td> */}
                                     <td>
-                                        <Link to={`/dashboard/pollingStation/${pollingStation._id}`}>
+                                        {/* <Link to={`/dashboard/pollingStation/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>
@@ -97,7 +182,7 @@ const LoadPollingStationInfo = () => {
                                         <button onClick={() => handleDelete(pollingStation._id)}
                                             className="btn btn-outline btn-error m-1">
                                             <MdDelete />বাতিল
-                                        </button>
+                                        </button> */}
                                     </td>
                                 </tr>
                             ))}

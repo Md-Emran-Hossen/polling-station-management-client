@@ -57,23 +57,40 @@ const PollingStation = ({onMenuChange}) => {
         .then(data => {
                setUpazilas(data);
              if (data.length > 0) {
-              setSelectedUpazila(data[0]._id);
+              setSelectedUpazila(data);
             }
         });
     }, []);
 
-  // Load Union
+    // Load Union
   useEffect(() => {
-    fetch("https://polling-station-management-server.vercel.app/unions")
+    fetch(`https://polling-station-management-server.vercel.app/loadUnion/${selectedUpazila}`)
       .then(res => res.json())
       .then(data => setUnions(data));
-  }, []);
+  }, [selectedUpazila]);
+
+    // Load by selected Upazila items (all or filtered)
+      useEffect(() => {
+        let url = "https://polling-station-management-server.vercel.app/pollingStations";
+        if (selectedUpazila) {
+          url += `/pollingStation/upazila/${selectedUpazila}`;
+        }
+        fetch(url)
+          .then(res => res.json())
+          .then(data => setPollingStations(data));
+      }, [selectedUpazila]);
+    
+
+  // Load Union
+  // useEffect(() => {
+  //   fetch("https://polling-station-management-server.vercel.app/unions")
+  //     .then(res => res.json())
+  //     .then(data => setUnions(data));
+  // }, []);
 
   // Load by selected Union items (filtered)
   useEffect(() => {
-
     let url = "https://polling-station-management-server.vercel.app/pollingStations";
-
     if (selectedUnion) {
       url += `/pollingStation/union/${selectedUnion}`;
     }
@@ -128,10 +145,10 @@ const PollingStation = ({onMenuChange}) => {
                 <div className='flex justify-center items-center max-w-xs'>
                     <select
                       value={selectedUpazila}
-                      disabled={true}
+                      // disabled={true}
                       onChange={(e) => setSelectedUpazila(e.target.value)}
                     >
-                      {/* <option value=""> উপজেলা নির্বাচন করুন </option> */}
+                      <option value=""> উপজেলা নির্বাচন করুন </option>
                       {upazilas.map(upa => (
                         <option key={upa._id} value={upa._id}>
                           {upa.upazilaName}

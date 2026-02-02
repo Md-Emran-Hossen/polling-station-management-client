@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select'
+import axios from 'axios';
 
 const InsertPollingStationInfo = () => {
     const [districts, setDistricts] = useState([]);
@@ -33,8 +35,10 @@ const InsertPollingStationInfo = () => {
         parliamentarySeat: '',
         mapInfo: '',
         prisidingOffcer: '',
-        mobile: '' 
-    });
+        mobile: '',
+        subInspector: '',
+        siMobile: ''
+    }); 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -149,6 +153,12 @@ const InsertPollingStationInfo = () => {
         if (!formData.mobile) {
             newErrors.mobile = "Mobile Number is Required";
         }
+        if (!formData.subInspector) {
+            newErrors.subInspector = "Sub Inspector name is Required";
+        }
+        if (!formData.siMobile) {
+            newErrors.siMobile = "Sub Inspector Mobile Number is Required";
+        }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -185,7 +195,9 @@ const InsertPollingStationInfo = () => {
             parliamentarySeat: formData.parliamentarySeat,
             mapInfo: formData.mapInfo,
             prisidingOffcer: formData.prisidingOffcer,
-            mobile: formData.mobile 
+            mobile: formData.mobile,
+            subInspector: formData.subInspector,
+            siMobile: formData.siMobile 
         };
 
         // Save Polling Station information to the database
@@ -212,17 +224,17 @@ const InsertPollingStationInfo = () => {
  
                 {/* <h2 className="text-3xl md:text-left font-bold pl-10">উপজেলা যুক্ত করুন</h2> */}
                 <form onSubmit={handleSubmit} className="border shadow-lg py-2 px-6 mt-3 flex flex-col md:flex-row">
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5">
                               
-                        <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
-                            <div className='flex justify-center items-center max-w-xs'>
+                        <div className="border p-2 border-indigo-400 mb-3">
+                            <div className='flex justify-center items-center'>
                                 <label className="label"> <span className="label-text">জেলা নির্বাচন করুন:</span></label>
                                 <select
                                     name="districtName"
                                     value={formData.districtName}
                                     onChange={handleInputChange}
-                                    className="input input-bordered w-full max-w-xs rounded-none text-sm bg-white">
-                                    <option value="">জেলা বাছাই করুন</option>
+                                    className="input input-bordered w-full rounded-none text-sm bg-white">
+                                    <option value="" className="font-bold">জেলা বাছাই করুন</option>
                                     {Object.keys(districtObject).map((district, index) => (
                                         <option key={index} value={district}>
                                             {district}
@@ -233,15 +245,16 @@ const InsertPollingStationInfo = () => {
                             {errors.districtName && <p className='text-red-500 text-xs'>{errors.districtName}</p>}
                         </div>
 
-                           <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
-                            <div className='flex justify-center items-center max-w-xs'>
+                        <div className="border p-2 border-indigo-400 mb-3">
+                            <div className='flex justify-center items-center'>
                                 <label className="label"> <span className="label-text">উপজেলা নির্বাচন করুন:</span></label>
                                 <select
                                     name="upazilaName"
                                     value={formData.upazilaName}
                                     onChange={handleInputChange}
-                                    className="input input-bordered w-full max-w-xs rounded-none text-sm bg-white">
-                                    <option value="">উপজেলা বাছাই করুন</option>
+                                    className="input input-bordered w-full rounded-none text-sm bg-white"
+                                >
+                                    <option value="" className="font-bold">উপজেলা বাছাই করুন</option>
                                     {Object.keys(upazilaObject).map((upazila, index) => (
                                         <option key={index} value={upazila}>
                                             {upazila}
@@ -251,15 +264,16 @@ const InsertPollingStationInfo = () => {
                             </div>
                             {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
                         </div>
-                        <div className="form-control w-full max-w-xs border p-2 border-indigo-400 mb-3">
-                            <div className='flex justify-center items-center max-w-xs'>
+                        <div className="border p-2 border-indigo-400 mb-3">
+                            <div className='flex justify-center items-center'>
                                 <label className="label"> <span className="label-text">ইউনিয়ন নির্বাচন করুন:</span></label>
                                 <select
                                     name="unionName"
                                     value={formData.unionName}
                                     onChange={handleInputChange}
-                                    className="input input-bordered w-full max-w-xs rounded-none text-sm bg-white">
-                                    <option value="">ইউনিয়ন বাছাই করুন</option>
+                                    className="input input-bordered w-full rounded-none text-sm bg-white"
+                                >
+                                    <option value="" className="font-bold">ইউনিয়ন বাছাই করুন</option>
                                     {Object.keys(unionObject).map((union, index) => (
                                         <option key={index} value={union}>
                                             {union}
@@ -489,6 +503,35 @@ const InsertPollingStationInfo = () => {
                             </div>
                             {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
                         </div>
+
+
+                         <div className="border p-2 border-indigo-400 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই:</span></label>
+                                <input
+                                    type="text"
+                                    name="subInspector"
+                                    value={formData.subInspector}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.subInspector && <p className='text-red-500 text-xs'>{errors.subInspector}</p>}
+                        </div>
+                        <div className="border border-indigo-400 p-2 mb-3">
+                            <div className="flex input-bordered rounded-none">
+                                <label className="label"> <span className="label-text">এস আই মোবাইল:</span></label>
+                                <input
+                                    type="text"
+                                    name="siMobile"
+                                    value={formData.siMobile}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-full rounded-none bg-white"
+                                />
+                            </div>
+                            {errors.siMobile && <p className='text-red-500 text-xs'>{errors.siMobile}</p>}
+                        </div>
+
 
                         <div className="mx-5 px-5">
                              <input className='btn btn-info md:w-80 w-64 rounded-none mt-1' value="সংরক্ষণ করুন" type="submit" />
