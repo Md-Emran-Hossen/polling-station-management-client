@@ -8,7 +8,6 @@ import { MdDelete } from 'react-icons/md';
 const LoadArmy = () => {
 
     const loadedArmyInfo = useLoaderData();
-    console.log("Army Info", loadedArmyInfo);
     const [armys, setArmys] = useState(loadedArmyInfo);
 
     const handleDelete = (_id) => {
@@ -52,6 +51,7 @@ const LoadArmy = () => {
                            <table className="table table-xs">
                                <thead>
                                    <tr className="bg-green-50 font-bold text-xl">
+                                       <th>উপজেলা</th>
                                        <th>নাম</th>
                                        <th>পদবি</th>
                                        <th>মোবাইল</th>
@@ -64,6 +64,7 @@ const LoadArmy = () => {
                                        <tr key={army._id}
                                            className="hover:bg-gray-100"
                                        >
+                                           <td>{army.upazilaName}</td>
                                            <td>{army.armyName}</td>
                                            <td>{army.designation}</td>
                                            <td>{army.mobile}</td>

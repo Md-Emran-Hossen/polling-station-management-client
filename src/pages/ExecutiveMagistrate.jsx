@@ -3,16 +3,54 @@ import React, { useState, useEffect } from 'react';
 const ExecutiveMagistrate = () => {
 
     const [magistrates, setMagistrates] = useState([]);
+    const [upazilas, setUpazilas] = useState([]);
+    const [selectedUpazila, setSelectedUpazila] = useState("");
+            
+                  // Load Upazila
+                     useEffect(() => { 
+                       fetch("https://polling-station-management-server.vercel.app/upazilas")
+                         .then(res => res.json())
+                         .then(data => setUpazilas(data));
+                     }, []);
+            
+                    // Load by selected Upazila items (all or filtered)
+                        useEffect(() => {
+                            let url = "https://polling-station-management-server.vercel.app/magistrates";
+                             if (selectedUpazila) {
+                               url += `/magistrate/${selectedUpazila}`;
+                             }
+                             fetch(url)
+                               .then(res => res.json())
+                               .then(data => setMagistrates(data));
+                        }, [selectedUpazila]);
+    
 
-        useEffect(() => {
-          fetch("https://polling-station-management-server.vercel.app/magistrates")
-            .then(res => res.json())
-            .then(data => setMagistrates(data));
-        }, []);
+        // useEffect(() => {
+        //   fetch("https://polling-station-management-server.vercel.app/magistrates")
+        //     .then(res => res.json())
+        //     .then(data => setMagistrates(data));
+        // }, []);
 
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
+        <div>
+             <div className="form-control sm:w-1/4 border border-indigo-400 m-10 p-2">
+                <div className='flex justify-center items-center max-w-xs'>
+                    <select
+                      value={selectedUpazila}
+                      // disabled={true}
+                      onChange={(e) => setSelectedUpazila(e.target.value)}
+                    >
+                      <option value=""> উপজেলা নির্বাচন করুন </option>
+                      {upazilas.map(upa => (
+                        <option key={upa._id} value={upa._id}>
+                          {upa.upazilaName}
+                        </option>
+                       ))}
+                    </select>
+                 </div>
+            </div>  
+             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
            {magistrates.map(magistrate => (
                 <li key={magistrate._id}>
                     <div className="card transition duration-300 ease-in-out hover:scale-110">
@@ -36,7 +74,8 @@ const ExecutiveMagistrate = () => {
                         </div>
                     </div>
                 </li>
-           ))}
+             ))}
+          </div>
         </div>
     );
 };

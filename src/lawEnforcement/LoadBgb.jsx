@@ -50,6 +50,7 @@ const LoadBgb = () => {
                                   <table className="table table-xs">
                                       <thead>
                                           <tr className="bg-green-50 font-bold text-xl">
+                                              <th>উপজেলা</th>
                                               <th>নাম</th>
                                               <th>পদবি</th>
                                               <th>মোবাইল</th>
@@ -62,6 +63,7 @@ const LoadBgb = () => {
                                               <tr key={bgb._id}
                                                   className="hover:bg-gray-100"
                                               >
+                                                  <td>{bgb.upazilaName}</td>
                                                   <td>{bgb.bgbName}</td>
                                                   <td>{bgb.designation}</td>
                                                   <td>{bgb.mobile}</td>

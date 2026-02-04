@@ -49,6 +49,7 @@ const LoadPolice = () => {
                                   <table className="table table-xs">
                                       <thead>
                                           <tr className="bg-green-50 font-bold text-xl">
+                                              <th>উপজেলা</th>
                                               <th>নাম</th>
                                               <th>পদবি</th>
                                               <th>মোবাইল</th>
@@ -61,6 +62,7 @@ const LoadPolice = () => {
                                               <tr key={police._id}
                                                   className="hover:bg-gray-100"
                                               >
+                                                  <td>{police.upazilaName}</td>
                                                   <td>{police.policeName}</td>
                                                   <td>{police.designation}</td>
                                                   <td>{police.mobile}</td>

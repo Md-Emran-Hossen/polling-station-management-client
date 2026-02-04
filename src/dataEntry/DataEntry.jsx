@@ -1,27 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Dashboard = () => {
+const DataEntry = () => {
     return (
          <div className="mx-auto bg-base-200 p-10">
             <ul>
-                <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/districts" >
+                {/* <li className="text-xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dataEntry/districts" >
                         জেলা যুক্তকরুন
                     </NavLink>
                 </li>
                 <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/upazilas">
+                    <NavLink to="/dataEntry/upazilas">
                         উপজেলা যুক্তকরুন
                     </NavLink>
                 </li>
                    <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/unions">
+                    <NavLink to="/dataEntry/unions">
                         ইউনিয়ন যুক্তকরুন
                     </NavLink>
-                </li>
+                </li> */}
                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
-                    <NavLink to="/dashboard/pollingStations">
+                    <NavLink to="/dataEntry/pollingStations">
                         ভোটকেন্দ্র যুক্তকরুন
                     </NavLink>
                 </li>
@@ -36,33 +36,33 @@ const Dashboard = () => {
                     </NavLink>
                 </li> */}
                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
-                    <NavLink to="/dashboard/summaryInformations">
+                    <NavLink to="/dataEntry/summaryInformations">
                         সারসংক্ষেপ যুক্তকরুন
                     </NavLink>
                 </li>
 
                 <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadDistricts">
+                    <NavLink to="/dataEntry/loadDistricts">
                         জেলার তালিকা
                     </NavLink>
                 </li>
                 <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadUpazilas">
+                    <NavLink to="/dataEntry/loadUpazilas">
                         উপজেলার তালিকা
                     </NavLink>
                 </li>
                  <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadUnions">
+                    <NavLink to="/dataEntry/loadUnions">
                         ইউনিয়নের তালিকা
                     </NavLink>
                 </li>
                 <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadPollingStations">
+                    <NavLink to="/dataEntry/loadPollingStations">
                         ভোটকেন্দ্রের তালিকা
                     </NavLink>
                 </li>
                  <li className="text-xl font-bold text-green-500 m-2 p-2">
-                    <NavLink to="/dashboard/loadSummaryInformations">
+                    <NavLink to="/dataEntry/loadSummaryInformations">
                         সারসংক্ষেপ প্রদর্শন
                     </NavLink>
                 </li>
@@ -76,4 +76,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default DataEntry;

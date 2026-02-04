@@ -1,20 +1,45 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const InsertRab = () => {
 
      const [formData, setFormData] = useState({
+        upazilaID: '',
+        upazilaName: '',
         rabName: '',
         designation: '',
         mobile: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+    const [upazilas, setUpazilas] = useState([]);
+    const [upazilaObject, setUpazilaObject] = useState({});
+    
+         useEffect(() => {
+            const fetchUpazilas = async () => {
+                try {
+                    const res = await fetch('https://polling-station-management-server.vercel.app/upazilas');
+                    const data = await res.json();
+                    setUpazilas(data);
+                    const tempUpazilaObject = {};
+                    data.forEach(upazila => {
+                        tempUpazilaObject[upazila.upazilaName] = upazila._id;
+                    });
+                    setUpazilaObject(tempUpazilaObject);
+                } catch (error) {
+                    console.error('Error fetching upazila:', error);
+                 }
+            };
+            fetchUpazilas();
+        }, []);
 
     const validateForm = () => {
         const newErrors = {};
+        if (!formData.upazilaName) {
+            newErrors.upazilaName = "Upazila name is Required";
+        }
         if (!formData.rabName) {
             newErrors.rabName = "RAB Name name is Required";
         }
@@ -40,6 +65,8 @@ const InsertRab = () => {
         }
 
         const rabInfo = {
+            upazilaID: upazilaObject[formData.upazilaName],
+            upazilaName: formData.upazilaName,
             rabName: formData.rabName,
             designation: formData.designation,
             mobile: formData.mobile,
@@ -58,7 +85,7 @@ const InsertRab = () => {
        
         if (data.insertedId) {
             toast.success(`${formData.rabInfo} is added successfully`);
-            navigate('/lawEnforcement/loadBgb');
+            navigate('/lawEnforcement/loadRab');
         } else {
             toast.error('Failed to add RAB information.');
         }
@@ -69,6 +96,31 @@ const InsertRab = () => {
              <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">র‍্যাপিড একশন ব্যাটালিয়ন এর তথ্য যুক্ত করুন</h2>
            <div className="mx-auto mt-5 p-2">
             <form onSubmit={handleSubmit} className="w-full">
+
+                  <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/3">
+                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"> 
+                            <span className="label-text">উপজেলা নির্বাচন করুন:</span>
+                        </label>
+                    </div>
+                    <div className="md:w-1/3">
+                        <select
+                            name="upazilaName"
+                            value={formData.upazilaName}
+                            onChange={handleInputChange}
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        >
+                        <option value="" className="font-bold">উপজেলা বাছাই করুন</option>
+                            {Object.keys(upazilaObject).map((upazila, index) => (
+                            <option key={index} value={upazila}>
+                            {upazila}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
+                    {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
+                </div>
 
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">

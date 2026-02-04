@@ -211,7 +211,7 @@ const InsertPollingStationInfo = () => {
         const data = await result.json();
         if (data.insertedId) {
             toast.success(`${formData.pollingStationName} is added successfully`);
-            navigate('/dashboard/loadPollingStations');
+            navigate('/dataEntry/loadPollingStations');
         } else {
             toast.error('Failed to add Polling Station information.');
         }

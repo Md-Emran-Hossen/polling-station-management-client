@@ -46,6 +46,7 @@ const LoadMagistrate = () => {
                     <table className="table table-xs">
                       <thead>
                         <tr className="bg-green-50 font-bold text-xl">
+                            <th>উপজেলা</th>
                             <th>নাম</th>
                             <th>পদবি</th>
                             <th>মোবাইল</th>
@@ -59,6 +60,7 @@ const LoadMagistrate = () => {
                         <tr key={magistrate._id}
                             className="hover:bg-gray-100"
                         >
+                            <td>{magistrate.upazilaName}</td>
                             <td>{magistrate.magistrateName}</td>
                             <td>{magistrate.designation}</td>
                             <td>{magistrate.mobile}</td>

@@ -54,12 +54,13 @@ const PollingStation = ({onMenuChange}) => {
     useEffect(() => { 
       fetch("https://polling-station-management-server.vercel.app/upazilas")
         .then(res => res.json())
-        .then(data => {
-               setUpazilas(data);
-             if (data.length > 0) {
-              setSelectedUpazila(data);
-            }
-        });
+        .then(data => setUpazilas(data))
+        // .then(data => {
+        //        setUpazilas(data);
+        //      if (data.length > 0) {
+        //       setSelectedUpazila(data);
+        //     }
+       // });
     }, []);
 
     // Load Union
