@@ -35,8 +35,8 @@ const LoadUnionInfo = () => {
          <div className="w-3/4 mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
-                    <h1 className="text-3xl font-bold text-center mb-10">
-                        মোট ইউনিয়ন: {unions.length}
+                    <h1 className="text-xl font-bold text-center mb-10">
+                        মোট ইউনিয়ন: {toBN(unions.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Link to="/">
@@ -55,7 +55,7 @@ const LoadUnionInfo = () => {
                             <tr className="bg-green-50 font-bold text-xl">
                                 <th>ক্রম</th>
                                 <th>উপজেলা</th>
-                                <th>ইউনিয়ন</th>
+                                <th>ইউনিয়ন/ পৌরসভা</th>
                                 <th>কার্যক্রম</th>
                             </tr>
                         </thead>
@@ -68,7 +68,7 @@ const LoadUnionInfo = () => {
                                     <td>{toBN(index + 1)}</td>
                                     <td>{union.upazilaName}</td>
                                     <td>{union.unionName}</td>
-                                    {/* <td>
+                                    <td>
                                         <Link to={`/dataEntry/union/${union._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
@@ -78,7 +78,7 @@ const LoadUnionInfo = () => {
                                             className="btn btn-outline btn-error m-1">
                                             <MdDelete />বাতিল
                                         </button>
-                                    </td> */}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

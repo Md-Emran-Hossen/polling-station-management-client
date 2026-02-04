@@ -14,15 +14,25 @@ const DataEntry = () => {
                     <NavLink to="/dataEntry/upazilas">
                         উপজেলা যুক্তকরুন
                     </NavLink>
-                </li>
+                </li> */}
                    <li className="text-xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dataEntry/unions">
                         ইউনিয়ন যুক্তকরুন
                     </NavLink>
-                </li> */}
+                </li>
                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
                     <NavLink to="/dataEntry/pollingStations">
                         ভোটকেন্দ্র যুক্তকরুন
+                    </NavLink>
+                </li>
+                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
+                    <NavLink to="/dataEntry/summaryInformations">
+                        সারসংক্ষেপ যুক্তকরুন
+                    </NavLink>
+                </li>
+                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
+                    <NavLink to="/dataEntry/maps">
+                        ম্যাপ লিংক যুক্তকরুন
                     </NavLink>
                 </li>
                  {/* <li className="text-3xl font-bold text-green-500 m-2 p-2">
@@ -35,11 +45,6 @@ const DataEntry = () => {
                         ভোটকেন্দ্র সংশোধন
                     </NavLink>
                 </li> */}
-                <li className="text-xl font-bold text-blue-500 m-2 p-2">
-                    <NavLink to="/dataEntry/summaryInformations">
-                        সারসংক্ষেপ যুক্তকরুন
-                    </NavLink>
-                </li>
 
                 <li className="text-xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dataEntry/loadDistricts">
@@ -64,6 +69,11 @@ const DataEntry = () => {
                  <li className="text-xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dataEntry/loadSummaryInformations">
                         সারসংক্ষেপ প্রদর্শন
+                    </NavLink>
+                </li>
+                 <li className="text-xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dataEntry/loadMaps">
+                        ম্যাপের তালিকা
                     </NavLink>
                 </li>
                 {/* <li className="text-3xl font-bold text-green-500 m-2 p-2">

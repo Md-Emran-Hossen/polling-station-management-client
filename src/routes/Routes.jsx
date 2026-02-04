@@ -66,7 +66,9 @@ import LoadPrisidingOfficer from "../dataEntry/LoadPrisidingOfficer";
 import EditUnion from "../dataEntry/EditUnion";
 import EditUpazila from "../dataEntry/EditUpazila";
 import EditDistrict from "../dataEntry/EditDistrict";
-
+import InsertMapInfo from "../dataEntry/InsertMapInfo";
+import LoadMaps from "../dataEntry/LoadMaps";
+import EditMap from "../dataEntry/EditMap";
 
 
 const router = createBrowserRouter([
@@ -310,6 +312,10 @@ const router = createBrowserRouter([
             element: <InsertPrisidingOfficer></InsertPrisidingOfficer>,
           },
           {
+            path: "/dataEntry/maps",
+            element: <InsertMapInfo></InsertMapInfo>,
+          },
+          {
             path: "/dataEntry/loadDistricts",
             element: <LoadDistrictInfo></LoadDistrictInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/districts"),
@@ -341,6 +347,11 @@ const router = createBrowserRouter([
             loader: () => fetch("https://polling-station-management-server.vercel.app/prisidingOfficers"),
           },
           {
+            path: "/dataEntry/loadMaps",
+            element: <LoadMaps></LoadMaps>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/maps"),
+          },
+          {
             path: "/dataEntry/pollingStation/:id",
             element: <EditPollingStationInfo></EditPollingStationInfo>,
             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/pollingStation/${params.id}`),
@@ -364,6 +375,11 @@ const router = createBrowserRouter([
             path: "/dataEntry/district/:id",
             element: <EditDistrict></EditDistrict>,
             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/district/${params.id}`),
+          },
+          {
+            path: "/dataEntry/map/:id",
+            element: <EditMap></EditMap>,
+            loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/${params.id}`),
           },
         ],
 

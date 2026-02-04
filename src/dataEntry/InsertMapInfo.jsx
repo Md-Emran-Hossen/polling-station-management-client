@@ -1,12 +1,11 @@
 import React from 'react';
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 
-
-const InsertUnion = () => {
-
+const InsertMapInfo = () => {
     const [upazilas, setUpazilas] = useState([]);
     const [upazilaObject, setUpazilaObject] = useState({});
     const [formData, setFormData] = useState({
@@ -16,101 +15,88 @@ const InsertUnion = () => {
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
-
     useEffect(() => {
         const fetchUpazilas = async () => {
             try {
                 const res = await fetch('https://polling-station-management-server.vercel.app/upazilas');
-
                 const data = await res.json();
-            //    console.log("Upazila Information:= ", data);
                 setUpazilas(data);
-
                 const tempUpazilaObject = {};
                 data.forEach(upazila => {
                     tempUpazilaObject[upazila.upazilaName] = upazila._id;
                 });
-               // console.log("INNER VALUE:=",tempDistrictObject);
                 setUpazilaObject(tempUpazilaObject);
             } catch (error) {
                 console.error('Error fetching upazila:', error);
             }
         };
-
         fetchUpazilas();
     }, []);
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formData.unionName) {
-            newErrors.unionName = "Union name is Required";
+        if (!formData.upazilaName) {
+            newErrors.upazilaName = "Upazila name is Required";
         }
-     
+        if (!formData.mapLink) {
+            newErrors.mapLink = "Map link is Required";
+        }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-
     const handleInputChange = (e) => {
-
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) {
             return;
         }
-
- const upazila = {
+ const map = {
             upazilaID: upazilaObject[formData.upazilaName],
             upazilaName: formData.upazilaName,
-            unionName: formData.unionName 
+            mapLink: formData.mapLink 
         };
-      //  console.log("Upazila, Union, Upazila ID:", union.upazilaName, union.unionName, union.upazilaID);
-        // Save Services information to the database
-        const result = await fetch('https://polling-station-management-server.vercel.app/unions', {
+        const result = await fetch('https://polling-station-management-server.vercel.app/maps', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(upazila)
+            body: JSON.stringify(map)
         })
-
         const data = await result.json();
-       
         if (data.insertedId) {
-            toast.success(`${formData.unionName} is added successfully`);
-            navigate('/dataEntry/loadUnions');
+            toast.success(`${formData.upazilaName} is added successfully`);
+            navigate('/dataEntry/loadMaps');
         } else {
             toast.error('Failed to add Union information.');
         }
     };
-
     return (
         <div className="mx-auto">
              <Helmet>
-                <title> Polling Station | Add Union </title>
+                <title> Polling Station | Add Map Info </title>
             </Helmet>
  
-                <h2 className="text-3xl md:text-left font-bold pl-10">ইউনিয়ন যুক্ত করুন</h2>
+                <h2 className="text-xl md:text-left font-bold pl-10">ম্যাপের তথ্য যুক্ত করুন</h2>
                 <form onSubmit={handleSubmit} className="border shadow-lg py-1 px-1 m-3 flex flex-col md:flex-row">
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">                    
-                        <div className="w-6/7 border border-indigo-400">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3">                    
+                        <div className="w-8/9 border border-indigo-400">
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2'>
                                 <div>
                                     <label className="label"> 
                                         <span className="text-black pl-2 pt-2">
-                                            উপজেলা নির্বাচন করুন:
+                                            উপজেলা:
                                         </span>
                                     </label>
                                 </div>
-                                <div>
+                                <div className="m-2">
                                     <select
                                         name="upazilaName"
                                         value={formData.upazilaName}
                                         onChange={handleInputChange}
-                                        className="input input-bordered w-full max-w-xs rounded-none text-sm bg-white"
+                                        className="input input-bordered max-w-xs rounded-none text-sm bg-white"
                                     >
                                     <option value="">উপজেলা বাছাই করুন</option>
                                         {Object.keys(upazilaObject).map((upazila, index) => (
@@ -123,42 +109,35 @@ const InsertUnion = () => {
                             </div>
                             {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
                         </div>
-
-                         <div className="w-6/7 border border-indigo-400">
+                        <div className="w-8/9 border border-indigo-400">
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
                                 <div>
                                     <label className="label"> 
                                         <span className="text-black pl-2 pt-2">
-                                            ইউনিয়ন:
+                                            ম্যাপের লিংক:
                                         </span>
                                     </label>
                                 </div>
-                                <div>
+                                <div className="m-2">
                                     <input
                                         type="text"
-                                        name="unionName"
-                                        value={formData.unionName}
+                                        name="mapLink"
+                                        value={formData.mapLink}
                                         onChange={handleInputChange}
-                                        className="input input-bordered w-full rounded-none bg-white"
+                                        className="input input-bordered rounded-none bg-white"
                                     />
                                 </div>
                             </div>
-                            {errors.unionName && <p className='text-red-500 text-xs'>{errors.unionName}</p>}
+                            {errors.mapLink && <p className='text-red-500 text-xs'> {errors.mapLink} </p>}
                         </div>
-
                         <div className="mx-auto">
                              <input className='btn btn-info md:w-70 w-60 rounded-none mt-1' value="সংরক্ষণ করুন" type="submit" />
                         </div>
                     </div>
                 </form>
-                  <br />
-                        <br />
-                         <br />
-                        <br />
-                         <br />
-                        <br />
+                <br /> <br /> <br /> <br /> <br /> <br />
         </div>
     );
 };
 
-export default InsertUnion;
+export default InsertMapInfo;

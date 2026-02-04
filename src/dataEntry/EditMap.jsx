@@ -1,26 +1,21 @@
 import React from 'react';
-import { useLoaderData,useNavigate, Link } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useLoaderData, useNavigate, Link } from 'react-router-dom';
+import toast, {Toaster} from 'react-hot-toast';
 
-const EditArmy = () => {
-
+const EditMap = () => {
     const loadedData = useLoaderData();
     const navigate = useNavigate();
 
     const handleEdit = (event) => {
         event.preventDefault();
         const form = new FormData(event.currentTarget);
-        const armyName = form.get("armyName");
-        const designation = form.get("designation");
-        const mobile = form.get("mobile");
+        const mapLink = form.get("mapLink");
 
         const updateInfo = { 
-            armyName,
-            designation,
-            mobile,
+            mapLink,
         };
 
-        fetch(`https://polling-station-management-server.vercel.app/army/${loadedData._id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/map/${loadedData._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -33,17 +28,17 @@ const EditArmy = () => {
                     toast.success("Data Updated Successfully", {
                         position: "top-right",
                     });
-                    navigate("/lawEnforcement/loadArmy");
+                    navigate("/dataEntry/loadMaps");
                 }
             });
     };
 
     return (
-         <div>
+        <div>
             <div className="my-5 mx-2 mt-20">
                 <div className="flex justify-center justify-items-center">
                     <h1 className="text-xl font-bold text-center mb-10">
-                        বাংলাদেশ সেনাবাহিনীর তথ্য সংশোধন করুন :
+                        ম্যাপের লিংক সংশোধন করুন :
                     </h1>
                     &nbsp;&nbsp;&nbsp;
                     <Link to="/">
@@ -61,7 +56,28 @@ const EditArmy = () => {
                         <div className="md:w-1/3">
                             <label
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                    htmlFor="armyName"
+                                htmlFor="unionName"
+                            >
+                                উপজেলা:
+                            </label>
+                        </div>
+                        <div className="md:w-1/3 border border-indigo-400 p-3">
+                            <div className='flex justify-center items-center max-w-xs'>
+                                <select
+                                    disabled={true}
+                                >
+                                <option key={loadedData._id} value={loadedData._id}>
+                                    {loadedData.upazilaName}
+                                </option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="md:flex md:items-center mb-6">
+                        <div className="md:w-1/3">
+                            <label
+                                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                    htmlFor="mapLink"
                             >
                                 নাম:
                             </label>
@@ -70,56 +86,13 @@ const EditArmy = () => {
                             <input
                                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
                                            leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                    id="armyName"
+                                    id="mapLink"
                                     type="text"
-                                    name="armyName"
-                                    defaultValue={loadedData.armyName}
+                                    name="mapLink"
+                                    defaultValue={loadedData.mapLink}
                             />
                         </div>
-                    </div>
-
-                     <div className="md:flex md:items-center mb-6">
-                        <div className="md:w-1/3">
-                            <label
-                                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                    htmlFor="designation"
-                            >
-                                পদবি:
-                            </label>
-                        </div>
-                        <div className="md:w-1/3">
-                            <input
-                                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
-                                           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                    id="designation"
-                                    type="text"
-                                    name="designation"
-                                    defaultValue={loadedData.designation}
-                            />
-                        </div>
-                    </div>
-
-                     <div className="md:flex md:items-center mb-6">
-                        <div className="md:w-1/3">
-                            <label
-                                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                    htmlFor="mobile"
-                            >
-                                মোবাইল:
-                            </label>
-                        </div>
-                        <div className="md:w-1/3">
-                            <input
-                                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
-                                           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                    id="mobile"
-                                    type="text"
-                                    name="mobile"
-                                    defaultValue={loadedData.mobile}
-                            />
-                        </div>
-                    </div>
-        
+                    </div>    
                     <div className="md:flex md:items-center">
                         <div className="md:w-1/3"></div>
                             <div className="md:w-2/3">
@@ -134,9 +107,10 @@ const EditArmy = () => {
                             </div>
                         </div>
                 </form>
+                <br /> <br /> <br />
             </div>
         </div>
     );
 };
 
-export default EditArmy;
+export default EditMap;

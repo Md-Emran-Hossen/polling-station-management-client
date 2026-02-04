@@ -35,7 +35,7 @@ const LoadUpazilaInfo = () => {
             <div className="mt-14 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
                     <h1 className="text-3xl font-bold text-center mb-10">
-                        মোট উপজেলা: {upazilas.length}
+                        মোট উপজেলা: {toBN(upazilas.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Link to="/">

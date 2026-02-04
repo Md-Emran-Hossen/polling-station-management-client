@@ -85,7 +85,7 @@ const LoadSummaryInfo = () => {
                                     <td>{summaryInfo.thirdGender}</td>
                                     <td>{summaryInfo.totalVoter}</td>
                                     <td>{summaryInfo.comments}</td>
-                                    {/* <td>
+                                    <td>
                                         <Link to={`/dataEntry/summaryInformation/${summaryInfo._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
@@ -95,7 +95,7 @@ const LoadSummaryInfo = () => {
                                             className="btn btn-outline btn-error m-1">
                                             <MdDelete />বাতিল
                                         </button>
-                                    </td> */}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

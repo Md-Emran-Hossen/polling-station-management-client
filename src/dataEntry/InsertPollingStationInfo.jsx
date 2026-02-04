@@ -147,18 +147,18 @@ const InsertPollingStationInfo = () => {
             newErrors.parliamentarySeat = "parliamentary Seat is Required";
         }
 
-        if (!formData.prisidingOffcer) {
-            newErrors.prisidingOffcer = "Prisiding Offcer is Required";
-        }
-        if (!formData.mobile) {
-            newErrors.mobile = "Mobile Number is Required";
-        }
-        if (!formData.subInspector) {
-            newErrors.subInspector = "Sub Inspector name is Required";
-        }
-        if (!formData.siMobile) {
-            newErrors.siMobile = "Sub Inspector Mobile Number is Required";
-        }
+        // if (!formData.prisidingOffcer) {
+        //     newErrors.prisidingOffcer = "Prisiding Offcer is Required";
+        // }
+        // if (!formData.mobile) {
+        //     newErrors.mobile = "Mobile Number is Required";
+        // }
+        // if (!formData.subInspector) {
+        //     newErrors.subInspector = "Sub Inspector name is Required";
+        // }
+        // if (!formData.siMobile) {
+        //     newErrors.siMobile = "Sub Inspector Mobile Number is Required";
+        // }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -217,23 +217,29 @@ const InsertPollingStationInfo = () => {
         }
     };
     return (
-       <div className="mx-5 px-5 ">
+       <div className="mx-1 px-1">
              <Helmet>
                 <title> Polling Station | Polling Station Information </title>
             </Helmet>
- 
                 {/* <h2 className="text-3xl md:text-left font-bold pl-10">উপজেলা যুক্ত করুন</h2> */}
-                <form onSubmit={handleSubmit} className="border shadow-lg py-2 px-6 mt-3 flex flex-col md:flex-row">
-                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5">
-                              
-                        <div className="border p-2 border-indigo-400 mb-3">
-                            <div className='flex justify-center items-center'>
-                                <label className="label"> <span className="label-text">জেলা নির্বাচন করুন:</span></label>
+                <form onSubmit={handleSubmit} className="border shadow-lg py-1 px-1 mt-1 flex flex-col md:flex-row">
+                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-2 mx-auto">    
+                    <div className="w-6/7 border border-indigo-400">
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2'>
+                            <div>
+                                <label className="label"> 
+                                    <span className="text-black pl-2 pt-2">
+                                        জেলা:
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                            <div>
                                 <select
                                     name="districtName"
                                     value={formData.districtName}
                                     onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none text-sm bg-white">
+                                    className="input input-bordered rounded-none text-sm bg-white">
                                     <option value="" className="font-bold">জেলা বাছাই করুন</option>
                                     {Object.keys(districtObject).map((district, index) => (
                                         <option key={index} value={district}>
@@ -241,99 +247,148 @@ const InsertPollingStationInfo = () => {
                                         </option>
                                     ))}
                                 </select>
+                              </div>
                             </div>
-                            {errors.districtName && <p className='text-red-500 text-xs'>{errors.districtName}</p>}
                         </div>
-
-                        <div className="border p-2 border-indigo-400 mb-3">
-                            <div className='flex justify-center items-center'>
-                                <label className="label"> <span className="label-text">উপজেলা নির্বাচন করুন:</span></label>
+                            {errors.districtName && <p className='text-red-500 text-xs'>{errors.districtName}</p>}
+                    </div>
+                    <div className="w-6/7 border border-indigo-400">
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2'>
+                            <div>
+                                <label className="label"> 
+                                    <span className="text-black pl-2 pt-2">
+                                        উপজেলা:
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
                                 <select
                                     name="upazilaName"
                                     value={formData.upazilaName}
                                     onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none text-sm bg-white"
+                                    className="input input-bordered text-sm bg-white"
                                 >
                                     <option value="" className="font-bold">উপজেলা বাছাই করুন</option>
                                     {Object.keys(upazilaObject).map((upazila, index) => (
-                                        <option key={index} value={upazila}>
-                                            {upazila}
-                                        </option>
+                                    <option key={index} value={upazila}>
+                                        {upazila}
+                                    </option>
                                     ))}
                                 </select>
                             </div>
+                        </div>
                             {errors.upazilaName && <p className='text-red-500 text-xs'>{errors.upazilaName}</p>}
                         </div>
-                        <div className="border p-2 border-indigo-400 mb-3">
-                            <div className='flex justify-center items-center'>
-                                <label className="label"> <span className="label-text">ইউনিয়ন নির্বাচন করুন:</span></label>
-                                <select
-                                    name="unionName"
-                                    value={formData.unionName}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none text-sm bg-white"
-                                >
-                                    <option value="" className="font-bold">ইউনিয়ন বাছাই করুন</option>
+
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2'>
+                                <div>
+                                     <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            ইউনিয়ন/পৌরসভা:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                   <select
+                                       name="unionName"
+                                       value={formData.unionName}
+                                       onChange={handleInputChange}
+                                       className="input input-bordered w-full rounded-none text-sm bg-white"
+                                   >
+                                    <option value="" className="font-bold">ইউনিয়ন/পৌরসভা বাছাই করুন</option>
                                     {Object.keys(unionObject).map((union, index) => (
                                         <option key={index} value={union}>
                                             {union}
                                         </option>
                                     ))}
-                                </select>
+                                  </select>
+                                </div>
                             </div>
                             {errors.unionName && <p className='text-red-500 text-xs'>{errors.unionName}</p>}
                         </div>
 
-                        <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">ভোটকেন্দ্র নং:</span></label>
-                                <input
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            ভোটকেন্দ্র নং:
+                                        </span>
+                                    </label>
+                                </div>
+                               <div>
+                                  <input
                                     type="text"
                                     name="pollingStationNo"
                                     value={formData.pollingStationNo}
                                     onChange={handleInputChange}
                                     className="input input-bordered w-full rounded-none bg-white"
-                                />
+                                  />
+                               </div>
                             </div>
                             {errors.pollingStationNo && <p className='text-red-500 text-xs'>{errors.pollingStationNo}</p>}
-                        </div>
-                
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">ভোটকেন্দ্রের নাম ও অবস্থান:</span></label>
-                                <input
+                        </div> 
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-xs text-black pl-2 pt-2">
+                                          ভোটকেন্দ্রের নাম ও অবস্থান:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                  <input
                                     type="text"
                                     name="pollingStationName"
                                     value={formData.pollingStationName}
                                     onChange={handleInputChange}
                                     className="input input-bordered w-full rounded-none bg-white"
-                                />
+                                  />
+                                </div>
                             </div>
                             {errors.pollingStationName && <p className='text-red-500 text-xs'>{errors.pollingStationName}</p>}
                         </div>
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">ভোটকক্ষের সংখ্যা:</span></label>
-                                <input
-                                    type="text"
-                                    name="numberOfBooth"
-                                    value={formData.numberOfBooth}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            ভোটকক্ষের সংখ্যা:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="numberOfBooth"
+                                        value={formData.numberOfBooth}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.numberOfBooth && <p className='text-red-500 text-xs'>{errors.numberOfBooth}</p>}
                         </div>
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">গ্রামের নাম এবং ওয়ার্ড নং:</span></label>
-                                <input
-                                    type="text"
-                                    name="wordNoAndVillage"
-                                    value={formData.wordNoAndVillage}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            গ্রামের নাম এবং ওয়ার্ড নং:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                         type="text"
+                                         name="wordNoAndVillage"
+                                         value={formData.wordNoAndVillage}
+                                         onChange={handleInputChange}
+                                         className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.wordNoAndVillage && <p className='text-red-500 text-xs'>{errors.wordNoAndVillage}</p>}
                         </div>
@@ -352,189 +407,287 @@ const InsertPollingStationInfo = () => {
                             {errors.pollingStationLocation && <p className='text-red-500 text-xs'>{errors.pollingStationLocation}</p>}
                         </div> */}
 
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">ভোটকেন্দ্রের ধরন:</span></label>
-                                <input
-                                    type="text"
-                                    name="pollingStationType"
-                                    value={formData.pollingStationType}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                     <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            ভোটকেন্দ্রের ধরন:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="pollingStationType"
+                                        value={formData.pollingStationType}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>         
                             </div>
                             {errors.pollingStationType && <p className='text-red-500 text-xs'>{errors.pollingStationType}</p>}
                         </div>
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">স্থায়ী বুথ:</span></label>
-                                <input
-                                    type="text"
-                                    name="permanentBooth"
-                                    value={formData.permanentBooth}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            স্থায়ী বুথ:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="permanentBooth"
+                                        value={formData.permanentBooth}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.permanentBooth && <p className='text-red-500 text-xs'>{errors.permanentBooth}</p>}
                         </div>
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">অস্থায়ী বুথ:</span></label>
-                                <input
-                                    type="text"
-                                    name="temporaryBooth"
-                                    value={formData.temporaryBooth}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            অস্থায়ী বুথ:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="temporaryBooth"
+                                        value={formData.temporaryBooth}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.temporaryBooth && <p className='text-red-500 text-xs'>{errors.temporaryBooth}</p>}
                         </div>
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">পুরুষ ভোটার:</span></label>
-                                <input
-                                    type="text"
-                                    name="male"
-                                    value={formData.male}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            পুরুষ ভোটার:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="male"
+                                        value={formData.male}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>       
                             </div>
                             {errors.male && <p className='text-red-500 text-xs'>{errors.male}</p>}
                         </div>
 
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">মহিলা ভোটার:</span></label>
-                                <input
-                                    type="text"
-                                    name="female"
-                                    value={formData.female}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            মহিলা ভোটার:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="female"
+                                        value={formData.female}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.female && <p className='text-red-500 text-xs'>{errors.female}</p>}
                         </div>
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">তৃতীয় লিঙ্গ:</span></label>
-                                <input
-                                    type="text"
-                                    name="thirdGender"
-                                    value={formData.thirdGender}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            তৃতীয় লিঙ্গ:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="thirdGender"
+                                        value={formData.thirdGender}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.thirdGender && <p className='text-red-500 text-xs'>{errors.thirdGender}</p>}
                         </div>
 
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">গুগল ম্যাপে অবস্থান:</span></label>
-                                <input
-                                    type="text"
-                                    name="mapInfo"
-                                    value={formData.mapInfo}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            গুগল ম্যাপে অবস্থান:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="mapInfo"
+                                        value={formData.mapInfo}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.mapInfo && <p className='text-red-500 text-xs'>{errors.mapInfo}</p>}
                         </div>
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">মোট ভোটার:</span></label>
-                                <input
-                                    type="text"
-                                    name="totalVoter"
-                                    value={formData.totalVoter}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            মোট ভোটার:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="totalVoter"
+                                        value={formData.totalVoter}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>  
                             </div>
                             {errors.totalVoter && <p className='text-red-500 text-xs'>{errors.totalVoter}</p>}
                         </div>
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">নির্বাচনী এলাকার নম্বর ও নাম:</span></label>
-                                <input
-                                    type="text"
-                                    name="parliamentarySeat"
-                                    value={formData.parliamentarySeat}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                            <div>
+                                <label className="label"> 
+                                    <span className="text-xs text-black pl-2 pt-2">
+                                        নির্বাচনী এলাকার নম্বর ও নাম:
+                                    </span>
+                                </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="parliamentarySeat"
+                                        value={formData.parliamentarySeat}
+                                        onChange={handleInputChange}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.parliamentarySeat && <p className='text-red-500 text-xs'>{errors.parliamentarySeat}</p>}
                         </div>
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">প্রিজাইডিং অফিসার:</span></label>
-                                <input
-                                    type="text"
-                                    name="prisidingOffcer"
-                                    value={formData.prisidingOffcer}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            প্রিজাইডিং অফিসার:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="prisidingOffcer"
+                                        value={formData.prisidingOffcer}
+                                        onChange={handleInputChange}
+                                        readOnly={true}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.prisidingOffcer && <p className='text-red-500 text-xs'>{errors.prisidingOffcer}</p>}
                         </div>
-                            <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">মোবাইল:</span></label>
-                                <input
-                                    type="text"
-                                    name="mobile"
-                                    value={formData.mobile}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            মোবাইল:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="mobile"
+                                        value={formData.mobile}
+                                        onChange={handleInputChange}
+                                        readOnly={true}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>   
                             </div>
                             {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
                         </div>
-
-
-                         <div className="border p-2 border-indigo-400 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই:</span></label>
-                                <input
-                                    type="text"
-                                    name="subInspector"
-                                    value={formData.subInspector}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                         <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="subInspector"
+                                        value={formData.subInspector}
+                                        onChange={handleInputChange}
+                                        readOnly={true}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.subInspector && <p className='text-red-500 text-xs'>{errors.subInspector}</p>}
                         </div>
-                        <div className="border border-indigo-400 p-2 mb-3">
-                            <div className="flex input-bordered rounded-none">
-                                <label className="label"> <span className="label-text">এস আই মোবাইল:</span></label>
-                                <input
-                                    type="text"
-                                    name="siMobile"
-                                    value={formData.siMobile}
-                                    onChange={handleInputChange}
-                                    className="input input-bordered w-full rounded-none bg-white"
-                                />
+                        <div className="w-6/7 border border-indigo-400">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+                                <div>
+                                    <label className="label"> 
+                                        <span className="text-black pl-2 pt-2">
+                                            এস আই মোবাইল:
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="siMobile"
+                                        value={formData.siMobile}
+                                        onChange={handleInputChange}
+                                        readOnly={true}
+                                        className="input input-bordered w-full rounded-none bg-white"
+                                    />
+                                </div>
                             </div>
                             {errors.siMobile && <p className='text-red-500 text-xs'>{errors.siMobile}</p>}
                         </div>
-
-
-                        <div className="mx-5 px-5">
-                             <input className='btn btn-info md:w-80 w-64 rounded-none mt-1' value="সংরক্ষণ করুন" type="submit" />
+                        <div className="mx-auto">
+                             <input className='btn btn-info md:w-70 w-60 rounded-none mx-auto' value="সংরক্ষণ করুন" type="submit" />
                         </div>
                     </div>
                 </form>

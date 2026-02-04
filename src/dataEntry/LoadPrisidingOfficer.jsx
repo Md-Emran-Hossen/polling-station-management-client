@@ -4,6 +4,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { MdDelete } from 'react-icons/md';
 import { HiPencilAlt } from 'react-icons/hi';
+import { toBN } from 'react-en-bn';
 
 const LoadPrisidingOfficer = () => {
      const loadedPso = useLoaderData();
@@ -30,7 +31,7 @@ const LoadPrisidingOfficer = () => {
             <div className="mt-14 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
                     <h1 className="text-3xl font-bold text-center mb-10">
-                        মোট ইউনিয়ন: {prisidingOfficers.length}
+                        মোট ইউনিয়ন: {toBN(prisidingOfficers.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Link to="/">

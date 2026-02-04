@@ -81,7 +81,7 @@ const LoadPollingStationInfo = () => {
             <div className="mt-5 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
                     <h1 className="text-xl font-bold text-center mb-10">
-                        মোট ভোটকেন্দ্র: {pollingStations.length}
+                        মোট ভোটকেন্দ্র: {toBN(pollingStations.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Link to="/">
@@ -177,7 +177,7 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.totalVoter}</td>
                                     <td>{pollingStation.parliamentarySeat}</td> */}
                                     <td>
-                                        {/* <Link to={`/dataEntry/pollingStation/${pollingStation._id}`}>
+                                        <Link to={`/dataEntry/pollingStation/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>
@@ -185,7 +185,7 @@ const LoadPollingStationInfo = () => {
                                         <button onClick={() => handleDelete(pollingStation._id)}
                                             className="btn btn-outline btn-error m-1">
                                             <MdDelete />বাতিল
-                                        </button> */}
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
