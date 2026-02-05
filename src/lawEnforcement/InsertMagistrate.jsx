@@ -11,7 +11,8 @@ const InsertMagistrate = () => {
         magistrateName: '',
         designation: '',
         mobile: '',
-        pollingStations: ''
+        pollingStations: '',
+        liveLink: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
@@ -49,12 +50,12 @@ const InsertMagistrate = () => {
         if (!formData.designation) {
             newErrors.designation = "Designation is Required";
         }
-        if (!formData.mobile) {
-            newErrors.mobile = "Mobile number is Required";
+        if (formData.mobile.length !== 11) {
+            newErrors.mobile = "Mobile should be 11 digit";
         }
-        if (!formData.pollingStations) {
-            newErrors.pollingStations = "Polling Station is Required";
-        }
+        // if (!formData.pollingStations) {
+        //     newErrors.pollingStations = "Polling Station is Required";
+        // }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -77,6 +78,7 @@ const InsertMagistrate = () => {
             designation: formData.designation,
             mobile: formData.mobile,
             pollingStations: formData.pollingStations,
+            liveLink: formData.liveLink,
         };
 
         // Save Police information to the database
@@ -100,7 +102,7 @@ const InsertMagistrate = () => {
 
     return (
         <div>
-             <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">ম্যাজিস্ট্রেট এর তথ্য যুক্ত করুন</h2>
+           <h2 className="text-xl md:text-center font-bold mt-5 p-2 underline">ম্যাজিস্ট্রেট এর তথ্য যুক্ত করুন</h2>
            <div className="mx-auto mt-5 p-2">
             <form onSubmit={handleSubmit} className="w-full">
 
@@ -186,10 +188,10 @@ const InsertMagistrate = () => {
                     {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
                 </div>
 
-                  <div className="md:flex md:items-center mb-6">
+                <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            ভোটকেন্দ্রসমূহ:
+                           দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহ:
                         </label>
                     </div>
                     <div className="md:w-1/3">
@@ -205,6 +207,28 @@ const InsertMagistrate = () => {
                         />
                     </div>
                     {errors.pollingStations && <p className='text-red-500 text-xs'>{errors.pollingStations}</p>}
+                </div>
+                 <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/3">
+                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                            লাইভ লোকেশন লিংক যুক্ত করুন:
+                        </label>
+                    </div>
+                    <div className="md:w-1/3">
+                        <textarea
+                            type="text"
+                            id="liveLink"
+                            name="liveLink"
+                            readOnly={true}
+                            placeholder='read-only'
+                            rows={2}
+                            value={formData.liveLink}
+                            onChange={handleInputChange}
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        />
+                    </div>
+                    {errors.liveLink && <p className='text-red-500 text-xs'>{errors.liveLink}</p>}
                 </div>
 
                 <div className="md:flex md:items-center">

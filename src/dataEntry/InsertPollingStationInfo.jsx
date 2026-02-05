@@ -5,12 +5,12 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 
-
 const InsertPollingStationInfo = () => {
     const [districts, setDistricts] = useState([]);
     const [districtObject, setDistrictObject] = useState({});
     const [upazilas, setUpazilas] = useState([]);
     const [upazilaObject, setUpazilaObject] = useState({});
+    const [selectedUpazila, setSelectedUpazila] = useState("");
     const [unions, setUnions] = useState([]);
     const [unionObject, setUnionObject] = useState({});
 
@@ -150,14 +150,14 @@ const InsertPollingStationInfo = () => {
         // if (!formData.prisidingOffcer) {
         //     newErrors.prisidingOffcer = "Prisiding Offcer is Required";
         // }
-        // if (!formData.mobile) {
-        //     newErrors.mobile = "Mobile Number is Required";
+        // if (formData.mobile.length !== 11) {
+        //     newErrors.mobile = "Mobile number should be 11 digit";
         // }
         // if (!formData.subInspector) {
         //     newErrors.subInspector = "Sub Inspector name is Required";
         // }
-        // if (!formData.siMobile) {
-        //     newErrors.siMobile = "Sub Inspector Mobile Number is Required";
+        // if (formData.siMobile.length !== 11) {
+        //     newErrors.siMobile = "Mobile number should be 11 digit";
         // }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -221,7 +221,7 @@ const InsertPollingStationInfo = () => {
              <Helmet>
                 <title> Polling Station | Polling Station Information </title>
             </Helmet>
-                {/* <h2 className="text-3xl md:text-left font-bold pl-10">উপজেলা যুক্ত করুন</h2> */}
+                <h2 className="text-3xl md:text-left font-bold pl-10">ভোটকেন্দ্রের তথ্য যুক্ত করুন</h2>
                 <form onSubmit={handleSubmit} className="border shadow-lg py-1 px-1 mt-1 flex flex-col md:flex-row">
                 <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-2 mx-auto">    
                     <div className="w-6/7 border border-indigo-400">
@@ -255,24 +255,17 @@ const InsertPollingStationInfo = () => {
                     <div className="w-6/7 border border-indigo-400">
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2'>
                             <div>
-                                <label className="label"> 
-                                    <span className="text-black pl-2 pt-2">
-                                        উপজেলা:
-                                    </span>
-                                </label>
-                            </div>
-                            <div>
+                                <label className="label"> <span className="label-text">উপজেলা:</span></label>
                                 <select
                                     name="upazilaName"
                                     value={formData.upazilaName}
                                     onChange={handleInputChange}
-                                    className="input input-bordered text-sm bg-white"
-                                >
-                                    <option value="" className="font-bold">উপজেলা বাছাই করুন</option>
+                                    className="input input-bordered w-full max-w-xs rounded-none text-sm bg-white">
+                                    <option value="">উপজেলা বাছাই করুন</option>
                                     {Object.keys(upazilaObject).map((upazila, index) => (
-                                    <option key={index} value={upazila}>
-                                        {upazila}
-                                    </option>
+                                        <option key={index} value={upazila}>
+                                            {upazila}
+                                        </option>
                                     ))}
                                 </select>
                             </div>

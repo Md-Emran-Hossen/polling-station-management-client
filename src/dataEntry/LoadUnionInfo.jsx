@@ -35,7 +35,7 @@ const LoadUnionInfo = () => {
          <div className="w-3/4 mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
-                    <h1 className="text-xl font-bold text-center mb-10">
+                    <h1 className="text-xl font-bold text-center pt-2 mb-10">
                         মোট ইউনিয়ন: {toBN(unions.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;

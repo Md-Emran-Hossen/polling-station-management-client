@@ -2,28 +2,28 @@ import React from 'react';
 import { useLoaderData,useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const EditMagistrate = () => {
+const UpdateMagistrate = () => {
     const loadedData = useLoaderData();
     const navigate = useNavigate();
 
     const handleEdit = (event) => {
         event.preventDefault();
         const form = new FormData(event.currentTarget);
-        const magistrateName = form.get("magistrateName");
-        const designation = form.get("designation");
-        const mobile = form.get("mobile");
-        const pollingStations = form.get("pollingStations");
+        // const magistrateName = form.get("magistrateName");
+        // const designation = form.get("designation");
+        // const mobile = form.get("mobile");
+        // const pollingStations = form.get("pollingStations");
         const liveLink = form.get("liveLink");
 
         const updateInfo = { 
-            magistrateName,
-            designation,
-            mobile,
-            pollingStations,
+            // magistrateName,
+            // designation,
+            // mobile,
+            // pollingStations,
             liveLink
         };
 
-        fetch(`https://polling-station-management-server.vercel.app/magistrate/${loadedData._id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/update/magistrate/${loadedData._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -36,7 +36,7 @@ const EditMagistrate = () => {
                     toast.success("Data Updated Successfully", {
                         position: "top-right",
                     });
-                    navigate("/lawEnforcement/loadMagistrate");
+                    navigate("/liveLink/loadMagistrate");
                 }
             });
     };
@@ -45,7 +45,7 @@ const EditMagistrate = () => {
                     <div className="my-5 mx-2 mt-20">
                         <div className="flex justify-center justify-items-center">
                             <h1 className="text-3xl font-bold text-center mb-10">
-                                এক্সিকিউটিভ ম্যাজিস্ট্রেট এর তথ্য সংশোধন করুন :
+                                লাইভ লোকেশন যুক্ত করুন :
                             </h1>
                             &nbsp;&nbsp;&nbsp;
                             <Link to="/">
@@ -75,6 +75,7 @@ const EditMagistrate = () => {
                                                                         id="magistrateName"
                                                                         type="text"
                                                                         name="magistrateName"
+                                                                        readOnly={true}
                                                                         defaultValue={loadedData.magistrateName}
                                                                 />
                                                             </div>
@@ -96,6 +97,7 @@ const EditMagistrate = () => {
                                                                         id="designation"
                                                                         type="text"
                                                                         name="designation"
+                                                                        readOnly={true}
                                                                         defaultValue={loadedData.designation}
                                                                 />
                                                             </div>
@@ -117,6 +119,7 @@ const EditMagistrate = () => {
                                                                         id="mobile"
                                                                         type="text"
                                                                         name="mobile"
+                                                                        readOnly={true}
                                                                         defaultValue={loadedData.mobile}
                                                                 />
                                                             </div>
@@ -128,7 +131,7 @@ const EditMagistrate = () => {
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                                                         htmlFor="pollingStations"
                                                                 >
-                                                                    দায়িত্বপ্রাপ্ত ভোট:
+                                                                    দায়িত্বপ্রাপ্ত ভোটকেন্দ্র/এলাকা:
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
@@ -138,6 +141,7 @@ const EditMagistrate = () => {
                                                                         id="pollingStations"
                                                                         type="text"
                                                                         name="pollingStations"
+                                                                        readOnly={true}
                                                                         defaultValue={loadedData.pollingStations}
                                                                 />
                                                             </div>
@@ -173,7 +177,7 @@ const EditMagistrate = () => {
                                                                                       text-white font-bold py-2 px-4 rounded-none"
                                                                         type="submit"
                                                                     >
-                                                                    সংশোধন করুন
+                                                                        যুক্ত করুন
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -183,4 +187,4 @@ const EditMagistrate = () => {
     );
 };
 
-export default EditMagistrate;
+export default UpdateMagistrate;

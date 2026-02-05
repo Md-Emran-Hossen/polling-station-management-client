@@ -80,7 +80,7 @@ const LoadPollingStationInfo = () => {
         <div className="w-full mx-auto bg-base-200 p-3">
             <div className="mt-5 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
-                    <h1 className="text-xl font-bold text-center mb-10">
+                    <h1 className="text-xl font-bold text-center pt-2 mb-10">
                         মোট ভোটকেন্দ্র: {toBN(pollingStations.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;

@@ -54,7 +54,38 @@ const ExecutiveMagistrate = () => {
            {magistrates.map(magistrate => (
                 <li key={magistrate._id}>
                     <div className="card transition duration-300 ease-in-out hover:scale-110">
+
                         <div className="card-body bg-blue-200">
+                            <h2 className="card-title underline">এক্সিকিউটিভ ম্যাজিস্ট্রেট</h2>
+                                <div className="grid grid-cols-2 gap-1">  
+                                    <div className="text-green-600 text-left">নামঃ</div>  
+                                    <div className="text-left"> {magistrate.magistrateName} </div>                                                            
+                                </div>
+                                <div className="grid grid-cols-2 gap-1">  
+                                    <div className="text-green-600 text-left">পদবিঃ</div>  
+                                    <div className="text-left">   {magistrate.designation} </div>                                                            
+                                </div>
+                                <div className="grid grid-cols-2 gap-1">  
+                                    <div className="text-green-600 text-left"> মোবাইলঃ </div>  
+                                    <div className="text-left">  {magistrate.mobile} </div>                                                            
+                                </div>   
+                                 <div className="grid grid-cols-2 gap-1">  
+                                    <div className="text-green-600 text-left"> দায়িত্বপ্রাপ্ত কেন্দ্রঃ </div>  
+                                    <div className="text-left">  {magistrate.pollingStations} </div>                                                            
+                                </div>  
+                                 <div className="grid grid-cols-2 gap-1">  
+                                    <div className="text-green-600 text-left"> লাইভ লোকেশনঃ </div>  
+                                    <div className="text-left">   
+                                        <a href= {magistrate.liveLink} 
+                                            target="_blank" 
+                                            className="link link-primary"> 
+                                            ক্লিক করুন! 
+                                        </a> 
+                                    </div>                                                            
+                                </div>                      
+                        </div>
+
+                        {/* <div className="card-body bg-blue-200">
                             <h2 className="card-title">এক্সিকিউটিভ ম্যাজিস্ট্রেট</h2>
                              <div>                              
                                 নামঃ {magistrate.magistrateName}                                 
@@ -68,10 +99,13 @@ const ExecutiveMagistrate = () => {
                              <div>                              
                                 দায়িত্বপ্রাপ্ত কেন্দ্রঃ {magistrate.pollingStations}                                 
                             </div>
-                            <div className="justify-end card-actions">
-                            {/* <button className="btn btn-primary">Buy Now</button> */}
+                            <div>                              
+                                লাইভ লোকেশনঃ
+                                 <a href= {magistrate.liveLink} target="_blank" className="link link-primary"> ক্লিক করুন! </a>                              
                             </div>
-                        </div>
+                            <div className="justify-end card-actions">
+                            </div>
+                        </div> */}
                     </div>
                 </li>
              ))}

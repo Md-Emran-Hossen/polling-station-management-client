@@ -1,30 +1,29 @@
 import React from 'react';
 import { useState } from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
-import toast from 'react-hot-toast';
 import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
 import { toBN } from 'react-en-bn';
 
-const LoadMagistrate = () => {
+const PopulateMagistrate = () => {
     const loadedMagistrateInfo = useLoaderData();
     const [magistrates, setMagistrates] = useState(loadedMagistrateInfo);
 
-    const handleDelete = (_id) => {
-        fetch(`https://polling-station-management-server.vercel.app/magistrate/${_id}`, {
-            method: "DELETE",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.deletedCount) {
-                    toast.success("Magistrate Info deleted Successfully", {
-                        position: "top-right",
-                    });
-                    const remainingData = magistrates.filter((magistrate) => magistrate._id !== _id);
-                    setMagistrates(remainingData);
-                }
-            });
-    };
+    // const handleDelete = (_id) => {
+    //     fetch(`https://polling-station-management-server.vercel.app/magistrate/${_id}`, {
+    //         method: "DELETE",
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             if (data.deletedCount) {
+    //                 toast.success("Magistrate Info deleted Successfully", {
+    //                     position: "top-right",
+    //                 });
+    //                 const remainingData = magistrates.filter((magistrate) => magistrate._id !== _id);
+    //                 setMagistrates(remainingData);
+    //             }
+    //         });
+    // };
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
@@ -46,13 +45,14 @@ const LoadMagistrate = () => {
                 <div className="overflow-x-auto">
                     <table className="table table-xs">
                       <thead>
-                        <tr className="bg-green-50 font-bold text-xl">
+                        <tr className="bg-green-50 font-bold text-xl text-black">
                             <th>ক্রম</th>
                             <th>উপজেলা</th>
                             <th>নাম</th>
                             <th>পদবি</th>
                             <th>মোবাইল</th>
                             <th>ভোটকেন্দ্র</th>
+                            <th>লাইভ লোকেশন</th>
                             <th>কার্যক্রম</th>
                         </tr>
                       </thead>
@@ -68,16 +68,17 @@ const LoadMagistrate = () => {
                             <td>{magistrate.designation}</td>
                             <td>{magistrate.mobile}</td>
                             <td>{magistrate.pollingStations}</td>
+                            <td>{magistrate.liveLink}</td>
                             <td>
-                                <Link to={`/lawEnforcement/magistrate/${magistrate._id}`}>
+                                <Link to={`/liveLink/update/magistrate/${magistrate._id}`}>
                                     <button className="btn btn-outline btn-accent m-1">
-                                        <HiPencilAlt /> সংশোধন
+                                        <HiPencilAlt /> লাইভ লিংক যুক্তকরুন
                                     </button>
                                 </Link>
-                                    <button onClick={() => handleDelete(magistrate._id)}
+                                    {/* <button onClick={() => handleDelete(magistrate._id)}
                                         className="btn btn-outline btn-error m-1">
                                         <MdDelete />বাতিল
-                                    </button>
+                                    </button> */}
                             </td>
                         </tr>
                         ))}
@@ -89,4 +90,4 @@ const LoadMagistrate = () => {
     );
 };
 
-export default LoadMagistrate;
+export default PopulateMagistrate;

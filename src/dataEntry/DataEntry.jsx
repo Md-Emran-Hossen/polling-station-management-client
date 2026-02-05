@@ -35,6 +35,11 @@ const DataEntry = () => {
                         ম্যাপ লিংক যুক্তকরুন
                     </NavLink>
                 </li>
+                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
+                    <NavLink to="/dataEntry/fileUpload">
+                        এক্সেল ফাইল ইম্পোর্ট করুন
+                    </NavLink>
+                </li>
                  {/* <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/prisidingOfficers">
                         ভোটগ্রহণকারী কর্মকর্তা সংরক্ষণ

@@ -69,6 +69,14 @@ import EditDistrict from "../dataEntry/EditDistrict";
 import InsertMapInfo from "../dataEntry/InsertMapInfo";
 import LoadMaps from "../dataEntry/LoadMaps";
 import EditMap from "../dataEntry/EditMap";
+import InsertContactInfo from "../lawEnforcement/InsertContactInfo";
+import LoadContactInfo from "../lawEnforcement/LoadContactInfo";
+import EditContactInfo from "../lawEnforcement/EditContactInfo";
+import Contacts from "../pages/Contacts";
+import LiveLinkLayout from "../layout/LiveLinkLayout";
+import UpdateMagistrate from "../liveLink/UpdateMagistrate";
+import PopulateMagistrate from "../liveLink/PopulateMagistrate";
+import InsertFileData from "../dataEntry/InsertFileData";
 
 
 const router = createBrowserRouter([
@@ -117,6 +125,10 @@ const router = createBrowserRouter([
             {
                 path: "/rab",
                 element: <Rab></Rab>,
+            },
+            {
+                path: "/contacts",
+                element: <Contacts></Contacts>,
             },
         ],
     },
@@ -232,6 +244,10 @@ const router = createBrowserRouter([
             element: <InsertMagistrate></InsertMagistrate>,
           },
           {
+            path: "/lawEnforcement/contacts",
+            element: <InsertContactInfo></InsertContactInfo>,
+          },
+          {
             path: "/lawEnforcement/loadArmy",
             element: <LoadArmy></LoadArmy>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/armys"),
@@ -257,6 +273,11 @@ const router = createBrowserRouter([
             loader: () => fetch("https://polling-station-management-server.vercel.app/magistrates"),
           },
           {
+            path: "/lawEnforcement/loadContacts",
+            element: <LoadContactInfo></LoadContactInfo>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/contacts"),
+          },
+          {
              path: "/lawEnforcement/army/:id",
              element: <EditArmy></EditArmy>,
              loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/army/${params.id}`),
@@ -280,6 +301,11 @@ const router = createBrowserRouter([
              path: "/lawEnforcement/magistrate/:id",
              element: <EditMagistrate></EditMagistrate>,
              loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/magistrate/${params.id}`),
+          },
+          {
+             path: "/lawEnforcement/contact/:id",
+             element: <EditContactInfo></EditContactInfo>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/contact/${params.id}`),
           },
         ],
     },
@@ -314,6 +340,10 @@ const router = createBrowserRouter([
           {
             path: "/dataEntry/maps",
             element: <InsertMapInfo></InsertMapInfo>,
+          },
+          {
+            path: "/dataEntry/fileUpload",
+            element: <InsertFileData></InsertFileData>,
           },
           {
             path: "/dataEntry/loadDistricts",
@@ -383,6 +413,22 @@ const router = createBrowserRouter([
           },
         ],
 
+    },
+    {
+        path: "/liveLink",
+        element: <LiveLinkLayout></LiveLinkLayout>,
+        children: [
+          {
+            path: "/liveLink/loadMagistrate",
+            element: <PopulateMagistrate></PopulateMagistrate>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/magistrates"),
+          },
+          {
+             path: "/liveLink/update/magistrate/:id",
+             element: <UpdateMagistrate></UpdateMagistrate>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/magistrate/${params.id}`),
+          },
+        ],
     },
 ]);
 export default router;

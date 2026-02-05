@@ -29,7 +29,12 @@ const LawEnforcement = () => {
                     <NavLink to="/lawEnforcement/magistrates">
                         ম্যাজিস্ট্রেট
                     </NavLink>
-                </li>             
+                </li>   
+                <li className="text-xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/lawEnforcement/contacts">
+                        জরুরি যোগাযোগ
+                    </NavLink>
+                </li>           
 
                 <li className="text-xl font-bold text-blue-500 m-2 p-2">
                     <NavLink to="/lawEnforcement/loadArmy">
@@ -51,9 +56,14 @@ const LawEnforcement = () => {
                         র‍্যাবের তালিকা
                     </NavLink>
                 </li>
-                  <li className="text-xl font-bold text-blue-500 m-2 p-2">
+                <li className="text-xl font-bold text-blue-500 m-2 p-2">
                     <NavLink to="/lawEnforcement/loadMagistrate">
                         ম্যাজিস্ট্রেটের তালিকা
+                    </NavLink>
+                </li>
+                <li className="text-xl font-bold text-blue-500 m-2 p-2">
+                    <NavLink to="/lawEnforcement/loadContacts">
+                        যোগাযোগের তালিকা
                     </NavLink>
                 </li>
             </ul>

@@ -4,6 +4,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
+import { toBN } from 'react-en-bn';
 
 const LoadPolice = () => {
      const loadedPoliceInfo = useLoaderData();
@@ -31,8 +32,8 @@ const LoadPolice = () => {
          <div className="w-3/4 mx-auto bg-base-200 p-10">
                           <div className="mt-14 mx-2 my-5 justify-center">
                               <div className="flex justify-center justify-items-center">
-                                  <h1 className="text-3xl font-bold text-center mb-10">
-                                      মোট পুলিশ: {polices.length}
+                                  <h1 className="text-xl font-bold text-center pt-2 mb-10">
+                                      মোট পুলিশ: {toBN(polices.length)}
                                   </h1>
                                   &nbsp;&nbsp;&nbsp;&nbsp;
                                   <Link to="/">
@@ -49,6 +50,7 @@ const LoadPolice = () => {
                                   <table className="table table-xs">
                                       <thead>
                                           <tr className="bg-green-50 font-bold text-xl">
+                                              <th>ক্রম</th>
                                               <th>উপজেলা</th>
                                               <th>নাম</th>
                                               <th>পদবি</th>
@@ -58,10 +60,11 @@ const LoadPolice = () => {
                                       </thead>
                                       <tbody>
               
-                                          {polices.map((police) => (
-                                              <tr key={police._id}
+                                          {polices.map((police, index) => (
+                                              <tr key={police._id || index}
                                                   className="hover:bg-gray-100"
                                               >
+                                                  <td>{toBN(index + 1)}</td>
                                                   <td>{police.upazilaName}</td>
                                                   <td>{police.policeName}</td>
                                                   <td>{police.designation}</td>

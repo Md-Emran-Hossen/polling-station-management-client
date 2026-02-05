@@ -91,6 +91,9 @@ const Navbar = () => {
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <NavLink to="/contacts"> অন্যন্য যোগাযোগ </NavLink>
+                        </li>
                     </ul>
                     </div>
                     <a className="btn btn-ghost font-bold text-white">ভোটকেন্দ্র ব্যবস্থাপনা</a>
@@ -106,7 +109,7 @@ const Navbar = () => {
                     <li>
                         <NavLink to="/summary">সারসংক্ষেপ দেখুন</NavLink>
                     </li>
-                     <li>
+                    <li>
                         <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
                     </li>
                     <li>
@@ -127,6 +130,9 @@ const Navbar = () => {
                             </li>
                         </ul>
                         </details>
+                    </li>
+                    <li>
+                        <NavLink to="/contacts"> অন্যন্য যোগাযোগ </NavLink>
                     </li>
                     </ul>
                 </div>

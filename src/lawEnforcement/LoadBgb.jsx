@@ -4,6 +4,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
+import { toBN } from 'react-en-bn';
 
 const LoadBgb = () => {
     const loadedBgbInfo = useLoaderData();
@@ -32,8 +33,8 @@ const LoadBgb = () => {
         <div className="w-3/4 mx-auto bg-base-200 p-10">
                           <div className="mt-14 mx-2 my-5 justify-center">
                               <div className="flex justify-center justify-items-center">
-                                  <h1 className="text-3xl font-bold text-center mb-10">
-                                      মোট বিজিবি: {bgbs.length}
+                                  <h1 className="text-xl font-bold text-center pt-2 mb-10">
+                                      মোট বিজিবি: {toBN(bgbs.length)}
                                   </h1>
                                   &nbsp;&nbsp;&nbsp;&nbsp;
                                   <Link to="/">
@@ -50,6 +51,7 @@ const LoadBgb = () => {
                                   <table className="table table-xs">
                                       <thead>
                                           <tr className="bg-green-50 font-bold text-xl">
+                                              <th>ক্রম</th>
                                               <th>উপজেলা</th>
                                               <th>নাম</th>
                                               <th>পদবি</th>
@@ -59,10 +61,11 @@ const LoadBgb = () => {
                                       </thead>
                                       <tbody>
               
-                                          {bgbs.map((bgb) => (
-                                              <tr key={bgb._id}
+                                          {bgbs.map((bgb, index) => (
+                                              <tr key={bgb._id || index}
                                                   className="hover:bg-gray-100"
                                               >
+                                                  <td>{toBN(index + 1)}</td>
                                                   <td>{bgb.upazilaName}</td>
                                                   <td>{bgb.bgbName}</td>
                                                   <td>{bgb.designation}</td>

@@ -6,13 +6,13 @@ import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
 import { toBN } from 'react-en-bn';
 
-const LoadRab = () => {
+const PopulateContactInfo = () => {
 
-    const loadedRabInfo = useLoaderData();
-    const [rabs, setRabs] = useState(loadedRabInfo);
+    const loadedContactInfo = useLoaderData();
+    const [contacts, setContacts] = useState(loadedContactInfo);
 
     const handleDelete = (_id) => {
-        fetch(`https://polling-station-management-server.vercel.app/rab/${_id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/contact/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -21,18 +21,18 @@ const LoadRab = () => {
                     toast.success("RAB Info deleted Successfully", {
                         position: "top-right",
                     });
-                    const remainingData = rabs.filter((rab) => rab._id !== _id);
-                    setRabs(remainingData);
+                    const remainingData = contacts.filter((contact) => contact._id !== _id);
+                    setContacts(remainingData);
                 }
             });
     };
 
     return (
-         <div className="w-3/4 mx-auto bg-base-200 p-10">
+        <div className="w-3/4 mx-auto bg-base-200 p-10">
                           <div className="mt-14 mx-2 my-5 justify-center">
                               <div className="flex justify-center justify-items-center">
                                   <h1 className="text-xl font-bold text-center pt-2 mb-10">
-                                      মোট র‍্যাব: {toBN(rabs.length)}
+                                      মোট কর্মকর্তা: {toBN(contacts.length)}
                                   </h1>
                                   &nbsp;&nbsp;&nbsp;&nbsp;
                                   <Link to="/">
@@ -40,7 +40,7 @@ const LoadRab = () => {
                                           className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white 
                       py-2 px-4 border border-blue-500 hover:border-transparent rounded-tl-md rounded-br-md"
                                       >
-                                          Home
+                                          হোম
                                       </button>
                                   </Link>
                               </div>
@@ -59,22 +59,22 @@ const LoadRab = () => {
                                       </thead>
                                       <tbody>
               
-                                          {rabs.map((rab, index) => (
-                                              <tr key={rab._id || index}
+                                          {contacts.map((contact, index) => (
+                                              <tr key={contact._id || index}
                                                   className="hover:bg-gray-100"
                                               >
                                                   <td>{toBN(index + 1)}</td>
-                                                  <td>{rab.upazilaName}</td>
-                                                  <td>{rab.rabName}</td>
-                                                  <td>{rab.designation}</td>
-                                                  <td>{rab.mobile}</td>
+                                                  <td>{contact.upazilaName}</td>
+                                                  <td>{contact.contactPersonName}</td>
+                                                  <td>{contact.designation}</td>
+                                                  <td>{contact.mobile}</td>
                                                   <td>
-                                                      <Link to={`/lawEnforcement/rab/${rab._id}`}>
+                                                      <Link to={`/lawEnforcement/contact/${contact._id}`}>
                                                           <button className="btn btn-outline btn-accent m-1">
                                                               <HiPencilAlt /> সংশোধন
                                                           </button>
                                                       </Link>
-                                                      <button onClick={() => handleDelete(rab._id)}
+                                                      <button onClick={() => handleDelete(contact._id)}
                                                           className="btn btn-outline btn-error m-1">
                                                           <MdDelete />বাতিল
                                                       </button>
@@ -89,4 +89,4 @@ const LoadRab = () => {
     );
 };
 
-export default LoadRab;
+export default PopulateContactInfo;

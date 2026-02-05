@@ -46,8 +46,8 @@ const InsertPolice = () => {
         if (!formData.designation) {
             newErrors.designation = "Designation is Required";
         }
-        if (!formData.mobile) {
-            newErrors.mobile = "Mobile number is Required";
+        if (formData.mobile.length !== 11) {
+            newErrors.mobile = "Mobile should be 11 digit";
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -93,7 +93,7 @@ const InsertPolice = () => {
 };
     return (
          <div>
-             <h2 className="text-3xl md:text-center font-bold mt-5 p-2 underline">বাংলাদেশ পুলিশ এর তথ্য যুক্ত করুন</h2>
+             <h2 className="text-xl md:text-center font-bold mt-5 p-2 underline">বাংলাদেশ পুলিশ এর তথ্য যুক্ত করুন</h2>
            <div className="mx-auto mt-5 p-2">
             <form onSubmit={handleSubmit} className="w-full">
 
