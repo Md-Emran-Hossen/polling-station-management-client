@@ -18,7 +18,8 @@ const InsertFileData = () => {
     console.log("FORMDATA", formData);
 
     try {
-      const response = await fetch('https://polling-station-management-server.vercel.app/api/upload-excel', {
+      // const response = await fetch('https://polling-station-management-server.vercel.app/api/upload-excel', {
+        const response = await fetch('https://polling-station-management-server.vercel.app/api/upload-excel', {
         method: 'POST',
         body: formData,
       });
@@ -33,12 +34,22 @@ const InsertFileData = () => {
   };
 
   return (
-    <div >
-        <div className="w-3/4 border border-amber-100 bg-blue-200 p-5 mx-auto my-5">
-            <input type="file" accept=".xlsx, .xls" onChange={handleFileChange} />
-            <button className="btn btn-primary p-2 m-2"  onClick={handleUpload}>Upload and Import</button>
+    <div>
+      {/* <h2>Select an excel documents</h2> */}
+      <div className="border border-b-blue-600 w-3/4 mx-auto my-10">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="border border-b-emerald-900 p-2 m-2 rounded-md">
+          <input type="file" accept=".xlsx, .xls" 
+            className="w-45 md:w-60 border border-b-green-700 rounded-md mx-5 my-5 px-5 py-5"
+            onChange={handleFileChange} />
         </div>
-      <br /> <br /> <br />
+        <div className="border border-b-emerald-900 p-2 m-2 rounded-md">
+          <button className="btn btn-primary rounded-md mx-5 my-5 px-5 py-5"  onClick={handleUpload}>
+                Upload and Import
+          </button>
+        </div>
+      </div>
+    </div>
     </div>
   );
 };

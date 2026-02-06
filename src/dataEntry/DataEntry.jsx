@@ -81,6 +81,11 @@ const DataEntry = () => {
                         ম্যাপের তালিকা
                     </NavLink>
                 </li>
+                <li className="text-xl font-bold text-green-500 m-2 p-2">
+                    <NavLink to="/dataEntry/loadData">
+                        এক্সেল ফাইল ডেটা প্রদর্শন
+                    </NavLink>
+                </li>
                 {/* <li className="text-3xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/dashboard/loadPrisidingOfficers">
                         ভোটগ্রহণকারী কর্মকর্তার তথ্য প্রদর্শন

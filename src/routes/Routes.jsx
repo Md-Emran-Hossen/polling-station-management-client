@@ -77,6 +77,7 @@ import LiveLinkLayout from "../layout/LiveLinkLayout";
 import UpdateMagistrate from "../liveLink/UpdateMagistrate";
 import PopulateMagistrate from "../liveLink/PopulateMagistrate";
 import InsertFileData from "../dataEntry/InsertFileData";
+import LoadFileData from "../dataEntry/LoadFileData";
 
 
 const router = createBrowserRouter([
@@ -380,6 +381,11 @@ const router = createBrowserRouter([
             path: "/dataEntry/loadMaps",
             element: <LoadMaps></LoadMaps>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/maps"),
+          },
+          {
+            path: "/dataEntry/loadData",
+            element: <LoadFileData></LoadFileData>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/file"),
           },
           {
             path: "/dataEntry/pollingStation/:id",

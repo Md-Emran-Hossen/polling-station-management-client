@@ -92,7 +92,7 @@ const Navbar = () => {
                             </ul>
                         </li>
                         <li>
-                            <NavLink to="/contacts"> অন্যন্য যোগাযোগ </NavLink>
+                            <NavLink to="/contacts" reloadDocument> অন্যন্য যোগাযোগ </NavLink>
                         </li>
                     </ul>
                     </div>
