@@ -9,9 +9,9 @@ import { toBN } from 'react-en-bn';
 
 const LoadFileData = () => {
 
-    const loadedPollingStations = useLoaderData();
+    const loadedVoteCenterInformations = useLoaderData();
    // console.log("Upazila Info", loadedUnions);
-    const [pollingStations, setPollingStations] = useState(loadedPollingStations);
+    const [file, setFile] = useState(loadedVoteCenterInformations);
     const [upazilas, setUpazilas] = useState([]);
     const [selectedUpazila, setSelectedUpazila] = useState("");
     
@@ -45,7 +45,7 @@ const LoadFileData = () => {
               }
               fetch(url)
                 .then(res => res.json())
-                .then(data => setPollingStations(data));
+                .then(data => setFile(data));
             }, [selectedUpazila]);
       
         // Load by selected Union items (filtered)
@@ -56,7 +56,7 @@ const LoadFileData = () => {
           }
           fetch(url)
             .then(res => res.json())
-            .then(data => setPollingStations(data));
+            .then(data => setFile(data));
         }, [selectedUnion]);
     
     const handleDelete = (_id) => {
@@ -71,8 +71,8 @@ const LoadFileData = () => {
                     toast.success("Polling Station deleted Successfully", {
                         position: "top-right",
                     });
-                    const remainingData = pollingStations.filter((pollingStation) => pollingStation._id !== _id);
-                    setPollingStations(remainingData);
+                    const remainingData = setFile.filter((fileData) => fileData._id !== _id);
+                    setFile(remainingData);
                 }
             });
     };
@@ -82,7 +82,7 @@ const LoadFileData = () => {
             <div className="mt-5 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
                     <h1 className="text-xl font-bold text-center pt-2 mb-10">
-                        মোট ভোটকেন্দ্র: {toBN(pollingStations.length)}
+                        মোট ভোটকেন্দ্র: {toBN(file.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Link to="/">
@@ -156,33 +156,33 @@ const LoadFileData = () => {
                         </thead>
                         <tbody>
 
-                            {pollingStations.map((pollingStation, index) => (
-                                <tr key={pollingStation._id || index}
+                            {file.map((fileData, index) => (
+                                <tr key={fileData._id || index}
                                     className="hover:bg-gray-100 text-center"
                                 >
                                     <td>{toBN(index + 1)}</td>
-                                    <td>{pollingStation.districtName}</td>
-                                    <td>{pollingStation.upazilaName}</td>
-                                    <td>{pollingStation.unionName}</td>
-                                    <td>{pollingStation.pollingStationNo}</td>
-                                    <td>{pollingStation.pollingStationName}</td>
-                                   <td>{pollingStation.numberOfBooth}</td>
-                                     <td>{pollingStation.wordNoAndVillage}</td>
-                                    <td>{pollingStation.pollingStationType}</td>
-                                    <td>{pollingStation.permanentBooth}</td>
-                                    <td>{pollingStation.temporaryBooth}</td>
-                                    <td>{pollingStation.male}</td>
-                                    <td>{pollingStation.female}</td>
-                                    <td>{pollingStation.thirdGender}</td>
-                                    <td>{pollingStation.totalVoter}</td>
-                                    <td>{pollingStation.parliamentarySeat}</td>
+                                    <td>{fileData.districtName}</td>
+                                    <td>{fileData.upazilaName}</td>
+                                    <td>{fileData.unionName}</td>
+                                    <td>{fileData.pollingStationNo}</td>
+                                    <td>{fileData.pollingStationName}</td>
+                                    <td>{fileData.numberOfBooth}</td>
+                                    <td>{fileData.wordNoAndVillage}</td>
+                                    <td>{fileData.pollingStationType}</td>
+                                    <td>{fileData.permanentBooth}</td>
+                                    <td>{fileData.temporaryBooth}</td>
+                                    <td>{fileData.male}</td>
+                                    <td>{fileData.female}</td>
+                                    <td>{fileData.thirdGender}</td>
+                                    <td>{fileData.totalVoter}</td>
+                                    <td>{fileData.parliamentarySeat}</td>
                                     <td>
-                                        <Link to={`/dataEntry/pollingStation/${pollingStation._id}`}>
+                                        <Link to={`/dataEntry/pollingStation/${fileData._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">
                                                 <HiPencilAlt /> সংশোধন
                                             </button>
                                         </Link>
-                                        <button onClick={() => handleDelete(pollingStation._id)}
+                                        <button onClick={() => handleDelete(fileData._id)}
                                             className="btn btn-outline btn-error m-1">
                                             <MdDelete />বাতিল
                                         </button>
