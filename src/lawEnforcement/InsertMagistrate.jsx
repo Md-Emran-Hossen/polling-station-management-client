@@ -11,8 +11,8 @@ const InsertMagistrate = () => {
         magistrateName: '',
         designation: '',
         mobile: '',
-        pollingStations: '',
-        liveLink: ''
+        attachedArea: '',
+        // liveLink: ''
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
@@ -44,15 +44,15 @@ const InsertMagistrate = () => {
         if (!formData.upazilaName) {
             newErrors.upazilaName = "Upazila name is Required";
         }
-        if (!formData.magistrateName) {
-            newErrors.magistrateName = "Magistrate Name name is Required";
-        }
-        if (!formData.designation) {
-            newErrors.designation = "Designation is Required";
-        }
-        if (formData.mobile.length !== 11) {
-            newErrors.mobile = "Mobile should be 11 digit";
-        }
+        // if (!formData.magistrateName) {
+        //     newErrors.magistrateName = "Magistrate Name name is Required";
+        // }
+        // if (!formData.designation) {
+        //     newErrors.designation = "Designation is Required";
+        // }
+        // if (formData.mobile.length !== 11) {
+        //     newErrors.mobile = "Mobile should be 11 digit";
+        // }
         // if (!formData.pollingStations) {
         //     newErrors.pollingStations = "Polling Station is Required";
         // }
@@ -77,8 +77,8 @@ const InsertMagistrate = () => {
             magistrateName: formData.magistrateName,
             designation: formData.designation,
             mobile: formData.mobile,
-            pollingStations: formData.pollingStations,
-            liveLink: formData.liveLink,
+            attachedArea: formData.attachedArea,
+            // liveLink: formData.liveLink,
         };
 
         // Save Police information to the database
@@ -197,18 +197,18 @@ const InsertMagistrate = () => {
                     <div className="md:w-1/3">
                         <textarea
                             type="text"
-                            id="pollingStations"
-                            name="pollingStations"
+                            id="attachedArea"
+                            name="attachedArea"
                             rows={4}
-                            value={formData.pollingStations}
+                            value={formData.attachedArea}
                             onChange={handleInputChange}
                             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                         />
                     </div>
-                    {errors.pollingStations && <p className='text-red-500 text-xs'>{errors.pollingStations}</p>}
+                    {errors.attachedArea && <p className='text-red-500 text-xs'>{errors.attachedArea}</p>}
                 </div>
-                 <div className="md:flex md:items-center mb-6">
+                 {/* <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                             লাইভ লোকেশন লিংক যুক্ত করুন:
@@ -229,7 +229,7 @@ const InsertMagistrate = () => {
                         />
                     </div>
                     {errors.liveLink && <p className='text-red-500 text-xs'>{errors.liveLink}</p>}
-                </div>
+                </div> */}
 
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>

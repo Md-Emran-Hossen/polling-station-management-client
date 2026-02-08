@@ -41,13 +41,13 @@ const Contacts = () => {
                     </select>
                  </div>
             </div>  
-           <div className="card lg:card-side bg-base-100 shadow-sm gap-10 m-5 p-5">
+            <h2 className="card-title ml-10 pl-2 underline">অন্যান্য যোগাযোগঃ</h2>
+           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
               {contacts.map(contact =>(
                 <li key={contact._id}>
 
                 <div className="card transition duration-300 ease-in-out hover:scale-110">
                   <div className="card-body bg-blue-200">
-                    <h2 className="card-title underline">অন্যন্য যোগাযোগ</h2>
                         <div className="grid grid-cols-2 gap-1">  
                             <div className="text-green-600 text-left">নামঃ</div>  
                             <div className="text-left"> {contact.contactPersonName} </div>                                                            

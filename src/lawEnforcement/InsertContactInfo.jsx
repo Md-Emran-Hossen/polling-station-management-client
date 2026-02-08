@@ -10,7 +10,8 @@ const InsertContactInfo = () => {
             upazilaName: '',
             contactPersonName: '',
             designation: '',
-            mobile: ''
+            mobile: '',
+            attachedArea: ''
         });
         const [errors, setErrors] = useState({});
         const navigate = useNavigate();
@@ -40,15 +41,15 @@ const InsertContactInfo = () => {
             if (!formData.upazilaName) {
                 newErrors.upazilaName = "Upazila name is Required";
             }
-            if (!formData.contactPersonName) {
-                newErrors.contactPersonName = "Person name is Required";
-            }
-            if (!formData.designation) {
-                newErrors.designation = "Designation is Required";
-            }
-            if (formData.mobile.length !== 11) {
-                newErrors.mobile = "Mobile should be 11 digit";
-            }
+            // if (!formData.contactPersonName) {
+            //     newErrors.contactPersonName = "Person name is Required";
+            // }
+            // if (!formData.designation) {
+            //     newErrors.designation = "Designation is Required";
+            // }
+            // if (formData.mobile.length !== 11) {
+            //     newErrors.mobile = "Mobile should be 11 digit";
+            // }
             setErrors(newErrors);
             return Object.keys(newErrors).length === 0;
         };
@@ -70,6 +71,7 @@ const InsertContactInfo = () => {
                 contactPersonName: formData.contactPersonName,
                 designation: formData.designation,
                 mobile: formData.mobile,
+                attachedArea: formData.attachedArea
             };
     
             // Save Contact Person Name information to the database
@@ -177,6 +179,26 @@ const InsertContactInfo = () => {
                         />
                     </div>
                     {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
+                </div>
+                  <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/3">
+                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                           দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহ:
+                        </label>
+                    </div>
+                    <div className="md:w-1/3">
+                        <textarea
+                            type="text"
+                            id="attachedArea"
+                            name="attachedArea"
+                            rows={4}
+                            value={formData.attachedArea}
+                            onChange={handleInputChange}
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        />
+                    </div>
+                    {errors.attachedArea && <p className='text-red-500 text-xs'>{errors.attachedArea}</p>}
                 </div>
 
                 <div className="md:flex md:items-center">
