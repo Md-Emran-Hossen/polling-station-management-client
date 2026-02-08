@@ -53,7 +53,7 @@ const PopulateMagistrate = () => {
                             <th>মোবাইল</th>
                             <th>ভোটকেন্দ্র</th>
                             <th>লাইভ লোকেশন</th>
-                            <th>কার্যক্রম</th>
+                            <th className="text-center">কার্যক্রম</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -71,7 +71,7 @@ const PopulateMagistrate = () => {
                             <td>{magistrate.liveLink}</td>
                             <td>
                                 <Link to={`/liveLink/update/magistrate/${magistrate._id}`}>
-                                    <button className="btn btn-outline btn-accent m-1">
+                                    <button className="btn btn-outline btn-accent text-xs px-5 py-8 m-1">
                                         <HiPencilAlt /> লাইভ লিংক যুক্তকরুন
                                     </button>
                                 </Link>

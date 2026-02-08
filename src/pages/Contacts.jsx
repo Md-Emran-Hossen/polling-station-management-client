@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import '../App.css';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -49,15 +50,15 @@ const Contacts = () => {
                 <div className="card transition duration-300 ease-in-out hover:scale-110">
                   <div className="card-body bg-blue-200">
                         <div className="grid grid-cols-2 gap-1">  
-                            <div className="text-green-600 text-left">নামঃ</div>  
+                            <div className="text-bottle-green text-left font-bold">নামঃ</div>  
                             <div className="text-left"> {contact.contactPersonName} </div>                                                            
                         </div>
                          <div className="grid grid-cols-2 gap-1">  
-                            <div className="text-green-600 text-left">পদবিঃ</div>  
+                            <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
                             <div className="text-left">   {contact.designation} </div>                                                            
                         </div>
                          <div className="grid grid-cols-2 gap-1">  
-                            <div className="text-green-600 text-left"> মোবাইলঃ </div>  
+                            <div className="text-bottle-green text-left font-bold"> মোবাইলঃ </div>  
                             <div className="text-left">  {contact.mobile} </div>                                                            
                         </div>                       
                   </div>

@@ -29,7 +29,6 @@ const LoadArmy = () => {
             });
     };
 
-
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">
                    <div className="mt-14 mx-2 my-5 justify-center">
@@ -43,7 +42,7 @@ const LoadArmy = () => {
                                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white 
                py-2 px-4 border border-blue-500 hover:border-transparent rounded-tl-md rounded-br-md"
                                >
-                                   Home
+                                   হোম
                                </button>
                            </Link>
                        </div>
@@ -51,11 +50,12 @@ const LoadArmy = () => {
                        <div className="overflow-x-auto">
                            <table className="table table-xs">
                                <thead>
-                                   <tr className="bg-green-50 font-bold text-xl">
+                                   <tr className="bg-green-50 font-bold text-black text-xl">
                                        <th>ক্রম</th>
                                        <th>উপজেলা</th>
                                        <th>নাম</th>
                                        <th>পদবি</th>
+                                       <th>দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহ</th>
                                        <th>মোবাইল</th>
                                        <th>কার্যক্রম</th>
                                    </tr>
@@ -70,6 +70,7 @@ const LoadArmy = () => {
                                            <td>{army.upazilaName}</td>
                                            <td>{army.armyName}</td>
                                            <td>{army.designation}</td>
+                                            <td>{army.attachedArea}</td>
                                            <td>{army.mobile}</td>
                                            <td>
                                                <Link to={`/lawEnforcement/army/${army._id}`}>

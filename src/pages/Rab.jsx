@@ -48,22 +48,33 @@ const Rab = () => {
                     </select>
                  </div>
             </div>  
+            <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত র‍্যাব</h2>
            <div className="card lg:card-side bg-base-100 shadow-sm gap-10 m-5 p-5">
               {rabs.map(rab =>(
                 <li key={rab._id}>
-
                 <div className="card transition duration-300 ease-in-out hover:scale-110">
                   <div className="card-body bg-blue-200">
-                    <h2 className="card-title">র‍্যাপিড একশন ব্যাটালিয়ন</h2>
-                        <div>                              
-                            নামঃ {rab.bgbName}                                 
+                        
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">উপজেলাঃ</div>  
+                            <div className="text-left"> {rab.upazilaName} </div>                                                            
                         </div>
-                        <div>                              
-                            পদবিঃ {rab.designation}                                 
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">নামঃ</div>  
+                            <div className="text-left"> {rab.policeName} </div>                                                            
                         </div>
-                        <div>                              
-                            মোবাইলঃ {rab.mobile}                                 
-                        </div>                          
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
+                            <div className="text-left"> {rab.designation} </div>                                                            
+                        </div>
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহঃ</div>  
+                            <div className="text-left"> {rab.attachedArea} </div>                                                            
+                        </div>
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">মোবাইলঃ</div>  
+                            <div className="text-left"> {rab.mobile} </div>                                                            
+                        </div>                           
                  </div>
                 </div>
                 </li>

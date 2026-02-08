@@ -166,25 +166,6 @@ const InsertPolice = () => {
                   <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            মোবাইল:
-                        </label>
-                    </div>
-                    <div className="md:w-1/3">
-                        <input
-                            type="text"
-                            name="mobile"
-                            value={formData.mobile}
-                            onChange={handleInputChange}
-                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
-          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                        />
-                    </div>
-                    {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
-                </div>
-
-                  <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                            দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহ:
                         </label>
                     </div>
@@ -201,6 +182,25 @@ const InsertPolice = () => {
                         />
                     </div>
                     {errors.attachedArea && <p className='text-red-500 text-xs'>{errors.attachedArea}</p>}
+                </div>
+
+                  <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/3">
+                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                            মোবাইল:
+                        </label>
+                    </div>
+                    <div className="md:w-1/3">
+                        <input
+                            type="text"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleInputChange}
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+          leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        />
+                    </div>
+                    {errors.mobile && <p className='text-red-500 text-xs'>{errors.mobile}</p>}
                 </div>
 
                 <div className="md:flex md:items-center">

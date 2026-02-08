@@ -50,25 +50,32 @@ const Bgb = () => {
                     </select>
                  </div>
             </div> 
+            <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত বিজিবিগণ</h2>
            <div className="card lg:card-side bg-base-100 shadow-sm gap-10 m-5 p-5">
               {bgbs.map(bgb =>(
                 <li key={bgb._id}>
-
                 <div className="card transition duration-300 ease-in-out hover:scale-110">
                   <div className="card-body bg-blue-200">
-                    <h2 className="card-title">বর্ডার গার্ড বাংলাদেশ</h2>
-                        <div>                              
-                            নামঃ {bgb.upazilaName}                                 
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">উপজেলাঃ</div>  
+                            <div className="text-left"> {bgb.upazilaName} </div>                                                            
                         </div>
-                        <div>                              
-                            নামঃ {bgb.bgbName}                                 
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">নামঃ</div>  
+                            <div className="text-left"> {bgb.policeName} </div>                                                            
                         </div>
-                        <div>                              
-                            পদবিঃ {bgb.designation}                                 
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
+                            <div className="text-left"> {bgb.designation} </div>                                                            
                         </div>
-                        <div>                              
-                            মোবাইলঃ {bgb.mobile}                                 
-                        </div>                          
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহঃ</div>  
+                            <div className="text-left"> {bgb.attachedArea} </div>                                                            
+                        </div>
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">মোবাইলঃ</div>  
+                            <div className="text-left"> {bgb.mobile} </div>                                                            
+                        </div>                             
                  </div>
                 </div>
                 </li>

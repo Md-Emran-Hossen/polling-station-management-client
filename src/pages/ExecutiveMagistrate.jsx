@@ -50,7 +50,8 @@ const ExecutiveMagistrate = () => {
                     </select>
                  </div>
             </div>  
-             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
+            <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত ম্যাজিস্ট্রেটগণ</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
            {magistrates.map(magistrate => (
                 <li key={magistrate._id}>
                     <div className="card transition duration-300 ease-in-out hover:scale-110">
@@ -58,23 +59,23 @@ const ExecutiveMagistrate = () => {
                         <div className="card-body bg-blue-200">
                             <h2 className="card-title underline">এক্সিকিউটিভ ম্যাজিস্ট্রেট</h2>
                                 <div className="grid grid-cols-2 gap-1">  
-                                    <div className="text-green-600 text-left">নামঃ</div>  
+                                    <div className="text-bottle-green text-left font-bold">নামঃ</div>  
                                     <div className="text-left"> {magistrate.magistrateName} </div>                                                            
                                 </div>
                                 <div className="grid grid-cols-2 gap-1">  
-                                    <div className="text-green-600 text-left">পদবিঃ</div>  
+                                    <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
                                     <div className="text-left">   {magistrate.designation} </div>                                                            
                                 </div>
                                 <div className="grid grid-cols-2 gap-1">  
-                                    <div className="text-green-600 text-left"> মোবাইলঃ </div>  
+                                    <div className="text-bottle-green text-left font-bold"> মোবাইলঃ </div>  
                                     <div className="text-left">  {magistrate.mobile} </div>                                                            
                                 </div>   
                                  <div className="grid grid-cols-2 gap-1">  
-                                    <div className="text-green-600 text-left"> দায়িত্বপ্রাপ্ত কেন্দ্রঃ </div>  
+                                    <div className="text-bottle-green text-left font-bold"> দায়িত্বপ্রাপ্ত কেন্দ্রঃ </div>  
                                     <div className="text-left">  {magistrate.pollingStations} </div>                                                            
                                 </div>  
                                  <div className="grid grid-cols-2 gap-1">  
-                                    <div className="text-green-600 text-left"> লাইভ লোকেশনঃ </div>  
+                                    <div className="text-bottle-green text-left font-bold"> লাইভ লোকেশনঃ </div>  
                                     <div className="text-left">   
                                         <a href= {magistrate.liveLink} 
                                             target="_blank" 

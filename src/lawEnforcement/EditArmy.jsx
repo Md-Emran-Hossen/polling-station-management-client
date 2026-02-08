@@ -12,11 +12,13 @@ const EditArmy = () => {
         const form = new FormData(event.currentTarget);
         const armyName = form.get("armyName");
         const designation = form.get("designation");
+        const attachedArea = form.get("attachedArea");
         const mobile = form.get("mobile");
 
         const updateInfo = { 
             armyName,
             designation,
+            attachedArea,
             mobile,
         };
 
@@ -63,7 +65,7 @@ const EditArmy = () => {
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                     htmlFor="armyName"
                             >
-                                নাম:
+                                নামঃ
                             </label>
                         </div>
                         <div className="md:w-1/3">
@@ -84,7 +86,7 @@ const EditArmy = () => {
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                     htmlFor="designation"
                             >
-                                পদবি:
+                                পদবিঃ
                             </label>
                         </div>
                         <div className="md:w-1/3">
@@ -103,9 +105,30 @@ const EditArmy = () => {
                         <div className="md:w-1/3">
                             <label
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                    htmlFor="attachedArea"
+                            >
+                                দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহঃ
+                            </label>
+                        </div>
+                        <div className="md:w-1/3">
+                            <input
+                                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
+                                           leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                    id="attachedArea"
+                                    type="text"
+                                    name="attachedArea"
+                                    defaultValue={loadedData.attachedArea}
+                            />
+                        </div>
+                    </div>
+
+                     <div className="md:flex md:items-center mb-6">
+                        <div className="md:w-1/3">
+                            <label
+                                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                     htmlFor="mobile"
                             >
-                                মোবাইল:
+                                মোবাইলঃ
                             </label>
                         </div>
                         <div className="md:w-1/3">

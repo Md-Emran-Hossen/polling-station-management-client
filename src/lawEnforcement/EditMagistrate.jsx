@@ -11,16 +11,16 @@ const EditMagistrate = () => {
         const form = new FormData(event.currentTarget);
         const magistrateName = form.get("magistrateName");
         const designation = form.get("designation");
-        const mobile = form.get("mobile");
-        const pollingStations = form.get("pollingStations");
-        const liveLink = form.get("liveLink");
+        const attachedArea = form.get("attachedArea");
+         const mobile = form.get("mobile");
+        // const liveLink = form.get("liveLink");
 
         const updateInfo = { 
             magistrateName,
             designation,
+            attachedArea,
             mobile,
-            pollingStations,
-            liveLink
+            // liveLink
         };
 
         fetch(`https://polling-station-management-server.vercel.app/magistrate/${loadedData._id}`, {
@@ -65,7 +65,7 @@ const EditMagistrate = () => {
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                                                         htmlFor="magistrateName"
                                                                 >
-                                                                    নাম:
+                                                                    নামঃ
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
@@ -86,7 +86,7 @@ const EditMagistrate = () => {
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                                                         htmlFor="designation"
                                                                 >
-                                                                    পদবি:
+                                                                    পদবিঃ
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
@@ -107,7 +107,7 @@ const EditMagistrate = () => {
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                                                         htmlFor="mobile"
                                                                 >
-                                                                    মোবাইল:
+                                                                    মোবাইলঃ
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
@@ -126,30 +126,30 @@ const EditMagistrate = () => {
                                                             <div className="md:w-1/3">
                                                                 <label
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                                                        htmlFor="pollingStations"
+                                                                        htmlFor="attachedArea"
                                                                 >
-                                                                    দায়িত্বপ্রাপ্ত ভোট:
+                                                                    দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহঃ
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
                                                                 <input
                                                                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
                                                                                leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                                                        id="pollingStations"
+                                                                        id="attachedArea"
                                                                         type="text"
-                                                                        name="pollingStations"
-                                                                        defaultValue={loadedData.pollingStations}
+                                                                        name="attachedArea"
+                                                                        defaultValue={loadedData.attachedArea}
                                                                 />
                                                             </div>
                                                         </div>
 
-                                                         <div className="md:flex md:items-center mb-6">
+                                                         {/* <div className="md:flex md:items-center mb-6">
                                                             <div className="md:w-1/3">
                                                                 <label
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                                                         htmlFor="liveLink"
                                                                 >
-                                                                    লাইভ লিংক যুক্ত করুন:
+                                                                    লাইভ লিংক যুক্ত করুনঃ
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
@@ -162,7 +162,7 @@ const EditMagistrate = () => {
                                                                         defaultValue={loadedData.liveLink}
                                                                 />
                                                             </div>
-                                                        </div>
+                                                        </div> */}
                                             
                                                         <div className="md:flex md:items-center">
                                                             <div className="md:w-1/3"></div>

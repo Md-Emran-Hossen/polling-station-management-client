@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../App.css';
 
 const Army = () => {
 
@@ -50,24 +51,34 @@ const Army = () => {
                     </select>
                  </div>
             </div>  
-           <div className="card lg:card-side bg-base-100 shadow-sm gap-10 m-5 p-5">
+              <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত সেনাবহিনীঃ</h2>
+           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
             {armys.map(army =>(
               <li key={army._id}>
                 <div className="card transition duration-300 ease-in-out hover:scale-110">
                   <div className="card-body bg-blue-200">
-                    <h2 className="card-title">বাংলাদেশ সেনাবাহিনী</h2>
-                        <div>                              
-                            উপজেলাঃ {army.upazilaName}                                 
+                  
+                        <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">উপজেলাঃ</div>  
+                            <div className="text-left"> {army.upazilaName} </div>                                                            
                         </div>
-                        <div>                              
-                            নামঃ {army.armyName}                                 
+
+                         {/* <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-green-600 text-left">নামঃ</div>  
+                            <div className="text-left"> {army.armyName} </div>                                                            
+                        </div> */}
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
+                            <div className="text-left"> {army.designation} </div>                                                            
                         </div>
-                        <div>                              
-                            পদবিঃ {army.designation}                                 
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহঃ</div>  
+                            <div className="text-left"> {army.attachedArea} </div>                                                            
                         </div>
-                        <div>                              
-                            মোবাইলঃ {army.mobile}                                 
-                        </div>                          
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">মোবাইলঃ</div>  
+                            <div className="text-left"> {army.mobile} </div>                                                            
+                        </div>   
                  </div>
                 </div>
                 </li>
