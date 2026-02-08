@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BsArrowRightSquareFill } from 'react-icons/bs';
 import "./Modal.css";
@@ -24,8 +25,8 @@ const Modal = ({ show, onClose, title, children }) => {
         </div>
       </div>
     </div>
-  );
-};
+   );
+  };
 
 const PollingStation = ({onMenuChange}) => {
 
@@ -39,6 +40,9 @@ const PollingStation = ({onMenuChange}) => {
   const [selectedUnion, setSelectedUnion] = useState("");
 
   const [pollingStations, setPollingStations] = useState([]);
+
+  const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -94,6 +98,17 @@ const PollingStation = ({onMenuChange}) => {
       .then(data => setPollingStations(data));
   }, [selectedUnion]);
 
+  useEffect(() => {
+    if (search === "") return;
+    const fetchData = async () => {
+      const res = await axios.get(
+        `http://localhost:5000/search?q=${encodeURIComponent(search)}`
+      );
+      setPollingStations(res.data);
+    };
+    fetchData();
+  }, [search]);
+
   // refreshed home menu
   const handleChange = (event) => {
     const value = event.target.value;
@@ -118,6 +133,22 @@ const PollingStation = ({onMenuChange}) => {
 
   return (
     <div>
+        {/* <div>
+        <h2>Search by Character (Database)</h2>
+        <input
+          type="text"
+          placeholder="Search name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <ul>
+          {data.map((item) => (
+            <li key={item._id}>{item.name}</li>
+          ))}
+        </ul>
+      </div> */}
+
+
        <div className="w-full px-2 my-5 grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
                 <div className='flex justify-center items-center max-w-xs'>

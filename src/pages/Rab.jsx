@@ -52,7 +52,7 @@ const Rab = () => {
            <div className="card lg:card-side bg-base-100 shadow-sm gap-10 m-5 p-5">
               {rabs.map(rab =>(
                 <li key={rab._id}>
-                <div className="card transition duration-300 ease-in-out hover:scale-110">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
                   <div className="card-body bg-blue-200">
                         
                          <div className="grid grid-cols-2 gap-1">  

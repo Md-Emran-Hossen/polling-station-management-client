@@ -57,7 +57,6 @@ const ExecutiveMagistrate = () => {
                     <div className="card transition duration-300 ease-in-out hover:scale-110">
 
                         <div className="card-body bg-blue-200">
-                            <h2 className="card-title underline">এক্সিকিউটিভ ম্যাজিস্ট্রেট</h2>
                                 <div className="grid grid-cols-2 gap-1">  
                                     <div className="text-bottle-green text-left font-bold">নামঃ</div>  
                                     <div className="text-left"> {magistrate.magistrateName} </div>                                                            

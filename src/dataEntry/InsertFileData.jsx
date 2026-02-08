@@ -17,7 +17,7 @@ const InsertFileData = () => {
     formData.append('file', file); // 'excelFile' should match the field name in your Node.js backend
 
     try {
-      const response = await fetch('https://polling-station-management-server.vercel.app/api/upload-excel', {
+      const response = await fetch('http://localhost:5000/api/upload-excel', {
         // const response = await fetch('http://localhost:5000/upload', {
         method: 'POST',
         body: formData,

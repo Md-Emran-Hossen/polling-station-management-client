@@ -72,7 +72,16 @@ const Navbar = () => {
                             <NavLink to="/summary" reloadDocument>সারসংক্ষেপ দেখুন</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/executiveMagistrate" reloadDocument>এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                            <a>ম্যাজিস্ট্রেট</a>
+                            <ul className="p-2">
+                                <li>
+                                     <NavLink to="/executiveMagistrate" reloadDocument>এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                                </li>
+                                <li>
+                                     <NavLink to="/executiveMagistrate" reloadDocument>জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
+                                </li>
+                            </ul>
+                            {/* <NavLink to="/executiveMagistrate" reloadDocument></NavLink> */}
                         </li>
                         <li>
                         <a>আইনশৃঙ্খলা রক্ষাকারী বাহিনী</a>
@@ -110,7 +119,18 @@ const Navbar = () => {
                         <NavLink to="/summary">সারসংক্ষেপ দেখুন</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                        <details>
+                        <summary>ম্যাজিস্ট্রেট</summary>
+                        <ul className="p-2 bg-base-100 w-40 z-1 text-black">
+                            <li>
+                                <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/executiveMagistrate">জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
+                             </li>
+                        </ul>
+                        </details>
+                            {/* <NavLink to="/executiveMagistrate" reloadDocument></NavLink> */}
                     </li>
                     <li>
                         <details>
