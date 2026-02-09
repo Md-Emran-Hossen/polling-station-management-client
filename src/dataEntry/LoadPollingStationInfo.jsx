@@ -60,13 +60,13 @@ const LoadPollingStationInfo = () => {
         }, [selectedUnion]);
     
     const handleDelete = (_id) => {
-       // console.log(_id);
-        fetch(`https://polling-station-management-server.vercel.app/pollingStation/${_id}`, {
-            method: "DELETE",
-        })
+       const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+          if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/pollingStation/${_id}`, {
+             method: "DELETE",
+            })
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data);
                 if (data.deletedCount) {
                     toast.success("Polling Station deleted Successfully", {
                         position: "top-right",
@@ -75,6 +75,7 @@ const LoadPollingStationInfo = () => {
                     setPollingStations(remainingData);
                 }
             });
+          }
     };
     return (
         <div className="w-full mx-auto bg-base-200 p-3">
@@ -130,7 +131,6 @@ const LoadPollingStationInfo = () => {
             </div>
           </div>
       
-
                 <div className="overflow-x-auto">
                     <table className="table table-xs">
                         <thead>
@@ -141,7 +141,7 @@ const LoadPollingStationInfo = () => {
                                 <th>ইউনিয়ন</th>
                                 <th>ভোটকেন্দ্র নং</th>
                                 <th>ভোটকেন্দ্রের নাম ও অবস্থান</th> 
-                                {/* <th>ভোটকক্ষের সংখ্যা</th>   
+                                <th>ভোটকক্ষের সংখ্যা</th>   
                                 <th>গ্রামের নাম এবং ওয়ার্ড নং</th>
                                 <th>ভোটকেন্দ্রের ধরন</th>
                                 <th>স্থায়ী বুথ</th>
@@ -150,7 +150,7 @@ const LoadPollingStationInfo = () => {
                                 <th>মহিলা ভোটার</th>
                                 <th>তৃতীয় লিঙ্গ</th>
                                 <th>মোট ভোটার</th>
-                                <th>সংসদীয় আসন</th> */}
+                                <th>সংসদীয় আসন</th>
                                 <th>কার্যক্রম</th>
                             </tr>
                         </thead>
@@ -166,8 +166,8 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.unionName}</td>
                                     <td>{pollingStation.pollingStationNo}</td>
                                     <td>{pollingStation.pollingStationName}</td>
-                                 {/*   <td>{pollingStation.numberOfBooth}</td>
-                                     <td>{pollingStation.wordNoAndVillage}</td>
+                                    <td>{pollingStation.numberOfBooth}</td>
+                                    <td>{pollingStation.wordNoAndVillage}</td>
                                     <td>{pollingStation.pollingStationType}</td>
                                     <td>{pollingStation.permanentBooth}</td>
                                     <td>{pollingStation.temporaryBooth}</td>
@@ -175,7 +175,7 @@ const LoadPollingStationInfo = () => {
                                     <td>{pollingStation.female}</td>
                                     <td>{pollingStation.thirdGender}</td>
                                     <td>{pollingStation.totalVoter}</td>
-                                    <td>{pollingStation.parliamentarySeat}</td> */}
+                                    <td>{pollingStation.parliamentarySeat}</td>
                                     <td>
                                         <Link to={`/dataEntry/pollingStation/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">

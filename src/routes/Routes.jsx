@@ -78,6 +78,12 @@ import UpdateMagistrate from "../liveLink/UpdateMagistrate";
 import PopulateMagistrate from "../liveLink/PopulateMagistrate";
 import InsertFileData from "../dataEntry/InsertFileData";
 import LoadFileData from "../dataEntry/LoadFileData";
+import InsertJudicialMagistrate from "../lawEnforcement/InsertJudicialMagistrate"
+import LoadJudicialMagistrate from "../lawEnforcement/LoadJudicialMagistrate";
+import EditJudicialMagistrate from "../lawEnforcement/EditJudicialMagistrate";
+import JudicialMagistrate from "../pages/JudicialMagistrate";
+import PopulateJudicialMagistrate from "../liveLink/PopulateJudicialMagistrate"
+import UpdateJudicialMagistrate from "../liveLink/UpdateJudicialMagistrate";
 
 
 const router = createBrowserRouter([
@@ -130,6 +136,10 @@ const router = createBrowserRouter([
             {
                 path: "/contacts",
                 element: <Contacts></Contacts>,
+            },
+            {
+                path: "/judicialMagistrate",
+                element: <JudicialMagistrate></JudicialMagistrate>,
             },
         ],
     },
@@ -249,6 +259,10 @@ const router = createBrowserRouter([
             element: <InsertContactInfo></InsertContactInfo>,
           },
           {
+            path: "/lawEnforcement/judicialMagistrates",
+            element: <InsertJudicialMagistrate></InsertJudicialMagistrate>,
+          },
+          {
             path: "/lawEnforcement/loadArmy",
             element: <LoadArmy></LoadArmy>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/armys"),
@@ -277,6 +291,11 @@ const router = createBrowserRouter([
             path: "/lawEnforcement/loadContacts",
             element: <LoadContactInfo></LoadContactInfo>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/contacts"),
+          },
+          {
+            path: "/lawEnforcement/loadJudicialMagistrate",
+            element: <LoadJudicialMagistrate></LoadJudicialMagistrate>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/judicial/magistrates"),
           },
           {
              path: "/lawEnforcement/army/:id",
@@ -308,9 +327,14 @@ const router = createBrowserRouter([
              element: <EditContactInfo></EditContactInfo>,
              loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/contact/${params.id}`),
           },
+          {
+             path: "/lawEnforcement/judicialMagistrate/:id",
+             element: <EditJudicialMagistrate></EditJudicialMagistrate>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/judicial/magistrate/${params.id}`),
+          },
         ],
     },
-     {
+    {
         path: "/dataEntry",
         element: <DataEntryLayout></DataEntryLayout>,
         children: [
@@ -433,6 +457,16 @@ const router = createBrowserRouter([
              path: "/liveLink/update/magistrate/:id",
              element: <UpdateMagistrate></UpdateMagistrate>,
              loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/magistrate/${params.id}`),
+          },
+          {
+            path: "/liveLink/loadJudicialMagistrate",
+            element: <PopulateJudicialMagistrate></PopulateJudicialMagistrate>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/judicial/magistrates"),
+          },
+          {
+             path: "/liveLink/update/judicialMagistrate/:id",
+             element: <UpdateJudicialMagistrate></UpdateJudicialMagistrate>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/judicial/magistrate/${params.id}`),
           },
         ],
     },

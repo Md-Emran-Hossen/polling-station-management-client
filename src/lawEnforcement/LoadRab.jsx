@@ -12,9 +12,11 @@ const LoadRab = () => {
     const [rabs, setRabs] = useState(loadedRabInfo);
 
     const handleDelete = (_id) => {
-        fetch(`https://polling-station-management-server.vercel.app/rab/${_id}`, {
-            method: "DELETE",
-        })
+          const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+          if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/rab/${_id}`, {
+                method: "DELETE",
+            })
             .then((res) => res.json())
             .then((data) => {
                 if (data.deletedCount) {
@@ -25,6 +27,7 @@ const LoadRab = () => {
                     setRabs(remainingData);
                 }
             });
+          }
     };
 
     return (

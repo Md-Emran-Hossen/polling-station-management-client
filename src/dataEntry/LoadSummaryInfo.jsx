@@ -10,10 +10,11 @@ const LoadSummaryInfo = () => {
     const [summaryInformations, setSummaryInformations] = useState(loadedSummaryInformations);
 
     const handleDelete = (_id) => {
-       // console.log(_id);
-        fetch(`https://polling-station-management-server.vercel.app/summaryInfo/${_id}`, {
+        const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+          if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/summaryInfo/${_id}`, {
             method: "DELETE",
-        })
+            })
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -25,6 +26,7 @@ const LoadSummaryInfo = () => {
                     setSummaryInformations(remainingData);
                 }
             });
+          }
     };
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">

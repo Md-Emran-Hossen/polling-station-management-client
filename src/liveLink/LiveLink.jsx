@@ -7,7 +7,12 @@ const LiveLink = () => {
             <ul>
                 <li className="text-xl font-bold text-green-500 m-2 p-2">
                     <NavLink to="/liveLink/loadMagistrate">
-                        ম্যাজিস্ট্রেটের তালিকা
+                        এক্সিকিউটিভ ম্যাজিস্ট্রেটের তালিকা
+                    </NavLink>
+                </li>
+                <li className="text-xl font-bold text-green-500 m-2 p-2">
+                     <NavLink to="/liveLink/loadJudicialMagistrate">
+                        জুডিশিয়াল ম্যাজিস্ট্রেটের তালিকা
                     </NavLink>
                 </li>
             </ul>

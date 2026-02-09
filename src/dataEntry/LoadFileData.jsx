@@ -60,10 +60,11 @@ const LoadFileData = () => {
         }, [selectedUnion]);
     
     const handleDelete = (_id) => {
-       // console.log(_id);
-        fetch(`https://polling-station-management-server.vercel.app/file/data/${_id}`, {
+       const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+        if (confirmDelete) {
+             fetch(`https://polling-station-management-server.vercel.app/file/data/${_id}`, {
             method: "DELETE",
-        })
+            })
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -75,6 +76,7 @@ const LoadFileData = () => {
                     setFile(remainingData);
                 }
             });
+        }
     };
 
     return (

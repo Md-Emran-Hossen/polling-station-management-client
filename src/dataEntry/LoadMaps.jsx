@@ -12,9 +12,11 @@ const LoadMaps = () => {
     const [maps, setMaps] = useState(loadedMaps);
 
     const handleDelete = (_id) => {
-        fetch(`https://polling-station-management-server.vercel.app/map/${_id}`, {
+        const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+          if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/map/${_id}`, {
             method: "DELETE",
-        })
+            })
             .then((res) => res.json())
             .then((data) => {
                 if (data.deletedCount) {
@@ -25,6 +27,7 @@ const LoadMaps = () => {
                     setMaps(remainingData);
                 }
             });
+          }
     };
 
     return (

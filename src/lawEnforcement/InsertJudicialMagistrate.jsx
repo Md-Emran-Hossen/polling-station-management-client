@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const InsertMagistrate = () => {
+const InsertJudicialMagistrate = () => {
 
       const [formData, setFormData] = useState({
         upazilaID: '',
@@ -38,7 +38,6 @@ const InsertMagistrate = () => {
             fetchUpazilas();
         }, []);
     
-
     const validateForm = () => {
         const newErrors = {};
         if (!formData.upazilaName) {
@@ -81,8 +80,8 @@ const InsertMagistrate = () => {
             // liveLink: formData.liveLink,
         };
 
-        // Save Executive Magistrate information to the database
-        const result = await fetch('https://polling-station-management-server.vercel.app/magistrates', {
+        // Save Judicial Magistrate information to the database
+        const result = await fetch('https://polling-station-management-server.vercel.app/judicial/magistrates', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -94,7 +93,7 @@ const InsertMagistrate = () => {
        
         if (data.insertedId) {
             toast.success(`${formData.magistrateName} is added successfully`);
-            navigate('/lawEnforcement/loadMagistrate');
+            navigate('/lawEnforcement/loadJudicialMagistrate');
         } else {
             toast.error('Failed to add Magistrate information.');
         }
@@ -250,4 +249,4 @@ const InsertMagistrate = () => {
     );
 };
 
-export default InsertMagistrate;
+export default InsertJudicialMagistrate;

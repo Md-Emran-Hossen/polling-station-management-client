@@ -9,27 +9,12 @@ const PopulateMagistrate = () => {
     const loadedMagistrateInfo = useLoaderData();
     const [magistrates, setMagistrates] = useState(loadedMagistrateInfo);
 
-    // const handleDelete = (_id) => {
-    //     fetch(`https://polling-station-management-server.vercel.app/magistrate/${_id}`, {
-    //         method: "DELETE",
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             if (data.deletedCount) {
-    //                 toast.success("Magistrate Info deleted Successfully", {
-    //                     position: "top-right",
-    //                 });
-    //                 const remainingData = magistrates.filter((magistrate) => magistrate._id !== _id);
-    //                 setMagistrates(remainingData);
-    //             }
-    //         });
-    // };
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
                 <div className="flex justify-center justify-items-center">
                     <h1 className="text-xl font-bold text-center mb-10">
-                        ম্যাজিস্ট্রেটের সংখ্যা: {toBN(magistrates.length)}
+                       এক্সিকিউটিভ ম্যাজিস্ট্রেটের সংখ্যা: {toBN(magistrates.length)}
                     </h1>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Link to="/">
@@ -75,10 +60,6 @@ const PopulateMagistrate = () => {
                                         <HiPencilAlt /> লাইভ লিংক যুক্তকরুন
                                     </button>
                                 </Link>
-                                    {/* <button onClick={() => handleDelete(magistrate._id)}
-                                        className="btn btn-outline btn-error m-1">
-                                        <MdDelete />বাতিল
-                                    </button> */}
                             </td>
                         </tr>
                         ))}

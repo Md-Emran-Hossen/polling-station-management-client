@@ -51,7 +51,7 @@ const Army = () => {
                     </select>
                  </div>
             </div>  
-              <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত সেনাবহিনীঃ</h2>
+              <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত সেনাবাহিনীঃ</h2>
            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
             {armys.map(army =>(
               <li key={army._id}>
@@ -63,10 +63,10 @@ const Army = () => {
                             <div className="text-left"> {army.upazilaName} </div>                                                            
                         </div>
 
-                         {/* <div className="grid grid-cols-2 gap-1">  
-                            <div className="text-green-600 text-left">নামঃ</div>  
+                         <div className="grid grid-cols-2 gap-1">  
+                            <div className="text-bottle-green text-left font-bold">নামঃ</div>  
                             <div className="text-left"> {army.armyName} </div>                                                            
-                        </div> */}
+                        </div>
                          <div className="grid grid-cols-2 gap-1">  
                             <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
                             <div className="text-left"> {army.designation} </div>                                                            

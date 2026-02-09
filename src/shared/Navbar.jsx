@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"; 
-import navPic from "../../public/images/pic1.jpg"
+import navPic from "../../public/images/pic1.jpg";
+import homePic from "../../public/images/home.png";
 import '../App.css';
 
 const Navbar = () => {
@@ -63,7 +64,10 @@ const Navbar = () => {
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black font-extrabold">
                         <li>
-                            <NavLink to="/" reloadDocument>ভোটকেন্দ্র সমূহ</NavLink>
+                            <NavLink to="/" reloadDocument>
+                                <img src={homePic} className="w-6 rounded-full"></img>
+                                ভোটকেন্দ্র সমূহ
+                            </NavLink>
                         </li>
                         <li>
                             <NavLink to="/map" reloadDocument>কেন্দ্রসমূহ ম্যাপে দেখুন</NavLink>
@@ -78,7 +82,7 @@ const Navbar = () => {
                                      <NavLink to="/executiveMagistrate" reloadDocument>এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
                                 </li>
                                 <li>
-                                     <NavLink to="/executiveMagistrate" reloadDocument>জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
+                                     <NavLink to="/judicialMagistrate" reloadDocument>জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
                                 </li>
                             </ul>
                             {/* <NavLink to="/executiveMagistrate" reloadDocument></NavLink> */}
@@ -110,7 +114,11 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-white font-extrabold">
                     <li>
-                        <NavLink to="/" reloadDocument>ভোটকেন্দ্র সমূহ</NavLink>
+                      
+                        <NavLink to="/" reloadDocument>
+                          <img src={homePic} className="w-6 rounded-full"></img>
+                            ভোটকেন্দ্র সমূহ
+                        </NavLink>
                     </li>
                     <li>
                         <NavLink to="/map">কেন্দ্রসমূহ ম্যাপে দেখুন</NavLink>
@@ -126,7 +134,7 @@ const Navbar = () => {
                                 <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/executiveMagistrate">জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
+                                <NavLink to="/judicialMagistrate">জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
                              </li>
                         </ul>
                         </details>

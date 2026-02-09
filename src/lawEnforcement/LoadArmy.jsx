@@ -12,13 +12,13 @@ const LoadArmy = () => {
     const [armys, setArmys] = useState(loadedArmyInfo);
 
     const handleDelete = (_id) => {
-        console.log(_id);
-        fetch(`https://polling-station-management-server.vercel.app/army/${_id}`, {
+        const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+         if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/army/${_id}`, {
             method: "DELETE",
-        })
+            })
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data);
                 if (data.deletedCount) {
                     toast.success("Army Info deleted Successfully", {
                         position: "top-right",
@@ -27,13 +27,14 @@ const LoadArmy = () => {
                     setArmys(remainingData);
                 }
             });
+         }
     };
 
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">
                    <div className="mt-14 mx-2 my-5 justify-center">
                        <div className="flex justify-center justify-items-center">
-                           <h1 className="text-xl font-bold text-center pt-2 mb-10">
+                           <h1 className="font-bold text-center pt-2 mb-10">
                                মোট সেনাবাহিনী: {toBN(armys.length)}
                            </h1>
                            &nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,7 +51,7 @@ const LoadArmy = () => {
                        <div className="overflow-x-auto">
                            <table className="table table-xs">
                                <thead>
-                                   <tr className="bg-green-50 font-bold text-black text-xl">
+                                   <tr className="bg-green-50 font-bold text-black">
                                        <th>ক্রম</th>
                                        <th>উপজেলা</th>
                                        <th>নাম</th>

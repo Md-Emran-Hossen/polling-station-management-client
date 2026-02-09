@@ -10,11 +10,12 @@ const PopulateContactInfo = () => {
 
     const loadedContactInfo = useLoaderData();
     const [contacts, setContacts] = useState(loadedContactInfo);
-
     const handleDelete = (_id) => {
-        fetch(`https://polling-station-management-server.vercel.app/contact/${_id}`, {
-            method: "DELETE",
-        })
+        const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+          if (confirmDelete) {
+                fetch(`https://polling-station-management-server.vercel.app/contact/${_id}`, {
+                method: "DELETE",
+            })
             .then((res) => res.json())
             .then((data) => {
                 if (data.deletedCount) {
@@ -25,6 +26,7 @@ const PopulateContactInfo = () => {
                     setContacts(remainingData);
                 }
             });
+          }
     };
 
     return (

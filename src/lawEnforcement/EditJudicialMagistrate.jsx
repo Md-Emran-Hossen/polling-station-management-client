@@ -2,7 +2,7 @@ import React from 'react';
 import { useLoaderData,useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const EditMagistrate = () => {
+const EditJudicialMagistrate = () => {
     const loadedData = useLoaderData();
     const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ const EditMagistrate = () => {
         const magistrateName = form.get("magistrateName");
         const designation = form.get("designation");
         const attachedArea = form.get("attachedArea");
-        const mobile = form.get("mobile");
+         const mobile = form.get("mobile");
         // const liveLink = form.get("liveLink");
 
         const updateInfo = { 
@@ -23,7 +23,7 @@ const EditMagistrate = () => {
             // liveLink
         };
 
-        fetch(`https://polling-station-management-server.vercel.app/magistrate/${loadedData._id}`, {
+        fetch(`https://polling-station-management-server.vercel.app/judicial/magistrate/${loadedData._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -183,4 +183,4 @@ const EditMagistrate = () => {
     );
 };
 
-export default EditMagistrate;
+export default EditJudicialMagistrate;

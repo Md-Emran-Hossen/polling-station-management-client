@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ExecutiveMagistrate = () => {
+const JudicialMagistrate = () => {
 
     const [magistrates, setMagistrates] = useState([]);
     const [upazilas, setUpazilas] = useState([]);
@@ -15,22 +15,14 @@ const ExecutiveMagistrate = () => {
             
                     // Load by selected Upazila items (all or filtered)
                         useEffect(() => {
-                            let url = "https://polling-station-management-server.vercel.app/magistrates";
+                            let url = "https://polling-station-management-server.vercel.app/judicial/magistrates";
                              if (selectedUpazila) {
-                               url += `/magistrate/${selectedUpazila}`;
+                               url += `/upazila/${selectedUpazila}`;
                              }
                              fetch(url)
                                .then(res => res.json())
                                .then(data => setMagistrates(data));
                         }, [selectedUpazila]);
-    
-
-        // useEffect(() => {
-        //   fetch("https://polling-station-management-server.vercel.app/magistrates")
-        //     .then(res => res.json())
-        //     .then(data => setMagistrates(data));
-        // }, []);
-
 
     return (
         <div>
@@ -50,14 +42,13 @@ const ExecutiveMagistrate = () => {
                     </select>
                  </div>
             </div>  
-            <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত এক্সিকিউটিভ ম্যাজিস্ট্রেটগণ</h2>
+            <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত জুডিশিয়াল ম্যাজিস্ট্রেটগণ</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
            {magistrates.map(magistrate => (
                 <li key={magistrate._id}>
                     <div className="card transition duration-300 ease-in-out hover:scale-110">
-
                         <div className="card-body bg-blue-200">
-                            <div className="grid grid-cols-2 gap-1">  
+                             <div className="grid grid-cols-2 gap-1">  
                                 <div className="text-bottle-green text-left font-bold">উপজেলাঃ</div>  
                                 <div className="text-left"> {magistrate.upazilaName} </div>                                                            
                             </div>
@@ -73,7 +64,7 @@ const ExecutiveMagistrate = () => {
                                 <div className="text-bottle-green text-left font-bold"> মোবাইলঃ </div>  
                                 <div className="text-left">  {magistrate.mobile} </div>                                                            
                             </div>   
-                                <div className="grid grid-cols-2 gap-1">  
+                            <div className="grid grid-cols-2 gap-1">  
                                 <div className="text-bottle-green text-left font-bold"> দায়িত্বপ্রাপ্ত এলাকা/ ভোটকেন্দ্রসমূহঃ </div>  
                                 <div className="text-left">  {magistrate.pollingStations} </div>                                                            
                             </div>  
@@ -118,4 +109,4 @@ const ExecutiveMagistrate = () => {
     );
 };
 
-export default ExecutiveMagistrate;
+export default JudicialMagistrate;

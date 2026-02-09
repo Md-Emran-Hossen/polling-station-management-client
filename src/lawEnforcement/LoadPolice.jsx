@@ -12,10 +12,11 @@ const LoadPolice = () => {
     const [polices, setPolices] = useState(loadedPoliceInfo);
 
     const handleDelete = (_id) => {
-        console.log(_id);
-        fetch(`https://polling-station-management-server.vercel.app/police/${_id}`, {
-            method: "DELETE",
-        })
+         const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+          if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/police/${_id}`, {
+                 method: "DELETE",
+            })
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -27,6 +28,7 @@ const LoadPolice = () => {
                     setPolices(remainingData);
                 }
             });
+          }
     };
     return (
          <div className="w-3/4 mx-auto bg-base-200 p-10">

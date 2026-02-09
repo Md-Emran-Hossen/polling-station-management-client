@@ -15,7 +15,7 @@ const DataEntry = () => {
                         উপজেলা যুক্তকরুন
                     </NavLink>
                 </li> */}
-                   <li className="text-xl font-bold text-green-500 m-2 p-2">
+                   <li className="text-xl font-bold text-blue-500 m-2 p-2">
                     <NavLink to="/dataEntry/unions">
                         ইউনিয়ন যুক্তকরুন
                     </NavLink>
