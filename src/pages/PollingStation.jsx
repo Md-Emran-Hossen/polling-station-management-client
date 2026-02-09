@@ -28,7 +28,7 @@ const Modal = ({ show, onClose, title, children }) => {
    );
   };
 
-const PollingStation = ({onMenuChange}) => {
+const PollingStation = () => {
 
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -40,9 +40,6 @@ const PollingStation = ({onMenuChange}) => {
   const [selectedUnion, setSelectedUnion] = useState("");
 
   const [pollingStations, setPollingStations] = useState([]);
-
-  const [search, setSearch] = useState("");
-  const [data, setData] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -98,28 +95,6 @@ const PollingStation = ({onMenuChange}) => {
       .then(data => setPollingStations(data));
   }, [selectedUnion]);
 
-  useEffect(() => {
-    if (search === "") return;
-    const fetchData = async () => {
-      const res = await axios.get(
-        `http://localhost:5000/search?q=${encodeURIComponent(search)}`
-      );
-      setPollingStations(res.data);
-    };
-    fetchData();
-  }, [search]);
-
-  // refreshed home menu
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setSelectedUnion(value);
-    
-    // Crucially, pass the NEW value to the parent or a global handler
-    if (onMenuChange) {
-      onMenuChange(value);
-    }
-  }
-
   // Modal section 
   const openModalWithData = (item) => {
     setModalData(item);
@@ -133,22 +108,6 @@ const PollingStation = ({onMenuChange}) => {
 
   return (
     <div>
-        {/* <div>
-        <h2>Search by Character (Database)</h2>
-        <input
-          type="text"
-          placeholder="Search name..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <ul>
-          {data.map((item) => (
-            <li key={item._id}>{item.name}</li>
-          ))}
-        </ul>
-      </div> */}
-
-
        <div className="w-full px-2 my-5 grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="form-control w-full max-w-xs border p-2 border-indigo-400">
                 <div className='flex justify-center items-center max-w-xs'>
@@ -188,8 +147,7 @@ const PollingStation = ({onMenuChange}) => {
               <div className='flex justify-center items-center max-w-xs'>
                   <select
                     value={selectedUnion}
-                    // onChange={(e) => setSelectedUnion(e.target.value)}
-                    onChange={handleChange}
+                    onChange={(e) => setSelectedUnion(e.target.value)}
                   >
                     <option value=""> ইউনিয়ন নির্বাচন করুন </option>
                       {unions.map(union => (
@@ -209,25 +167,35 @@ const PollingStation = ({onMenuChange}) => {
           <li key={pollingStation._id}>
             <div className="card transition duration-300 ease-in-out hover:scale-110">
               <div className="bg-card-body items-center text-white rounded">
-                <div>
-                  <p className="card-body text-left font-xl font-bold"> 
+                <div className="card-body text-left font-bold p-2">
+                  <p> 
                     জেলাঃ {pollingStation.districtName}
                   </p>
                 </div>
-                <div>
-                  <p className="card-body text-left font-xl font-bold"> 
+                <div className="card-body text-left font-bold p-2">
+                  <p> 
                     উপজেলাঃ {pollingStation.upazilaName}
                   </p>
-                  </div> 
-                <div className="card-body text-left font-xl font-bold">
+                </div> 
+                <div className="card-body text-left font-bold p-2">
                   <p> 
                     ইউনিয়নঃ {pollingStation.unionName}
                   </p>
                 </div>
-                <div className="card-body text-left font-xl font-bold">
+                 <div className="card-body text-left font-bold p-2">
+                  <p> 
+                    ভোটকেন্দ্র নংঃ {pollingStation.pollingStationNo}
+                  </p>
+                </div>
+                <div className="card-body text-left font-bold p-2">
                 {/* <p>  {service.description.slice(0, 100)} tittle={service.description}</p> */}
                   <p> 
-                    ভোটকেন্দ্রঃ {pollingStation.pollingStationName}
+                    ভোটকেন্দ্রের নামঃ {pollingStation.pollingStationName}
+                  </p>
+                </div>
+                <div className="card-body text-left font-bold p-2">
+                  <p> 
+                    মোট ভোটার {pollingStation.totalVoter}
                   </p>
                 </div>
                 <diV>    
@@ -239,7 +207,6 @@ const PollingStation = ({onMenuChange}) => {
                         onClick={() => openModalWithData(pollingStation)}>
                           বিস্তারিত..
                   </button>
-
                    {/* <Link to={`/pollingStation/${pollingStation._id}`}
                         className="w-2/3 flex items-center justify-center mx-6 my-2 px-8 py-3 
                         border border-transparent text-base font-medium 
@@ -252,132 +219,132 @@ const PollingStation = ({onMenuChange}) => {
                 </diV>
               </div>    
             </div>
-            <Modal
+            {/* {pollingStation.pollingStationName} */}
+          </li>
+        ))}
+      </div>
+
+         <Modal
               show={isModalOpen}
               onClose={closeModal}
               title={modalData ? `সংসদীয় আসনঃ ${modalData.parliamentarySeat}` : 'Details'}
             >
             {/* Content passed as children to the modal */}
             {modalData ? (
-                <div className="overflow-x-auto bg-body">
-              <table className="table table-xs">
-                            {/* head */}
-                            <thead>
-                                 <tr className="bg-green-50">                           
-                            </tr>
-                              <tr className="text-black bg-modal-header">
-                                <th>ক্রম</th>
-                                <th>তথ্য</th>
-                                <th>:</th>
-                                <th>বর্ণনা</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                               <tr className='text-color-prisiding-officer font-bold'>
-                                <th>০১</th>
-                                <td>প্রিজাইডিং অফিসার</td>
-                                <td>:</td>
-                                <td>{modalData.prisidingOffcer} - {modalData.mobile} </td>
-                              </tr>
-                                <tr className= 'text-color-si font-bold'>
-                                <th>০২</th>
-                                <td>কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই</td>
-                                <td>:</td>
-                                <td>{modalData.subInspector} - {modalData.siMobile} </td>
-                              </tr>
-                              <tr>
-                                <th>০৩</th>
-                                <td>ভোটকেন্দ্র নং</td>
-                                <td>:</td>
-                                <td>{modalData.pollingStationNo}</td>
-                              </tr>
-                              <tr>
-                                <th>০৪</th>
-                                <td>ভোটকেন্দ্রের নাম ও অবস্থান</td>
-                                <td>:</td>
-                                <td>{modalData.pollingStationName}</td>
-                              </tr>
-                              <tr>
-                                <th>০৫</th>
-                                <td>ভোটকক্ষের সংখ্যা</td>
-                                <td>:</td>
-                                <td>{modalData.numberOfBooth}</td>
-                              </tr>
-                              <tr>
-                                <th>০৬</th>
-                                <td>গ্রামের নাম এবং ওয়ার্ড নং</td>
-                                <td>:</td>
-                                <td>{modalData.wordNoAndVillage}</td>
-                              </tr>
-                              <tr>
-                                <th>০৭</th>
-                                <td>ভোটকেন্দ্রের ধরন</td>
-                                <td>:</td>
-                                <td>{modalData.pollingStationType}</td>
-                              </tr>
-                              <tr>
-                                <th>০৮</th>
-                                <td>স্থায়ী বুথ</td>
-                                <td>:</td>
-                                <td>{modalData.permanentBooth}</td>
-                              </tr>
-                              <tr>
-                                <th>০৯</th>
-                                <td>অস্থায়ী বুথ</td>
-                                <td>:</td>
-                                <td>{modalData.temporaryBooth}</td>
-                              </tr>
-                              <tr>
-                                <th>১০</th>
-                                <td>পুরুষ ভোটার</td>
-                                <td>:</td>
-                                <td>{modalData.male}</td>
-                              </tr>
-                              <tr>
-                                <th>১১</th>
-                                <td>মহিলা ভোটার</td>
-                                <td>:</td>
-                                <td>{modalData.female}</td>
-                              </tr>
-                              <tr>
-                                <th>১২</th>
-                                <td>তৃতীয় লিঙ্গ</td>
-                                <td>:</td>
-                                <td>{modalData.thirdGender}</td>
-                              </tr>
-                              <tr>
-                                <th>১৩</th>
-                                <td>মোট ভোটার</td>
-                                <td>:</td>
-                                <td>{modalData.totalVoter}</td>
-                              </tr>
-                              <tr>
-                                <th>১৪</th>
-                                <td>নির্বাচনী এলাকার নম্বর ও নাম</td>
-                                <td>:</td>
-                                <td>{modalData.parliamentarySeat}</td>
-                              </tr>
-                              <tr>
-                                <th>১৫</th>
-                                <td>ম্যাপে দেখুন</td>
-                                <td>:</td>
-                                <td>
-                                    <a href= {modalData.mapInfo} target="_blank" className="link link-primary"> ক্লিক করুন!</a>
-                                      {/* <a href='https://maps.app.goo.gl/k1zKNgYQyLL1tMQr5' target="_blank" className="link link-primary"> ক্লিক করুন!</a> */}
-                                 </td>
-                              </tr>
-
-                            </tbody>
+              <div className="overflow-x-auto bg-body">
+              <table className="table table-sm">
+                {/* head */}
+                <thead>
+                  <tr className="bg-green-50">                           
+                  </tr>
+                  <tr className="text-black bg-modal-header">
+                    <th>ক্রম</th>
+                    <th>তথ্য</th>
+                    <th>:</th>
+                    <th>বর্ণনা</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className='text-color-prisiding-officer font-bold'>
+                    <td>০১</td>
+                    <td>প্রিজাইডিং অফিসার</td>
+                    <td>:</td>
+                    <td>{modalData.prisidingOffcer} - {modalData.mobile} </td>
+                  </tr>
+                  <tr className= 'text-color-si font-bold'>
+                    <td>০২</td>
+                    <td>কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই</td>
+                    <td>:</td>
+                    <td>{modalData.subInspector} - {modalData.siMobile} </td>
+                  </tr>
+                  <tr>
+                    <td>০৩</td>
+                    <td>ভোটকেন্দ্র নং</td>
+                    <td>:</td>
+                    <td>{modalData.pollingStationNo}</td>
+                  </tr>
+                  <tr>
+                    <td>০৪</td>
+                    <td>ভোটকেন্দ্রের নাম ও অবস্থান</td>
+                    <td>:</td>
+                    <td className="text-xs">{modalData.pollingStationName}</td>
+                  </tr>
+                  <tr>
+                    <td>০৫</td>
+                    <td>ভোটকক্ষের সংখ্যা</td>
+                    <td>:</td>
+                    <td>{modalData.numberOfBooth}</td>
+                    </tr>
+                  <tr>
+                    <td>০৬</td>
+                    <td>গ্রামের নাম এবং ওয়ার্ড নং</td>
+                    <td>:</td>
+                    <td className="text-xs">{modalData.wordNoAndVillage}</td>
+                  </tr>
+                  <tr>
+                    <td>০৭</td>
+                    <td>ভোটকেন্দ্রের ধরন</td>
+                    <td>:</td>
+                    <td>{modalData.pollingStationType}</td>
+                  </tr>
+                  <tr>
+                    <td>০৮</td>
+                    <td>স্থায়ী বুথ</td>
+                    <td>:</td>
+                    <td>{modalData.permanentBooth}</td>
+                  </tr>
+                  <tr>
+                    <td>০৯</td>
+                    <td>অস্থায়ী বুথ</td>
+                    <td>:</td>
+                    <td>{modalData.temporaryBooth}</td>
+                  </tr>
+                  <tr>
+                    <td>১০</td>
+                    <td>পুরুষ ভোটার</td>
+                    <td>:</td>
+                    <td>{modalData.male}</td>
+                  </tr>
+                  <tr>
+                    <td>১১</td>
+                    <td>মহিলা ভোটার</td>
+                    <td>:</td>
+                    <td>{modalData.female}</td>
+                  </tr>
+                  <tr>
+                    <td>১২</td>
+                    <td>তৃতীয় লিঙ্গ</td>
+                    <td>:</td>
+                    <td>{modalData.thirdGender}</td>
+                  </tr>
+                  <tr>
+                    <td>১৩</td>
+                    <td>মোট ভোটার</td>
+                    <td>:</td>
+                    <td>{modalData.totalVoter}</td>
+                  </tr>
+                  {/* <tr>
+                    <td>১৪</td>
+                    <td>নির্বাচনী এলাকার নম্বর ও নাম</td>
+                    <td>:</td>
+                    <td>{modalData.parliamentarySeat}</td>
+                  </tr> */}
+                  <tr>
+                    <td>১৪</td>
+                    <td>ম্যাপে দেখুন</td>
+                    <td>:</td>
+                    <td>
+                      <a href= {modalData.mapInfo} target="_blank" className="link link-primary"> ক্লিক করুন!</a>
+                        {/* <a href='https://maps.app.goo.gl/k1zKNgYQyLL1tMQr5' target="_blank" className="link link-primary"> ক্লিক করুন!</a> */}
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               </div>
                  ) : (
                   <p>দুঃখিত! কোন ডেটা পাওয়া যায়নি.</p>
                )}
-              </Modal>
-            {/* {pollingStation.pollingStationName} */}
-          </li>
-        ))}
-      </div>
+          </Modal>
       {/* </ul> */}
     </div>
   );

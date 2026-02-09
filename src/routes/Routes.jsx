@@ -84,6 +84,10 @@ import EditJudicialMagistrate from "../lawEnforcement/EditJudicialMagistrate";
 import JudicialMagistrate from "../pages/JudicialMagistrate";
 import PopulateJudicialMagistrate from "../liveLink/PopulateJudicialMagistrate"
 import UpdateJudicialMagistrate from "../liveLink/UpdateJudicialMagistrate";
+import LoadAnsar from "../lawEnforcement/LoadAnsar";
+import InsertAnsar from "../lawEnforcement/InsertAnsar";
+import EditAnsar from "../lawEnforcement/EditAnsar";
+import Ansar from "../pages/Ansar";
 
 
 const router = createBrowserRouter([
@@ -132,6 +136,10 @@ const router = createBrowserRouter([
             {
                 path: "/rab",
                 element: <Rab></Rab>,
+            },
+            {
+                path: "/ansar",
+                element: <Ansar></Ansar>,
             },
             {
                 path: "/contacts",
@@ -251,6 +259,10 @@ const router = createBrowserRouter([
             element: <InsertRab></InsertRab>,
           },
           {
+            path: "/lawEnforcement/ansars",
+            element: <InsertAnsar></InsertAnsar>,
+          },
+          {
             path: "/lawEnforcement/magistrates",
             element: <InsertMagistrate></InsertMagistrate>,
           },
@@ -281,6 +293,11 @@ const router = createBrowserRouter([
             path: "/lawEnforcement/loadRab",
             element: <LoadRab></LoadRab>,
             loader: () => fetch("https://polling-station-management-server.vercel.app/rabs"),
+          },
+          {
+            path: "/lawEnforcement/loadAnsar",
+            element: <LoadAnsar></LoadAnsar>,
+            loader: () => fetch("https://polling-station-management-server.vercel.app/ansars"),
           },
           {
             path: "/lawEnforcement/loadMagistrate",
@@ -316,6 +333,11 @@ const router = createBrowserRouter([
              path: "/lawEnforcement/rab/:id",
              element: <EditRab></EditRab>,
              loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/rab/${params.id}`),
+          },
+          {
+             path: "/lawEnforcement/ansar/:id",
+             element: <EditAnsar></EditAnsar>,
+             loader: ({params}) => fetch(`https://polling-station-management-server.vercel.app/ansar/${params.id}`),
           },
           {
              path: "/lawEnforcement/magistrate/:id",
