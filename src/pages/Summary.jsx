@@ -4,18 +4,57 @@ import { Link } from 'react-router-dom';
 
 const Summary = () => {
 
+    const [upazilas, setUpazilas] = useState([]);
+    const [selectedUpazila, setSelectedUpazila] = useState("");
     const [summaryInformations, setSummaryInformations] = useState([]);
 
-    useEffect(() => {
-        fetch("https://polling-station-management-server.vercel.app/summaryInformations")
+
+    // Load Upazila
+    useEffect(() => { 
+        fetch("https://polling-station-management-server.vercel.app/upazilas")
             .then(res => res.json())
-            .then(data => setSummaryInformations(data));
-    }, []);
+            .then(data => setUpazilas(data));
+        }, []);
+    
+        // Load by selected Upazila items (all or filtered)
+        useEffect(() => {
+            let url = "https://polling-station-management-server.vercel.app/summaryInformations";
+                if (selectedUpazila) {
+                    url += `/summaryInformation/${selectedUpazila}`;
+                }
+                fetch(url)
+                .then(res => res.json())
+                .then(data => setSummaryInformations(data));
+        }, [selectedUpazila]);
+
+    // useEffect(() => {
+    //     fetch("https://polling-station-management-server.vercel.app/summaryInformations")
+    //         .then(res => res.json())
+    //         .then(data => setSummaryInformations(data));
+    // }, []);
 
     return (
         <div className="w-full mx-auto bg-base-200 p-10">
             <div className="mt-14 mx-2 my-5 justify-center">
-                <div className="flex justify-center justify-items-center">
+               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-2">
+                <div className="form-control w-50 border border-indigo-400">
+                    <div className='flex justify-center items-center max-w-xs py-2 px-4'>
+                        <select
+                        className="py-2"
+                        value={selectedUpazila}
+                        onChange={(e) => setSelectedUpazila(e.target.value)}
+                        >
+                        <option value=""> উপজেলা নির্বাচন করুন </option>
+                        {upazilas.map(upa => (
+                            <option key={upa._id} value={upa._id}>
+                            {upa.upazilaName}
+                            </option>
+                        ))}
+                        </select>
+                    </div>
+                </div>  
+
+                <div>
                     <Link to="/">
                         <button
                             className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white 
@@ -25,6 +64,7 @@ const Summary = () => {
                         </button>
                     </Link>
                 </div>
+               </div>
 
                 <div>
                       <h4 className="text-xl md:text-left font-bold mt-5 p-2 underline">সারসংক্ষেপ (২৯৬-কক্সবাজার-৩ নির্বাচনী এলাকার তথ্য)</h4>
