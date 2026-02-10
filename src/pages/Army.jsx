@@ -57,18 +57,16 @@ const Army = () => {
               <li key={army._id}>
                 <div className="card transition duration-300 ease-in-out hover:scale-110">
                   <div className="card-body bg-blue-200">
-                  
                         <div className="grid grid-cols-2 gap-1">  
                             <div className="text-bottle-green text-left font-bold">উপজেলাঃ</div>  
                             <div className="text-left"> {army.upazilaName} </div>                                                            
                         </div>
-
                          <div className="grid grid-cols-2 gap-1">  
-                            <div className="text-bottle-green text-left font-bold">নামঃ</div>  
+                            <div className="text-bottle-green text-left font-bold">নাম এবং পদবিঃ </div>  
                             <div className="text-left"> {army.armyName} </div>                                                            
                         </div>
                          <div className="grid grid-cols-2 gap-1">  
-                            <div className="text-bottle-green text-left font-bold">পদবিঃ</div>  
+                            <div className="text-bottle-green text-left font-bold">ক্যাম্পঃ</div>  
                             <div className="text-left"> {army.designation} </div>                                                            
                         </div>
                          <div className="grid grid-cols-2 gap-1">  

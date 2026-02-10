@@ -14,10 +14,11 @@ const LoadUnionInfo = () => {
     const [unions, setUnions] = useState(loadedUnions);
 
     const handleDelete = (_id) => {
-        console.log(_id);
-        fetch(`https://polling-station-management-server.vercel.app/union/${_id}`, {
+         const confirmDelete = window.confirm("আপনি কি ডেটাটি মুছতে চান?");
+         if (confirmDelete) {
+            fetch(`https://polling-station-management-server.vercel.app/union/${_id}`, {
             method: "DELETE",
-        })
+            })
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -29,6 +30,7 @@ const LoadUnionInfo = () => {
                     setUnions(remainingData);
                 }
             });
+         }
     };
 
     return (

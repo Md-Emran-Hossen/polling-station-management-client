@@ -221,6 +221,7 @@ const PollingStation = () => {
             </div>
             {/* {pollingStation.pollingStationName} */}
           </li>
+          
         ))}
       </div>
 

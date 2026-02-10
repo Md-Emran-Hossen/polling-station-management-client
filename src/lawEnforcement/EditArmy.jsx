@@ -65,7 +65,7 @@ const EditArmy = () => {
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                     htmlFor="armyName"
                             >
-                                নামঃ
+                                নাম এবং পদবিঃ
                             </label>
                         </div>
                         <div className="md:w-1/3">
@@ -86,7 +86,7 @@ const EditArmy = () => {
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                     htmlFor="designation"
                             >
-                                পদবিঃ
+                                ক্যাম্পঃ
                             </label>
                         </div>
                         <div className="md:w-1/3">
