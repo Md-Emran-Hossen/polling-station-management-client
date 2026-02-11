@@ -246,17 +246,19 @@ const PollingStation = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className='text-color-prisiding-officer font-bold'>
+                  <tr className="text-color-prisiding-officer font-bold">
                     <td>০১</td>
                     <td>প্রিজাইডিং অফিসার</td>
                     <td>:</td>
                     <td>{modalData.prisidingOffcer} - {modalData.mobile} </td>
                   </tr>
-                  <tr className= 'text-color-si font-bold'>
+                  <tr className= "text-color-si font-bold">
                     <td>০২</td>
                     <td>কেন্দ্রের দায়িত্বপ্রাপ্ত এসআই</td>
                     <td>:</td>
-                    <td>{modalData.subInspector} - {modalData.siMobile} </td>
+                    <td>{modalData.subInspector}- মোবাইল: {modalData.siMobile}</td>
+                    {/* <td>মোবাইল:</td>
+                    <td>:{modalData.siMobile}</td> */}
                   </tr>
                   <tr>
                     <td>০৩</td>

@@ -51,7 +51,7 @@ const ExecutiveMagistrate = () => {
                  </div>
             </div>  
             <h2 className="card-title ml-10 pl-2 underline">দায়িত্বপ্রাপ্ত এক্সিকিউটিভ ম্যাজিস্ট্রেটগণ</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5 p-5">
            {magistrates.map(magistrate => (
                 <li key={magistrate._id}>
                     <div className="card transition duration-300 ease-in-out hover:scale-110">
@@ -74,8 +74,8 @@ const ExecutiveMagistrate = () => {
                                 <div className="text-left">  {magistrate.mobile} </div>                                                            
                             </div>   
                                 <div className="grid grid-cols-2 gap-1">  
-                                <div className="text-bottle-green text-left font-bold"> দায়িত্বপ্রাপ্ত এলাকা/ ভোটকেন্দ্রসমূহঃ </div>  
-                                <div className="text-left">  {magistrate.pollingStations} </div>                                                            
+                                <div className="text-bottle-green text-left font-bold"> অধিক্ষেত্রঃ </div>  
+                                <div className="text-left">  {magistrate.attachedArea} </div>                                                            
                             </div>  
                             <div className="grid grid-cols-2 gap-1">  
                                 <div className="text-bottle-green text-left font-bold"> লাইভ লোকেশনঃ </div>  

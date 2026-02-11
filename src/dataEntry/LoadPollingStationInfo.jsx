@@ -136,21 +136,21 @@ const LoadPollingStationInfo = () => {
                         <thead>
                             <tr className="bg-green-100 font-bold text-xl text-center">
                                 <th>ক্রম</th>
-                                <th>জেলা</th>
+                                {/* <th>জেলা</th> */}
                                 <th>উপজেলা</th>
                                 <th>ইউনিয়ন</th>
                                 <th>ভোটকেন্দ্র নং</th>
                                 <th>ভোটকেন্দ্রের নাম ও অবস্থান</th> 
-                                <th>ভোটকক্ষের সংখ্যা</th>   
-                                <th>গ্রামের নাম এবং ওয়ার্ড নং</th>
+                                {/* <th>ভোটকক্ষের সংখ্যা</th>    */}
+                                {/* <th>গ্রামের নাম এবং ওয়ার্ড নং</th>
                                 <th>ভোটকেন্দ্রের ধরন</th>
                                 <th>স্থায়ী বুথ</th>
                                 <th>অস্থায়ী বুথ</th>
                                 <th>পুরুষ ভোটার</th>
                                 <th>মহিলা ভোটার</th>
-                                <th>তৃতীয় লিঙ্গ</th>
+                                <th>তৃতীয় লিঙ্গ</th> */}
                                 <th>মোট ভোটার</th>
-                                <th>সংসদীয় আসন</th>
+                                {/* <th>সংসদীয় আসন</th> */}
                                 <th>কার্যক্রম</th>
                             </tr>
                         </thead>
@@ -161,21 +161,21 @@ const LoadPollingStationInfo = () => {
                                     className="hover:bg-gray-100 text-center"
                                 >
                                     <td>{toBN(index + 1)}</td>
-                                    <td>{pollingStation.districtName}</td>
+                                    {/* <td>{pollingStation.districtName}</td> */}
                                     <td>{pollingStation.upazilaName}</td>
                                     <td>{pollingStation.unionName}</td>
                                     <td>{pollingStation.pollingStationNo}</td>
                                     <td>{pollingStation.pollingStationName}</td>
-                                    <td>{pollingStation.numberOfBooth}</td>
-                                    <td>{pollingStation.wordNoAndVillage}</td>
+                                    {/* <td>{pollingStation.numberOfBooth}</td> */}
+                                    {/* <td>{pollingStation.wordNoAndVillage}</td>
                                     <td>{pollingStation.pollingStationType}</td>
                                     <td>{pollingStation.permanentBooth}</td>
                                     <td>{pollingStation.temporaryBooth}</td>
                                     <td>{pollingStation.male}</td>
                                     <td>{pollingStation.female}</td>
-                                    <td>{pollingStation.thirdGender}</td>
+                                    <td>{pollingStation.thirdGender}</td> */}
                                     <td>{pollingStation.totalVoter}</td>
-                                    <td>{pollingStation.parliamentarySeat}</td>
+                                    {/* <td>{pollingStation.parliamentarySeat}</td> */}
                                     <td>
                                         <Link to={`/dataEntry/pollingStation/${pollingStation._id}`}>
                                             <button className="btn btn-outline btn-accent m-1">

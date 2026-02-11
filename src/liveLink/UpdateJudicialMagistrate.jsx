@@ -129,20 +129,20 @@ const UpdateJudicialMagistrate = () => {
                                                             <div className="md:w-1/3">
                                                                 <label
                                                                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                                                        htmlFor="pollingStations"
+                                                                        htmlFor="attachedArea"
                                                                 >
-                                                                    দায়িত্বপ্রাপ্ত ভোটকেন্দ্র/এলাকা:
+                                                                    অধিক্ষেত্র:
                                                                 </label>
                                                             </div>
                                                             <div className="md:w-1/3">
                                                                 <input
                                                                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-none w-full py-2 px-4 text-gray-700 
                                                                                leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                                                        id="pollingStations"
+                                                                        id="attachedArea"
                                                                         type="text"
-                                                                        name="pollingStations"
-                                                                        readOnly={true}
-                                                                        defaultValue={loadedData.pollingStations}
+                                                                        name="attachedArea"
+                                                                        // readOnly={true}
+                                                                        defaultValue={loadedData.attachedArea}
                                                                 />
                                                             </div>
                                                         </div>
@@ -163,6 +163,7 @@ const UpdateJudicialMagistrate = () => {
                                                                         id="liveLink"
                                                                         type="text"
                                                                         name="liveLink"
+                                                                        placeholder="লাইভ লিংক প্রদান করুন"
                                                                         defaultValue={loadedData.liveLink}
                                                                 />
                                                             </div>

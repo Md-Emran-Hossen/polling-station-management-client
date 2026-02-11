@@ -77,11 +77,11 @@ const Navbar = () => {
                             <li>
                                 <a>ম্যাজিস্ট্রেট</a>
                                 <ul className="p-2">
-                                    <li>
-                                        <NavLink to="/executiveMagistrate" reloadDocument>এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                                     <li>
+                                        <NavLink to="/judicialMagistrate" reloadDocument>জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/judicialMagistrate" reloadDocument>জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
+                                        <NavLink to="/executiveMagistrate" reloadDocument>এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
                                     </li>
                                 </ul>
                                 {/* <NavLink to="/executiveMagistrate" reloadDocument></NavLink> */}
@@ -134,11 +134,11 @@ const Navbar = () => {
                         <summary>ম্যাজিস্ট্রেট</summary>
                         <ul className="p-2 bg-base-100 w-40 z-1 text-black">
                             <li>
-                                <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
-                            </li>
-                            <li>
                                 <NavLink to="/judicialMagistrate">জুডিশিয়াল ম্যাজিস্ট্রেট</NavLink>
                              </li>
+                              <li>
+                                <NavLink to="/executiveMagistrate">এক্সিকিউটিভ ম্যাজিস্ট্রেট</NavLink>
+                            </li>
                         </ul>
                         </details>
                             {/* <NavLink to="/executiveMagistrate" reloadDocument></NavLink> */}

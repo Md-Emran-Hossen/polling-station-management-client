@@ -43,7 +43,7 @@ const EditBgb = () => {
                     <div className="my-5 mx-2 mt-20">
                         <div className="flex justify-center justify-items-center">
                             <h1 className="text-3xl font-bold text-center mb-10">
-                                বর্ডার গার্ড বাংলাদেশ এর তথ্য সংশোধন করুন :
+                                বর্ডার গার্ড বাংলাদেশ এর তথ্য সংশোধন করুনঃ
                             </h1>
                             &nbsp;&nbsp;&nbsp;
                             <Link to="/">
@@ -84,7 +84,7 @@ const EditBgb = () => {
                                         className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                             htmlFor="designation"
                                     >
-                                        পদবি:
+                                        পদবিঃ
                                     </label>
                                 </div>
                                 <div className="md:w-1/3">
@@ -105,7 +105,7 @@ const EditBgb = () => {
                                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                                     htmlFor="attachedArea"
                                             >
-                                                দায়িত্বপ্রাপ্ত এলাকা/ভোটকেন্দ্রসমূহঃ
+                                                অধিক্ষেত্রঃ
                                             </label>
                                         </div>
                                     <div className="md:w-1/3">
@@ -128,7 +128,7 @@ const EditBgb = () => {
                                         className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                             htmlFor="mobile"
                                     >
-                                        মোবাইল:
+                                        মোবাইলঃ
                                     </label>
                                 </div>
                                 <div className="md:w-1/3">

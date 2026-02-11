@@ -4,10 +4,32 @@ import { useLoaderData, Link } from 'react-router-dom';
 import { HiPencilAlt } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
 import { toBN } from 'react-en-bn';
+import { useEffect } from 'react';
 
 const PopulateMagistrate = () => {
     const loadedMagistrateInfo = useLoaderData();
     const [magistrates, setMagistrates] = useState(loadedMagistrateInfo);
+
+    const [upazilas, setUpazilas] = useState([]);
+    const [selectedUpazila, setSelectedUpazila] = useState("");
+                
+    // Load Upazila
+    useEffect(() => { 
+        fetch("https://polling-station-management-server.vercel.app/upazilas")
+            .then(res => res.json())
+            .then(data => setUpazilas(data));
+    }, []);
+                
+    // Load by selected Upazila items (all or filtered)
+    useEffect(() => {
+        let url = "https://polling-station-management-server.vercel.app/magistrates";
+            if (selectedUpazila) {
+                url += `/magistrate/${selectedUpazila}`;
+            }
+                fetch(url)
+                .then(res => res.json())
+                .then(data => setMagistrates(data));
+    }, [selectedUpazila]);
 
     return (
         <div className="w-3/4 mx-auto bg-base-200 p-10">
@@ -26,19 +48,36 @@ const PopulateMagistrate = () => {
                         </button>
                     </Link>
                 </div>
+
+                <div className="form-control sm:w-1/4 border border-indigo-400 m-10 p-2">
+                    <div className='flex justify-center items-center max-w-xs'>
+                        <select
+                            value={selectedUpazila}
+                            // disabled={true}
+                            onChange={(e) => setSelectedUpazila(e.target.value)}
+                        >
+                            <option value=""> উপজেলা নির্বাচন করুন </option>
+                            {upazilas.map(upa => (
+                            <option key={upa._id} value={upa._id}>
+                            {upa.upazilaName}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>  
                      
                 <div className="overflow-x-auto">
                     <table className="table table-xs">
                       <thead>
                         <tr className="bg-green-50 font-bold text-xl text-black">
+                            <th className="text-center">লাইভ লোকেশন</th>
                             <th>ক্রম</th>
                             <th>উপজেলা</th>
                             <th>নাম</th>
                             <th>পদবি</th>
                             <th>মোবাইল</th>
-                            <th>ভোটকেন্দ্র</th>
-                            <th>লাইভ লোকেশন</th>
-                            <th className="text-center">কার্যক্রম</th>
+                            <th>অধিক্ষেত্রঃ</th>
+                            {/* <th>লাইভ লোকেশন</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -47,20 +86,20 @@ const PopulateMagistrate = () => {
                         <tr key={magistrate._id || index}
                             className="hover:bg-gray-100"
                         >
-                            <td>{toBN(index + 1)}</td>
-                            <td>{magistrate.upazilaName}</td>
-                            <td>{magistrate.magistrateName}</td>
-                            <td>{magistrate.designation}</td>
-                            <td>{magistrate.mobile}</td>
-                            <td>{magistrate.pollingStations}</td>
-                            <td>{magistrate.liveLink}</td>
-                            <td>
+                             <td>
                                 <Link to={`/liveLink/update/magistrate/${magistrate._id}`}>
                                     <button className="btn btn-outline btn-accent text-xs px-5 py-8 m-1">
                                         <HiPencilAlt /> লাইভ লিংক যুক্তকরুন
                                     </button>
                                 </Link>
                             </td>
+                            <td>{toBN(index + 1)}</td>
+                            <td>{magistrate.upazilaName}</td>
+                            <td>{magistrate.magistrateName}</td>
+                            <td>{magistrate.designation}</td>
+                            <td>{magistrate.mobile}</td>
+                            <td>{magistrate.attachedArea}</td>
+                            {/* <td>{magistrate.liveLink}</td> */}
                         </tr>
                         ))}
                        </tbody>

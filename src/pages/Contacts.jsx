@@ -43,7 +43,7 @@ const Contacts = () => {
                  </div>
             </div>  
             <h2 className="card-title ml-10 pl-2 underline">অন্যান্য যোগাযোগঃ</h2>
-           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5 p-5">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5 p-5">
               {contacts.map(contact =>(
                 <li key={contact._id}>
 
